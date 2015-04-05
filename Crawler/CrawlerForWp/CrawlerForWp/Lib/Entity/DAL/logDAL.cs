@@ -26,7 +26,7 @@ namespace CrawlerForWp {
             string isNullId = Convert.ToString(model.Id);
             if (isNullId.Equals("") || isNullId.Equals("0") || isNullId.Equals(new Guid().ToString()) || isNullId.Equals(null))
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `log`(`AddTime`, `Type`, `Contents`) VALUES(@AddTime, @Type, @Contents) SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `log`(`AddTime`, `Type`, `Contents`) VALUES(@AddTime, @Type, @Contents); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@AddTime", model.AddTime)
                         ,new MySqlParameter("@Type", Helper.MySqlHelper.ToDBValue(model.Type))
                         ,new MySqlParameter("@Contents", model.Contents)
@@ -34,7 +34,7 @@ namespace CrawlerForWp {
             }
             else
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `log`(`Id`, `AddTime`, `Type`, `Contents`) VALUES(@Id, @AddTime, @Type, @Contents) SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `log`(`Id`, `AddTime`, `Type`, `Contents`) VALUES(@Id, @AddTime, @Type, @Contents); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@AddTime", model.AddTime)
                         ,new MySqlParameter("@Type", Helper.MySqlHelper.ToDBValue(model.Type))
@@ -60,7 +60,7 @@ namespace CrawlerForWp {
         /// <param name="model">log类的对象</param>
         /// <returns>更新是否成功</returns>
         public static bool Update(log model) {
-            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `log` SET `AddTime`=@AddTime, `Type`=@Type, `Contents`=@Contents WHERE `Id`=@Id"
+            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `log` SET `AddTime`=@AddTime, `Type`=@Type, `Contents`=@Contents WHERE `Id`=@Id;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@AddTime", model.AddTime)
                         ,new MySqlParameter("@Type", Helper.MySqlHelper.ToDBValue(model.Type))
@@ -93,7 +93,7 @@ namespace CrawlerForWp {
         /// <returns>log类的对象的枚举</returns>
         public static IEnumerable<log> ListAll() {
             List<log> list = new List<log>();
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `AddTime`, `Type`, `Contents` FROM `log`");
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `AddTime`, `Type`, `Contents` FROM `log`;");
             foreach (DataRow row in dt.Rows)  {
                 list.Add(ToModel(row));
             }

@@ -25,14 +25,14 @@ namespace CrawlerForWp {
             string isNullId = Convert.ToString(model.Id);
             if (isNullId.Equals("") || isNullId.Equals("0") || isNullId.Equals(new Guid().ToString()) || isNullId.Equals(null))
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `status`(`Key`, `Note`) VALUES(@Key, @Note) SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `status`(`Key`, `Note`) VALUES(@Key, @Note); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Key", model.Key)
                         ,new MySqlParameter("@Note", Helper.MySqlHelper.ToDBValue(model.Note))
                     );
             }
             else
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `status`(`Id`, `Key`, `Note`) VALUES(@Id, @Key, @Note) SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `status`(`Id`, `Key`, `Note`) VALUES(@Id, @Key, @Note); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@Key", model.Key)
                         ,new MySqlParameter("@Note", Helper.MySqlHelper.ToDBValue(model.Note))
@@ -57,7 +57,7 @@ namespace CrawlerForWp {
         /// <param name="model">status类的对象</param>
         /// <returns>更新是否成功</returns>
         public static bool Update(status model) {
-            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `status` SET `Key`=@Key, `Note`=@Note WHERE `Id`=@Id"
+            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `status` SET `Key`=@Key, `Note`=@Note WHERE `Id`=@Id;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@Key", model.Key)
                         ,new MySqlParameter("@Note", Helper.MySqlHelper.ToDBValue(model.Note))
@@ -89,7 +89,7 @@ namespace CrawlerForWp {
         /// <returns>status类的对象的枚举</returns>
         public static IEnumerable<status> ListAll() {
             List<status> list = new List<status>();
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Key`, `Note` FROM `status`");
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Key`, `Note` FROM `status`;");
             foreach (DataRow row in dt.Rows)  {
                 list.Add(ToModel(row));
             }

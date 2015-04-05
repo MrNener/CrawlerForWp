@@ -28,7 +28,7 @@ namespace CrawlerForWp {
             string isNullId = Convert.ToString(model.Id);
             if (isNullId.Equals("") || isNullId.Equals("0") || isNullId.Equals(new Guid().ToString()) || isNullId.Equals(null))
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `user`(`Name`, `PWD`, `AddTime`, `LastTime`, `Status`) VALUES(@Name, @PWD, @AddTime, @LastTime, @Status) SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `user`(`Name`, `PWD`, `AddTime`, `LastTime`, `Status`) VALUES(@Name, @PWD, @AddTime, @LastTime, @Status); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Name", model.Name)
                         ,new MySqlParameter("@PWD", model.PWD)
                         ,new MySqlParameter("@AddTime", Helper.MySqlHelper.ToDBValue(model.AddTime))
@@ -38,7 +38,7 @@ namespace CrawlerForWp {
             }
             else
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `user`(`Id`, `Name`, `PWD`, `AddTime`, `LastTime`, `Status`) VALUES(@Id, @Name, @PWD, @AddTime, @LastTime, @Status) SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `user`(`Id`, `Name`, `PWD`, `AddTime`, `LastTime`, `Status`) VALUES(@Id, @Name, @PWD, @AddTime, @LastTime, @Status); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@Name", model.Name)
                         ,new MySqlParameter("@PWD", model.PWD)
@@ -66,7 +66,7 @@ namespace CrawlerForWp {
         /// <param name="model">user类的对象</param>
         /// <returns>更新是否成功</returns>
         public static bool Update(user model) {
-            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `user` SET `Name`=@Name, `PWD`=@PWD, `AddTime`=@AddTime, `LastTime`=@LastTime, `Status`=@Status WHERE `Id`=@Id"
+            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `user` SET `Name`=@Name, `PWD`=@PWD, `AddTime`=@AddTime, `LastTime`=@LastTime, `Status`=@Status WHERE `Id`=@Id;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@Name", model.Name)
                         ,new MySqlParameter("@PWD", model.PWD)
@@ -101,7 +101,7 @@ namespace CrawlerForWp {
         /// <returns>user类的对象的枚举</returns>
         public static IEnumerable<user> ListAll() {
             List<user> list = new List<user>();
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Name`, `PWD`, `AddTime`, `LastTime`, `Status` FROM `user`");
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Name`, `PWD`, `AddTime`, `LastTime`, `Status` FROM `user`;");
             foreach (DataRow row in dt.Rows)  {
                 list.Add(ToModel(row));
             }

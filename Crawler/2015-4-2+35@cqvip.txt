@@ -1,0 +1,1478 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="/css/globa.css" media="all" rel="stylesheet" type="text/css" />
+	<link href="/css/globa_search.css" media="all" rel="stylesheet" type="text/css" />
+	<link href="/css/search.css" media="all" rel="stylesheet" type="text/css" />
+	<link href="http://libad.cqvip.com/css/ad.css" media="all" rel="Stylesheet" type="text/css" />
+	<script type="text/javascript" src="/js/search/Common.js"></script>
+	<script src="/js/jquery.js" type="text/javascript"></script>
+	<script src="/js/select_list.js" type="text/javascript"></script>
+	<script type="text/javascript" src="/js/search/GetSearchExp.js"></script>
+	<script type="text/javascript" src="/js/search/TopControl.js"></script>
+	<script src="/js/zk_advance.js" type="text/javascript"></script>
+	<script type="text/javascript" defer="defer">
+    if (window.attachEvent) {
+        window.attachEvent("onload", function() { InitSearchTop(); });
+    } else {
+        window.addEventListener("load", function() { InitSearchTop(); }, false);
+    }
+</script>
+	<title>检索结果 - 维普期刊资源整合服务平台</title>
+</head>
+	<!-- <body onload="getbycount()">
+	-->
+<body>
+	<form name="DownForm" method="post">
+		<input type="hidden" name="E" value="M=大数据" />
+		<input type="hidden" name="M" value="" />
+		<input type="hidden" name="P" value="1"/>
+		<input type="hidden" name="CP" value="1"/>
+		<input type="hidden" name="CC" value="0"/>
+		<input type="hidden" name="LC" value=""/>
+		<input type="hidden" name="H" value="题名或关键词=大数据 " />
+		<input type="hidden" name="Entry" value="" />
+		<input type="hidden" name="S"  value="0"/>
+		<input type="hidden" name="SJ" id="DownFormSJ" value="0"/>
+		<input type="hidden" name="ZJ" value="" />
+		<input type="hidden" name="GC" value="" />
+		<input type="hidden" name="Type" value="" />
+		<input type="hidden" name="strChkRecord" id="strChkRecord" value="" />
+		<input type="hidden" name="ChkRecordCount" id="ChkRecordCount" value="0" />
+	</form>
+
+	<form name="wxTransfer" method="post">
+		<input type="hidden" name="lid" value="" />
+		<input type="hidden" name="sip" value="" />
+		<input type="hidden" name="date" value="" />
+		<input type="hidden" name="co" value="" />
+		<input type="hidden" name="Title_C" value="" />
+		<input type="hidden" name="Writers" value="" />
+		<input type="hidden" name="Name_C" value="" />
+		<input type="hidden" name="Num" value="" />
+		<input type="hidden" name="Years" value="" />
+		<input type="hidden" name="Volumn" value="" />
+		<input type="hidden" name="GCH" value="" />
+		<input type="hidden" name="Vol" value="" />
+		<input type="hidden" name="BookID" value="" />
+		<input type="hidden" name="SubjectNum" value="" />
+		<input type="hidden" name="SpecialNum" value="" />
+		<input type="hidden" name="mirrorName" value="" />
+		<input type="hidden" name="UserID" value="" />
+		<input type="hidden" name="UserName" value="" />
+		<input type="hidden" name="sourceID" value="" />
+	</form>
+
+	<form name="exportForm" method="get">
+		<input type="hidden" name="L" value="" />
+	</form>
+	<div class="screen">
+		<div class="webhead">
+			<div id="headtopbar" class="topbar"></div>
+			<script type="text/javascript" src="/filehandle/userinfobar.aspx?re=2" ></script>
+			<script src="/js/AC_RunActiveContent.js" type="text/javascript"></script>
+			<div id="index_2">
+				<div id="origin_index_2" class="logblock">
+					<a class="log" href="#"></a>
+				</div>
+
+				<!--<script type="text/javascript" src="http://libad.cqvip.com/showad.ashx?userid=0&pcode=index_2"></script>
+			-->
+		</div>
+		<div id="index_3">
+			<div class="name" id="origin_index_3">
+				<img src="/images/cp_name.gif" alt="维普中文期刊产品整合服务" />
+			</div>
+
+			<!--<script type="text/javascript" src="http://libad.cqvip.com/showad.ashx?userid=0&pcode=index_3"></script>
+		-->
+	</div>
+</div>
+<div class="webbody">
+	<div class="search_content">
+		<div class="data">
+			<script src="/js/ywcommon.js" type="text/javascript"></script>
+			<div class="d_selector">
+				<div id="bigguide" class="s1">
+					<a href="javascript:csg(1)">期刊文献检索</a>
+					<a href="javascript:csg(2)">文献引证追踪</a>
+					<a href="javascript:csg(3)">科学指标分析</a>
+					<a href="javascript:csg(5)">高被引析出文献</a>
+					<a href="javascript:csg(4)">搜索引擎服务</a>
+				</div>
+				<script src="/js/jquery.belatedPNG.min.js" type="text/javascript"></script>
+				<script type="text/javascript">
+          	var isIE6 = false;
+ $(function() {
+	if((!jQuery.support.opacity) && (!jQuery.support.style) && (typeof document.documentElement.style.maxHeight == "undefined")){
+isIE6 = true;
+} 
+	if(isIE6){	
+		$('.gocheck a img').fixPng();
+	}		
+    });
+
+          </script>
+				<span class="gocheck">
+					<a href="http://www.cqvip.com/gocheck/" target="_blank" title="论文检测">
+						<img src="/images/gocheck.png" width="103" height="30" alt="论文检测" />
+					</a>
+				</span>
+			</div>
+		</div>
+		<div id="guideplan1" class="search_outter">
+			<div class="search">
+				<div class="selectbar">
+					<div class="s_right">
+						<a class="sjkh" target="_blank" href="/productor/pro_sjyy.shtml">手机客户端</a>
+						<a class="yj" target="_blank" href="http://bbs.cqvip.com/posttopic.aspx?forumid=671&forumpage=1&cedit=no">意见</a>
+						<a class="bz" target="_blank" href="/help/helps.shtml">帮助</a>
+					</div>
+					<div class="selector5">
+						<div class="s1">
+							<a href="/index.aspx">基本检索</a>
+							<a href="/zk/custom.aspx">传统检索</a>
+							<a href="/ZK/index.aspx">高级检索</a>
+							<a href="/journal/index.aspx">期刊导航</a>
+							<a href="/zk/history.aspx">检索历史</a>
+						</div>
+					</div>
+				</div>
+				<div class="searchbox_outter">
+					<div class="searchbox" id="searchnormal">
+
+						<form method="post" name="searchnormal">
+							<div class="normal_z">
+								<div class="all_class" id="all_class_z">
+									<div class="link_part"></div>
+									<ul id="b_all_class">
+										<li>
+											<input type="checkbox" id="b_subject1" name="b_subject" onclick="checkboxall()" value="C8+[C93+[C96+[C97" checked="" title="管理学">管理学</li>
+										<li>
+											<input type="checkbox" id="b_subject2" name="b_subject" onclick="checkboxall()" value="F+[C92" checked="" title="经济学">经济学</li>
+										<li>
+											<input type="checkbox" id="b_subject3" name="b_subject" onclick="checkboxall()" value="G25+[G35" checked="" title="图书馆情报学">图书馆情报学</li>
+										<li>
+											<input type="checkbox" id="b_subject4" name="b_subject" onclick="checkboxall()" value="G4+[G5+[G6+[G7" checked="" title="教育学">教育学</li>
+										<li>
+											<input type="checkbox" id="b_subject5" name="b_subject" onclick="checkboxall()" value="B84" checked="" title="心理学">心理学</li>
+										<li>
+											<input type="checkbox" id="b_subject6" name="b_subject" onclick="checkboxall()" value="O1+[O2+[TB11" checked="" title="数学">数学</li>
+										<li>
+											<input type="checkbox" id="b_subject7" name="b_subject" onclick="checkboxall()" value="O3+[TB12" checked="" title="力学">力学</li>
+										<li>
+											<input type="checkbox" id="b_subject8" name="b_subject" onclick="checkboxall()" value="O4+[O5+[TB5+[TB13" checked="" title="物理">物理</li>
+										<li>
+											<input type="checkbox" id="b_subject9" name="b_subject" onclick="checkboxall()" value="Q" checked="" title="生物">生物</li>
+										<li>
+											<input type="checkbox" id="b_subject10" name="b_subject" onclick="checkboxall()" value="P+[TB15" checked="" title="天文地球">天文地球</li>
+										<li>
+											<input type="checkbox" id="b_subject11" name="b_subject" onclick="checkboxall()" value="TB3+[TG13+[TG14+[V25" checked="" title="材料科学">材料科学</li>
+										<li>
+											<input type="checkbox" id="b_subject12" name="b_subject" onclick="checkboxall()" value="TQ+[O6+[O7" checked="" title="化学化工">化学化工</li>
+										<li>
+											<input type="checkbox" id="b_subject13" name="b_subject" onclick="checkboxall()" value="TD" checked="" title="矿业工程">矿业工程</li>
+										<li>
+											<input type="checkbox" id="b_subject14" name="b_subject" onclick="checkboxall()" value="TE" checked="" title="石油工业">石油工业</li>
+										<li>
+											<input type="checkbox" id="b_subject15" name="b_subject" onclick="checkboxall()" value="TF" checked="" title="冶金工业">冶金工业</li>
+										<li>
+											<input type="checkbox" id="b_subject16" name="b_subject" onclick="checkboxall()" value="TG" checked="" title="金属学及工艺">金属学及工艺</li>
+										<li>
+											<input type="checkbox" id="b_subject17" name="b_subject" onclick="checkboxall()" value="TH+[TB6+[TB9+[TB2+[TB7+[TB4+[TB17+[TB18" checked="" title="机械工程">机械工程</li>
+										<li>
+											<input type="checkbox" id="b_subject18" name="b_subject" onclick="checkboxall()" value="TK" checked="" title="能源动力">能源动力</li>
+										<li>
+											<input type="checkbox" id="b_subject19" name="b_subject" onclick="checkboxall()" value="TN" checked="" title="电子电信">电子电信</li>
+										<li>
+											<input type="checkbox" id="b_subject20" name="b_subject" onclick="checkboxall()" value="TM" checked="" title="电气工程">电气工程</li>
+										<li>
+											<input type="checkbox" id="b_subject21" name="b_subject" onclick="checkboxall()" value="TP+[N94" checked="" title="计算机与自动化">计算机与自动化</li>
+										<li>
+											<input type="checkbox" id="b_subject22" name="b_subject" onclick="checkboxall()" value="TU" checked="" title="建筑科学">建筑科学</li>
+										<li>
+											<input type="checkbox" id="b_subject23" name="b_subject" onclick="checkboxall()" value="TV" checked="" title="水利工程">水利工程</li>
+										<li>
+											<input type="checkbox" id="b_subject24" name="b_subject" onclick="checkboxall()" value="TS2" checked="" title="食品">食品</li>
+										<li>
+											<input type="checkbox" id="b_subject25" name="b_subject" onclick="checkboxall()" value="TS1" checked="" title="纺织">纺织</li>
+										<li>
+											<input type="checkbox" id="b_subject26" name="b_subject" onclick="checkboxall()" value="U" checked="" title="交通运输">交通运输</li>
+										<li>
+											<input type="checkbox" id="b_subject27" name="b_subject" onclick="checkboxall()" value="V" checked="" title="航空航天">航空航天</li>
+										<li>
+											<input type="checkbox" id="b_subject28" name="b_subject" onclick="checkboxall()" value="X" checked="" title="环境科学">环境科学</li>
+										<li>
+											<input type="checkbox" id="b_subject29" name="b_subject" onclick="checkboxall()" value="TL" checked="" title="核科学">核科学</li>
+										<li>
+											<input type="checkbox" id="b_subject30" name="b_subject" onclick="checkboxall()" value="R4+[R5+[R6+[R71+[R72+[R73+[R74+[R75+[R76+[R77+[R78+[R8+[D919" title="临床医学" checked="">临床医学</li>
+										<li>
+											<input type="checkbox" id="b_subject31" name="b_subject" onclick="checkboxall()" value="R2" title="中国医学" checked="">中国医学</li>
+										<li>
+											<input type="checkbox" id="b_subject32" name="b_subject" onclick="checkboxall()" value="R3" checked="" title="基础医学">基础医学</li>
+										<li>
+											<input type="checkbox" id="b_subject33" name="b_subject" onclick="checkboxall()" value="R1" checked="" title="预防医学卫生学">预防医学卫生学</li>
+										<li>
+											<input type="checkbox" id="b_subject34" name="b_subject" onclick="checkboxall()" value="R9" checked="" title="药学">药学</li>
+										<li>
+											<input type="checkbox" id="b_subject35" name="b_subject" onclick="checkboxall()" value="S1+[S2+[S3+[S4+[S5+[S6" checked="" title="农学">农学</li>
+										<li>
+											<input type="checkbox" id="b_subject36" name="b_subject" onclick="checkboxall()" value="S7" checked="" title="林学">林学</li>
+										<li>
+											<input type="checkbox" id="b_subject37" name="b_subject" onclick="checkboxall()" value="S8" checked="" title="畜牧兽医">畜牧兽医</li>
+										<li>
+											<input type="checkbox" id="b_subject38" name="b_subject" onclick="checkboxall()" value="S9" checked="" title="水产科学">水产科学</li>
+										<li>
+											<input type="checkbox" id="b_subject39" name="b_subject" onclick="checkboxall()" value="B" checked="" title="哲学宗教">哲学宗教</li>
+										<li>
+											<input type="checkbox" id="b_subject40" name="b_subject" onclick="checkboxall()" value="D" checked="" title="政治法律">政治法律</li>
+										<li>
+											<input type="checkbox" id="b_subject41" name="b_subject" onclick="checkboxall()" value="G" checked="" title="文化科学与信息传播">文化科学与信息传播</li>
+										<li>
+											<input type="checkbox" id="b_subject42" name="b_subject" onclick="checkboxall()" value="G8" checked="" title="体育">体育</li>
+										<li>
+											<input type="checkbox" id="b_subject43" name="b_subject" onclick="checkboxall()" value="H" checked="" title="语言文字">语言文字</li>
+										<li>
+											<input type="checkbox" id="b_subject44" name="b_subject" onclick="checkboxall()" value="I+[J" checked="" title="文学艺术">文学艺术</li>
+										<li>
+											<input type="checkbox" id="b_subject45" name="b_subject" onclick="checkboxall()" value="K" checked="" title="历史地理">历史地理</li>
+										<li class="submit">
+											<input type="button" onclick="allsubject()" value="全选" class="btns_s" />
+											<input type="button" onclick="clearsubject()" value="清除" class="btns_s" />
+											<input type="button" value="确定" class="btns_s" />
+											<input type="hidden" id="b_allsub" value="all" ></li>
+									</ul>
+								</div>
+								<div class="lines" style="padding-left:175px;">
+									<span class="radio">时间</span>
+									<span style="z-index: 102;" class="selects year">
+										<input type="hidden" value="" id="b_year1" name="b_year1"/>
+										<a id="ab_year1" name="ab_year1">1989</a>
+										<ul style="display: none;" id="ub_year1" class="select_list"></ul>
+									</span>
+									<span class="radio">-</span>
+									<span style="margin-right: 42px; z-index: 101;" class="selects year">
+										<input type="hidden" value="" id="b_year2" name="b_year2"/>
+										<a id="ab_year2" name="ab_year2">1989</a>
+										<ul style="display: none;" id="ub_year2" class="select_list"></ul>
+									</span>
+									<span class="radio">范围</span>
+									<span style="margin-right:41px;*margin-right:41px;_margin-right:43px;" class="selects sel8">
+										<input type="hidden" value="1" id="b_MRange1" name="b_MRange1"/>
+										<a>全部期刊</a>
+										<ul style="display: none;" class="select_list">
+											<li rel="1">全部期刊</li>
+											<li rel="核心刊">核心期刊</li>
+											<li rel="ei">EI来源期刊</li>
+											<li rel="sci">SCI来源期刊</li>
+											<li rel="cas">CAS来源期刊</li>
+											<li rel="cscd">CSCD来源期刊</li>
+											<li rel="cssci">CSSCI来源期刊</li>
+										</ul>
+									</span>
+									<span class="radio" style="white-space:nowrap">学科</span>
+									<span id="z_btn" class="selects sel4">
+										<a>选择学科</a>
+									</span>
+								</p>
+							</div>
+							<div class="lines">
+								<span class="selects sel6" style="z-index: 99;">
+									<input type="hidden" onchange="iscankao(this)" value="M" id="b_Sel0" name="b_Sel0"/>
+									<a>题名或关键词</a>
+									<ul style="display: none;" class="select_list">
+										<li rel="U">任意字段</li>
+										<li rel="M">题名或关键词</li>
+										<li rel="T">题名</li>
+										<li rel="K">关键词</li>
+										<li rel="R">文摘</li>
+										<li rel="A">作者</li>
+										<li rel="F">第一作者</li>
+										<li rel="S">机构</li>
+										<li rel="J">刊名</li>
+										<li rel="C">分类号</li>
+										<li rel="Y">参考文献</li>
+										<li rel="Z">作者简介</li>
+										<li rel="I">基金资助</li>
+										<li rel="L">栏目信息</li>
+									</ul>
+								</span>
+								<span class="inputs">
+									<input type="text" id="b_Text0" onkeypress="EnteryKeyno(event)" name="b_Text0"></span>
+							</div>
+							<div class="lines_on">
+								<span class="selects sel1" style="z-index: 98;">
+									<input type="hidden" value="*" id="b_Relation1" name="b_Relation1"/>
+									<a>与</a>
+									<ul style="display: none;" class="select_list">
+										<li rel="*">与</li>
+										<li rel="+">或</li>
+										<li rel="!">非</li>
+									</ul>
+								</span>
+								<span class="selects sel6" style="z-index: 97;">
+									<input type="hidden" value="M" id="b_Sel1" name="b_Sel1"/>
+									<a>题名或关键词</a>
+									<ul style="display: none;" class="select_list">
+										<li rel="U">任意字段</li>
+										<li rel="M">题名或关键词</li>
+										<li rel="T">题名</li>
+										<li rel="K">关键词</li>
+										<li rel="R">文摘</li>
+										<li rel="A">作者</li>
+										<li rel="F">第一作者</li>
+										<li rel="S">机构</li>
+										<li rel="J">刊名</li>
+										<li rel="C">分类号</li>
+										<li rel="Z">作者简介</li>
+										<li rel="I">基金资助</li>
+										<li rel="L">栏目信息</li>
+									</ul>
+								</span>
+								<span class="inputs">
+									<input type="text" id="b_Text1" onkeypress="EnteryKeyno(event)" name="b_Text1"></span>
+							</div>
+							<div style="display: none;" class="lines_on">
+								<span class="selects sel1" style="z-index: 96;">
+									<input type="hidden" value="*" id="b_Relation2" name="b_Relation2"/>
+									<a>与</a>
+									<ul style="display: none;" class="select_list">
+										<li rel="*">与</li>
+										<li rel="+">或</li>
+										<li rel="!">非</li>
+									</ul>
+								</span>
+								<span class="selects sel6" style="z-index: 95;">
+									<input type="hidden" value="M" id="b_Sel2" name="b_Sel2"/>
+									<a>题名或关键词</a>
+									<ul style="display: none;" class="select_list">
+										<li rel="U">任意字段</li>
+										<li rel="M">题名或关键词</li>
+										<li rel="T">题名</li>
+										<li rel="K">关键词</li>
+										<li rel="R">文摘</li>
+										<li rel="A">作者</li>
+										<li rel="F">第一作者</li>
+										<li rel="S">机构</li>
+										<li rel="J">刊名</li>
+										<li rel="C">分类号</li>
+										<li rel="Z">作者简介</li>
+										<li rel="I">基金资助</li>
+										<li rel="L">栏目信息</li>
+									</ul>
+								</span>
+								<span class="inputs">
+									<input type="text" id="b_Text2" onkeypress="EnteryKeyno(event)" name="b_Text2"></span>
+							</div>
+							<div style="display: none;" class="lines_on">
+								<span class="selects sel1" style="z-index: 94;">
+									<input type="hidden" value="*" id="b_Relation3" name="b_Relation3"/>
+									<a>与</a>
+									<ul style="display: none;" class="select_list">
+										<li rel="*">与</li>
+										<li rel="+">或</li>
+										<li rel="!">非</li>
+									</ul>
+								</span>
+								<span class="selects sel6" style="z-index: 93;">
+									<input type="hidden" value="M" id="b_Sel3" name="b_Sel3"/>
+									<a>题名或关键词</a>
+									<ul style="display: none;" class="select_list">
+										<li rel="U">任意字段</li>
+										<li rel="M">题名或关键词</li>
+										<li rel="T">题名</li>
+										<li rel="K">关键词</li>
+										<li rel="R">文摘</li>
+										<li rel="A">作者</li>
+										<li rel="F">第一作者</li>
+										<li rel="S">机构</li>
+										<li rel="J">刊名</li>
+										<li rel="C">分类号</li>
+										<li rel="Z">作者简介</li>
+										<li rel="I">基金资助</li>
+										<li rel="L">栏目信息</li>
+									</ul>
+								</span>
+								<span class="inputs">
+									<input type="text" id="b_Text3" onkeypress="EnteryKeyno(event)" name="b_Text3"></span>
+							</div>
+							<div style="display: none;" class="lines_on">
+								<span class="selects sel1" >
+									<input type="hidden" value="*" id="b_Relation4" name="b_Relation4"/>
+									<a>与</a>
+									<ul style="display: none;" class="select_list">
+										<li rel="*">与</li>
+										<li rel="+">或</li>
+										<li rel="!">非</li>
+									</ul>
+								</span>
+								<span class="selects sel6" >
+									<input type="hidden" value="M" id="b_Sel4" name="b_Sel4"/>
+									<a>题名或关键词</a>
+									<ul style="display: none;" class="select_list">
+										<li rel="U">任意字段</li>
+										<li rel="M">题名或关键词</li>
+										<li rel="T">题名</li>
+										<li rel="K">关键词</li>
+										<li rel="R">文摘</li>
+										<li rel="A">作者</li>
+										<li rel="F">第一作者</li>
+										<li rel="S">机构</li>
+										<li rel="J">刊名</li>
+										<li rel="C">分类号</li>
+										<li rel="Z">作者简介</li>
+										<li rel="I">基金资助</li>
+										<li rel="L">栏目信息</li>
+									</ul>
+								</span>
+								<span class="inputs">
+									<input type="text" id="b_Text4" onkeypress="EnteryKeyno(event)" name="b_Text4"></span>
+							</div>
+							<span class="sel_op">
+								<input type="button" class="add">
+
+								<input type="button" class="cut"></span>
+						</div>
+						<div class="lines_s">
+							<input name="searchmethod" type="radio" value="1" checked="checked" />
+							重新搜索
+							<input name="searchmethod" type="radio" value="2" />
+							在结果中搜索
+							<input name="searchmethod" type="radio" value="3" />
+							在结果中添加
+							<input name="searchmethod" type="radio" value="4" />
+							在结果中去除
+						</div>
+						<div class="submit">
+							<div>
+								<input type="button" class="btns" value="检索" onclick="return searnormal()">
+								<input type="button" class="btns" value="清除" onclick="clearnormal()"></div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<div id="guideplan4" style=" display:none" class="search_outter">
+	<div class="search vgs">
+		<div class="vgscontent">
+			<form action="" accept-charset="gb2312" target="_blank" method="post" name="vgsdfrm">
+				<div class="s_right">
+					<a class="sjkh" target="_blank" href="/productor/pro_sjyy.shtml">手机客户端</a>
+					<a class="yj" target="_blank" href="http://bbs.cqvip.com/posttopic.aspx?forumid=665&forumpage=1&cedit=no">意见</a>
+					<a class="bz" target="_blank" href="/help/helps.shtml">帮助</a>
+				</div>
+				<img class="vgslog" src="/images/vgslog.gif" alt="学术搜索" />
+				<div class="vgssearch">
+					<input onkeypress="if(event.keyCode==13||event.which==13){return false;}"  name="searchkey" id="searchkey" type="text" class="searchinput" />
+					<input name="btnvgsd" onclick="tovgsdsearch()" type="button" class="searchbtn" />
+				</div>
+				<div class="vgsop" >
+					<input type="radio" checked="checked" value="0" name="stype">
+					在谷歌里面搜索
+					<input type="radio" value="1" name="stype">在百度里面搜索</div>
+			</form>
+		</div>
+
+	</div>
+
+</div>
+<div class="site">
+	<a href="/ZK/index.aspx">中文科技期刊数据库</a>
+	&gt; 检索结果
+</div>
+<div class="search_result">
+	<div class="s_selector">
+		<div class="s1">
+			<a>期刊全文</a>
+			<a href="javascript:newsearchyw('J')">被引期刊论文</a>
+			<a href="javascript:newsearchyw('D')">被引学位论文</a>
+			<a href="javascript:newsearchyw('C')">被引会议论文</a>
+			<a href="javascript:newsearchyw('P')">被引专利</a>
+			<a href="javascript:newsearchyw('S')">被引标准</a>
+			<a class="google" href="javascript:newsearchyw('M')">被引图书专著</a>
+		</div>
+	</div>
+	<div class="search_result_box3">
+		<div class="search_result_box2">
+			<div class="search_result_box1">
+				<div class="search_result_content">
+					<div class="search_gs">
+						<span></span>
+						10422篇;　　题名或关键词=大数据
+					</div>
+					<h5>
+						<span style="float:left; margin-right:1em;">
+							<a href="javascript:AllTitleChk()" >全选</a>
+							<a href="javascript:ClearTitleChk()">清除</a>
+							<a href="javascript:exportTitle()">导出</a>
+						</span>
+						<span style="float:left">
+							已选
+							<input id="ChkRecordCounts" style="border:0px; width:30px; background:transparent; text-align:center; color:#747474;" value="0" type="text" />
+							条
+						</span>
+						<span style="float:right">
+							<span style="float:left">按时间筛选</span>
+							<span id="SJspan" class="selects sel4">
+								<select id="ShowSJ" onChange="javascript:ChangeSJ();">
+									<option value="1">全部</option>
+									<option value="2">一个月内</option>
+									<option value="3">三个月内</option>
+									<option value="4">半年内</option>
+									<option value="5">一年内</option>
+									<option value="6">当年内</option>
+								</select>
+							</span>
+						</span>
+					</h5>
+					<div id="result_divlist" class="result_list">
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663343308" onclick="TitleChk(this,'663343308')" />
+								1
+							</dd>
+							<dt> <strong>题名：</strong>
+								<a target="_blank" href="/qk/93273X/201505/663343308.html">
+									以 <font style = 'color:red'>大</font> <font style = 'color:red'>数据</font>
+									推动城市智慧化发展的创新性规划
+								</a>
+								<span id="d663343308" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663343308">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663343308&Tm=%e4%bb%a5%e5%a4%a7%e6%95%b0%e6%8d%ae%e6%8e%a8%e5%8a%a8%e5%9f%8e%e5%b8%82%e6%99%ba%e6%85%a7%e5%8c%96%e5%8f%91%e5%b1%95%e7%9a%84%e5%88%9b%e6%96%b0%e6%80%a7%e8%a7%84%e5%88%92&P=6&ReDirect=%2fqk%2f93273X%2f201505%2f663343308.html&mid=31&RegDirect=%2fqk%2f93273X%2f201505%2f663343308.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663343308&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663343308" class="right_v"></span>
+							</dt>
+							<dd class="author"> <strong>作者：</strong>
+								<a href="javascript:WriterSearch('马娜');">马娜</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/93273X/">《价值工程》</a>
+								<a target="_blank" href="/qk/93273X/201505/">2015年第5期</a>
+							</dd>
+							<dd class="fund">
+								<strong>基金：</strong>
+								江苏高校哲学社会科学研究基金资助项目大数据驱动下的徐州智慧化城市的构建模式研究,项目批准号2014SJB427.
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								以充足数据为基础的城市规划更趋坚定、合理、科学。大大降低了城市运作的风险,提升了居民生活的幸福指数。
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="662911944" onclick="TitleChk(this,'662911944')" />
+								2
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/93273X/201503/662911944.html">
+									基于
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									时代的智能快递派送运作模式研究
+								</a>
+								<span id="d662911944" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=662911944">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=662911944&Tm=%e5%9f%ba%e4%ba%8e%e5%a4%a7%e6%95%b0%e6%8d%ae%e6%97%b6%e4%bb%a3%e7%9a%84%e6%99%ba%e8%83%bd%e5%bf%ab%e9%80%92%e6%b4%be%e9%80%81%e8%bf%90%e4%bd%9c%e6%a8%a1%e5%bc%8f%e7%a0%94%e7%a9%b6&P=6&ReDirect=%2fqk%2f93273X%2f201503%2f662911944.html&mid=31&RegDirect=%2fqk%2f93273X%2f201503%2f662911944.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=662911944&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw662911944" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('黄永宝');">黄永宝[1]</a>
+								<a href="javascript:WriterSearch('纪延光');">纪延光[2]</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/93273X/">《价值工程》</a>
+								<a target="_blank" href="/qk/93273X/201503/">2015年第3期</a>
+							</dd>
+							<dd class="fund">
+								<strong>基金：</strong>
+								江苏省社会科学基金资助项目(07EYB022）江苏省教育厅社会科学基金资助项目(07SJB630001）资助.
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								大数据兴起和信息化大力发展的当下，我国快递派送行业都处在传统运作模式阶段。本文通过引入智能信息技术，如二维码、数据库技术、信息识别、智能信息系统等实现这一行业的智能化信息化...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="662911936" onclick="TitleChk(this,'662911936')" />
+								3
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/93273X/201503/662911936.html">
+									浅析“
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									”时代的信息安全与应对
+								</a>
+								<span id="d662911936" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=662911936">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=662911936&Tm=%e6%b5%85%e6%9e%90%e2%80%9c%e5%a4%a7%e6%95%b0%e6%8d%ae%e2%80%9d%e6%97%b6%e4%bb%a3%e7%9a%84%e4%bf%a1%e6%81%af%e5%ae%89%e5%85%a8%e4%b8%8e%e5%ba%94%e5%af%b9&P=6&ReDirect=%2fqk%2f93273X%2f201503%2f662911936.html&mid=31&RegDirect=%2fqk%2f93273X%2f201503%2f662911936.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=662911936&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw662911936" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('乔书芳');">乔书芳</a>
+								<a href="javascript:WriterSearch('赵巍');">赵巍</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/93273X/">《价值工程》</a>
+								<a target="_blank" href="/qk/93273X/201503/">2015年第3期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								“大数据”时代的到来，进一步推动了计算机、网络及存储技术的发展，同时也引发了更多新的安全问题。本文从“大数据”的定义出发，对其技术特征进行了简要介绍，重点分析了“大数据”面...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663143160" onclick="TitleChk(this,'663143160')" />
+								4
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/88612X/201501/663143160.html">电站锅炉远程在线服务系统研究</a>
+								<span id="d663143160" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663143160">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663143160&Tm=%e7%94%b5%e7%ab%99%e9%94%85%e7%82%89%e8%bf%9c%e7%a8%8b%e5%9c%a8%e7%ba%bf%e6%9c%8d%e5%8a%a1%e7%b3%bb%e7%bb%9f%e7%a0%94%e7%a9%b6&P=6&ReDirect=%2fqk%2f88612X%2f201501%2f663143160.html&mid=31&RegDirect=%2fqk%2f88612X%2f201501%2f663143160.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663143160&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663143160" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('马益新');">马益新[1]</a>
+								<a href="javascript:WriterSearch('梁希');">梁希[2]</a>
+								<a href="javascript:WriterSearch('马会钧');">马会钧[3]</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/88612X/">《顺德职业技术学院学报》</a>
+								<a target="_blank" href="/qk/88612X/201501/">2015年第1期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								综合应用云存储技术、分布式实时数据库技术、专家系统技术等研制完成了一种针对电站锅炉的远程在线服务系统，给出系统的软件体系架构，介绍了其关键技术及其实现情况，供同类系统研究、...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663485903" onclick="TitleChk(this,'663485903')" />
+								5
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/90435A/201505/663485903.html">
+									浅析
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									下的网点库存现金限额的最优计算
+								</a>
+								<span id="d663485903" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663485903">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663485903&Tm=%e6%b5%85%e6%9e%90%e5%a4%a7%e6%95%b0%e6%8d%ae%e4%b8%8b%e7%9a%84%e7%bd%91%e7%82%b9%e5%ba%93%e5%ad%98%e7%8e%b0%e9%87%91%e9%99%90%e9%a2%9d%e7%9a%84%e6%9c%80%e4%bc%98%e8%ae%a1%e7%ae%97&P=6&ReDirect=%2fqk%2f90435A%2f201505%2f663485903.html&mid=537&RegDirect=%2fqk%2f90435A%2f201505%2f663485903.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663485903&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663485903" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('张鹏飞');">张鹏飞</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/90435A/">《中小企业管理与科技》</a>
+								<a target="_blank" href="/qk/90435A/201505/">2015年第5期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								随着利率市场化、民间资本可发起设立金融机构、互联网金融产品出现，同业竞争不断加剧，对银行的经营管理提出了更高要求。本文旨在通过传统方法下与大数据技术下的库存现金限额计算的优...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663513566" onclick="TitleChk(this,'663513566')" />
+								6
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/81123X/201504/663513566.html">
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									时代基于云会计的企业固定资产投资决策
+								</a>
+								<span id="d663513566" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663513566">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663513566&Tm=%e5%a4%a7%e6%95%b0%e6%8d%ae%e6%97%b6%e4%bb%a3%e5%9f%ba%e4%ba%8e%e4%ba%91%e4%bc%9a%e8%ae%a1%e7%9a%84%e4%bc%81%e4%b8%9a%e5%9b%ba%e5%ae%9a%e8%b5%84%e4%ba%a7%e6%8a%95%e8%b5%84%e5%86%b3%e7%ad%96&P=6&ReDirect=%2fqk%2f81123X%2f201504%2f663513566.html&mid=537&RegDirect=%2fqk%2f81123X%2f201504%2f663513566.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663513566&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663513566" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('程平');">程平[1,2]</a>
+								<a href="javascript:WriterSearch('韩佳佚');">韩佳佚[1,2]</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/81123X/">《会计之友》</a>
+								<a target="_blank" href="/qk/81123X/201504/">2015年第4期</a>
+							</dd>
+							<dd class="fund">
+								<strong>基金：</strong>
+								国家自然科学基金青年项目(批准号71201179）;教育部人文社会科学基金青年项目(批准号12YJC630025）;重庆市教委科学技术研究项目(批准号KJ1400905）;重庆理工大学财会研究与开发中心科研创新重大项目(批准号14ARC101）;重庆市研究生科研创新项目(批准号CYS14187）.
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								固定资产投资决策是企业的-项重要决策,对企业的生产经营发展至关重要.从决策效率、决策质量以及决策成本等方面分析了大数据、云会计技术对企业固定资产投资决策的影响,建立了大数据时代...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663478769" onclick="TitleChk(this,'663478769')" />
+								7
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/92266B/201503/663478769.html">
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									与云计算对会计信息化的影响
+								</a>
+								<span id="d663478769" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663478769">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663478769&Tm=%e5%a4%a7%e6%95%b0%e6%8d%ae%e4%b8%8e%e4%ba%91%e8%ae%a1%e7%ae%97%e5%af%b9%e4%bc%9a%e8%ae%a1%e4%bf%a1%e6%81%af%e5%8c%96%e7%9a%84%e5%bd%b1%e5%93%8d&P=6&ReDirect=%2fqk%2f92266B%2f201503%2f663478769.html&mid=537&RegDirect=%2fqk%2f92266B%2f201503%2f663478769.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663478769&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663478769" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('丁婧');">丁婧</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/92266B/">《知识经济》</a>
+								<a target="_blank" href="/qk/92266B/201503/">2015年第3期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								信息大爆炸时代的到来，使得社会已进入了大数据时代。虽然信息无处不在，但都零散地分布在不同的地方，没有很好的整合和利用，而传统的数据库很难对取得的大数据进行整合、分析，所以只...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663342335" onclick="TitleChk(this,'663342335')" />
+								8
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/85733X/201501/663342335.html">
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									及其时代下的教育变革
+								</a>
+								<span id="d663342335" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663342335">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663342335&Tm=%e5%a4%a7%e6%95%b0%e6%8d%ae%e5%8f%8a%e5%85%b6%e6%97%b6%e4%bb%a3%e4%b8%8b%e7%9a%84%e6%95%99%e8%82%b2%e5%8f%98%e9%9d%a9&P=6&ReDirect=%2fqk%2f85733X%2f201501%2f663342335.html&mid=5&RegDirect=%2fqk%2f85733X%2f201501%2f663342335.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663342335&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663342335" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('侯丽媛');">侯丽媛</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/85733X/">
+									《内蒙古电
+									<font style = 'color:red'>大</font>
+									学刊》
+								</a>
+								<a target="_blank" href="/qk/85733X/201501/">2015年第1期</a>
+							</dd>
+							<dd class="fund">
+								<strong>基金：</strong>
+								内蒙古广播电视大学教师“1＋1”能力计划后期资助项目.
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								大数据技术就在我们身边,了解大数据的定义及其特点,运用大数据思维去发掘大数据的潜在价值是大数据时代的必然.大数据会给我们生活的方方面面带来意想不到的变化,同样会在教育领域掀起一...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663384679" onclick="TitleChk(this,'663384679')" />
+								9
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/97365A/201501/663384679.html">
+									四川省医学科学院·四川省人民医院重症医学科成功举办全国首届
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									与智慧医疗研讨会
+								</a>
+								<span id="d663384679" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663384679">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663384679&Tm=%e5%9b%9b%e5%b7%9d%e7%9c%81%e5%8c%bb%e5%ad%a6%e7%a7%91%e5%ad%a6%e9%99%a2%c2%b7%e5%9b%9b%e5%b7%9d%e7%9c%81%e4%ba%ba%e6%b0%91%e5%8c%bb%e9%99%a2%e9%87%8d%e7%97%87%e5%8c%bb%e5%ad%a6%e7%a7%91%e6%88%90%e5%8a%9f%e4%b8%be%e5%8a%9e%e5%85%a8%e5%9b%bd%e9%a6%96%e5%b1%8a%e5%a4%a7%e6%95%b0%e6%8d%ae%e4%b8%8e%e6%99%ba%e6%85%a7%e5%8c%bb%e7%96%97%e7%a0%94%e8%ae%a8%e4%bc%9a&P=6&ReDirect=%2fqk%2f97365A%2f201501%2f663384679.html&mid=351&RegDirect=%2fqk%2f97365A%2f201501%2f663384679.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663384679&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663384679" class="right_v"></span>
+							</dt>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/97365A/">《实用医院临床杂志》</a>
+								<a target="_blank" href="/qk/97365A/201501/">2015年第1期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								12月13日，由四川省医学科学院·四川省人民医院重症医学科举办的全国首届大数据与智慧医疗研讨会在成都召开。
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663104282" onclick="TitleChk(this,'663104282')" />
+								10
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/90435A/201503/663104282.html">
+									互联网
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									时代下中国猎头行业公众形象的演变
+								</a>
+								<span id="d663104282" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663104282">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663104282&Tm=%e4%ba%92%e8%81%94%e7%bd%91%e5%a4%a7%e6%95%b0%e6%8d%ae%e6%97%b6%e4%bb%a3%e4%b8%8b%e4%b8%ad%e5%9b%bd%e7%8c%8e%e5%a4%b4%e8%a1%8c%e4%b8%9a%e5%85%ac%e4%bc%97%e5%bd%a2%e8%b1%a1%e7%9a%84%e6%bc%94%e5%8f%98&P=6&ReDirect=%2fqk%2f90435A%2f201503%2f663104282.html&mid=31&RegDirect=%2fqk%2f90435A%2f201503%2f663104282.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663104282&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663104282" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('何小凤');">何小凤</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/90435A/">《中小企业管理与科技》</a>
+								<a target="_blank" href="/qk/90435A/201503/">2015年第3期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								本文通过分析目前公众对本国猎头公司的看法、猎头跟公众互动存在的问题、大数据时代下中国猎头形象，更好地为中国猎头树立良好的公众形象出谋划策。
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663342781" onclick="TitleChk(this,'663342781')" />
+								11
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/85009A/201501/663342781.html">数字校园环境下个性化学习的分析与思考</a>
+								<span id="d663342781" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663342781">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663342781&Tm=%e6%95%b0%e5%ad%97%e6%a0%a1%e5%9b%ad%e7%8e%af%e5%a2%83%e4%b8%8b%e4%b8%aa%e6%80%a7%e5%8c%96%e5%ad%a6%e4%b9%a0%e7%9a%84%e5%88%86%e6%9e%90%e4%b8%8e%e6%80%9d%e8%80%83&P=6&ReDirect=%2fqk%2f85009A%2f201501%2f663342781.html&mid=5&RegDirect=%2fqk%2f85009A%2f201501%2f663342781.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663342781&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663342781" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('李健');">李健</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/85009A/">
+									《山东广播电视
+									<font style = 'color:red'>大</font>
+									学学报》
+								</a>
+								<a target="_blank" href="/qk/85009A/201501/">2015年第1期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								数字校园是信息化建设中的重要内容，《教育信息化十年发展规划（2011—2020年）》中提出制订中小学校数字校园建设基本标准。然而随着建设的进一步深入，学生的发展也逐渐趋向于个性化，...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663384015" onclick="TitleChk(this,'663384015')" />
+								12
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/97573A/201501/663384015.html">
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									全面提升乳制品行业核心服务力
+								</a>
+								<span id="d663384015" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663384015">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663384015&Tm=%e5%a4%a7%e6%95%b0%e6%8d%ae%e5%85%a8%e9%9d%a2%e6%8f%90%e5%8d%87%e4%b9%b3%e5%88%b6%e5%93%81%e8%a1%8c%e4%b8%9a%e6%a0%b8%e5%bf%83%e6%9c%8d%e5%8a%a1%e5%8a%9b&P=6&ReDirect=%2fqk%2f97573A%2f201501%2f663384015.html&mid=360&RegDirect=%2fqk%2f97573A%2f201501%2f663384015.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663384015&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663384015" class="right_v"></span>
+							</dt>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/97573A/">《乳业科学与技术》</a>
+								<a target="_blank" href="/qk/97573A/201501/">2015年第1期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								今天,IBM宣布为广州风行牛奶有限公司（以下简称风行牛奶）搭建Power基础架构,支撑其统一、集成的全新信息化运作管理平台,使其得以对全产业链各个核心环节的庞杂数据进行高效的精细化管...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663513526" onclick="TitleChk(this,'663513526')" />
+								13
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/81123X/201503/663513526.html">
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									时代股权结构对公司绩效的影响——基于股权集中度和机构投资者视角
+								</a>
+								<span id="d663513526" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663513526">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663513526&Tm=%e5%a4%a7%e6%95%b0%e6%8d%ae%e6%97%b6%e4%bb%a3%e8%82%a1%e6%9d%83%e7%bb%93%e6%9e%84%e5%af%b9%e5%85%ac%e5%8f%b8%e7%bb%a9%e6%95%88%e7%9a%84%e5%bd%b1%e5%93%8d%e2%80%94%e2%80%94%e5%9f%ba%e4%ba%8e%e8%82%a1%e6%9d%83%e9%9b%86%e4%b8%ad%e5%ba%a6%e5%92%8c%e6%9c%ba%e6%9e%84%e6%8a%95%e8%b5%84%e8%80%85%e8%a7%86%e8%a7%92&P=6&ReDirect=%2fqk%2f81123X%2f201503%2f663513526.html&mid=537&RegDirect=%2fqk%2f81123X%2f201503%2f663513526.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663513526&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663513526" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('王如燕');">王如燕</a>
+								<a href="javascript:WriterSearch('王茜');">王茜</a>
+								<a href="javascript:WriterSearch('陈琳');">陈琳</a>
+								<a href="javascript:WriterSearch('木琳雅');">木琳雅</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/81123X/">《会计之友》</a>
+								<a target="_blank" href="/qk/81123X/201503/">2015年第3期</a>
+							</dd>
+							<dd class="fund">
+								<strong>基金：</strong>
+								本文受2012年度教育部人文社会科学研究规划基金项目“信息化条件下农业建设资金绩效审计方法、组织模式创新及软件建设”(项目编号12YJA630002）,2014年度教育部人文社会科学研究规划基金项目“保障性安居工程追踪问效审计创新、信息化建设及反腐败问题研究”(项目编号14YJA630059）,2013年度上海大学生创新活动计划项目“大数据时代的会计信息系统--关于电子商务对会计信息系统相关决策及影响问题的调研”的资金支持.
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								股权结构与公司绩效之间的关系一直是国内外学者研究的热点话题，结论的不一致使得两者的关系始终保持着研究价值。文章基于委托代理理论和股东积极理论，以2008—2012年沪深两市上市公司...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663513527" onclick="TitleChk(this,'663513527')" />
+								14
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/81123X/201503/663513527.html">
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									时代“会计工厂”的构建
+								</a>
+								<span id="d663513527" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663513527">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663513527&Tm=%e5%a4%a7%e6%95%b0%e6%8d%ae%e6%97%b6%e4%bb%a3%e2%80%9c%e4%bc%9a%e8%ae%a1%e5%b7%a5%e5%8e%82%e2%80%9d%e7%9a%84%e6%9e%84%e5%bb%ba&P=6&ReDirect=%2fqk%2f81123X%2f201503%2f663513527.html&mid=537&RegDirect=%2fqk%2f81123X%2f201503%2f663513527.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663513527&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663513527" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('王姮民');">王姮民</a>
+								<a href="javascript:WriterSearch('佘晓燕');">佘晓燕</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/81123X/">《会计之友》</a>
+								<a target="_blank" href="/qk/81123X/201503/">2015年第3期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								大数据时代，信息表面上看起来分散、非结构性且不相关，但在逻辑上却是统一的，只有对这些信息进行实时、深度分析，才能较好地满足人们对现实经济活动控制的要求。因而我们可以在行业内...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663442668" onclick="TitleChk(this,'663442668')" />
+								15
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/82587X/201501/663442668.html">
+									图书馆应用
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									的文献分析与思考
+								</a>
+								<span id="d663442668" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663442668">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663442668&Tm=%e5%9b%be%e4%b9%a6%e9%a6%86%e5%ba%94%e7%94%a8%e5%a4%a7%e6%95%b0%e6%8d%ae%e7%9a%84%e6%96%87%e7%8c%ae%e5%88%86%e6%9e%90%e4%b8%8e%e6%80%9d%e8%80%83&P=6&ReDirect=%2fqk%2f82587X%2f201501%2f663442668.html&mid=17&RegDirect=%2fqk%2f82587X%2f201501%2f663442668.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663442668&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663442668" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('王晓燕');">王晓燕</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/82587X/">
+									《
+									<font style = 'color:red'>大</font>
+									学图书情报学刊》
+								</a>
+								<a target="_blank" href="/qk/82587X/201501/">2015年第1期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								通过对国内有关“图书馆与大数据”的文献进行调研,对“图书馆应用大数据”这一主题进行了分析思考.认为图书馆应该将大数据思维和技术应用于图书馆的工作和服务中,建设大数据资源,拓展和...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663277284" onclick="TitleChk(this,'663277284')" />
+								16
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/97442A/201501/663277284.html">
+									基于VC＋＋2008的
+									<font style = 'color:red'>大</font>
+									容量
+									<font style = 'color:red'>数据</font>
+									曲线绘制方法
+								</a>
+								<span class="down"></span>
+								<span name="ywcount" id="yw663277284" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('马志刚');">马志刚[1,2]</a>
+								<a href="javascript:WriterSearch('刘文怡');">刘文怡[1]</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/97442A/">
+									《中国科学院
+									<font style = 'color:red'>大</font>
+									学学报》
+								</a>
+								<span title="美国《化学文摘（网络版）》收录期刊">CAS</span>
+								<span title="中国《中国科学引文数据库》收录期刊">CSCD</span>
+								<a target="_blank" href="/qk/97442A/201501/">2015年第1期</a>
+							</dd>
+							<dd class="fund">
+								<strong>基金：</strong>
+								国家自然科学基金(51275491）资助
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								针对大容量数据曲线绘制中的数据提取问题,提出＂逐块读取＂→＂拼接数据＂→＂提取数据＂,最后达到＂完整提取＂的方式,可以实现对超过4 GB数据文件的处理.当数据量较大时,常规的绘图方...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663395399" onclick="TitleChk(this,'663395399')" />
+								17
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/86959X/201501/663395399.html">
+									2014中关村
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									日推动产业创新
+								</a>
+								<span class="down"></span>
+								<span name="ywcount" id="yw663395399" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('管炜');">管炜</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/86959X/">《中关村》</a>
+								<a target="_blank" href="/qk/86959X/201501/">2015年第1期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								云计算、移动网络和智能终端的发展推动了从“消费互联网到产业互联网”的升级，也推动了从“大数据产业到产业大数据”的融合,“数据资产”、“数据交易”、“数据安全”、“数据生态”...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663442683" onclick="TitleChk(this,'663442683')" />
+								18
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/82587X/201501/663442683.html">
+									英国高校图书馆员研究
+									<font style = 'color:red'>数据</font>
+									管理培训项目探析
+								</a>
+								<span id="d663442683" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663442683">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663442683&Tm=%e8%8b%b1%e5%9b%bd%e9%ab%98%e6%a0%a1%e5%9b%be%e4%b9%a6%e9%a6%86%e5%91%98%e7%a0%94%e7%a9%b6%e6%95%b0%e6%8d%ae%e7%ae%a1%e7%90%86%e5%9f%b9%e8%ae%ad%e9%a1%b9%e7%9b%ae%e6%8e%a2%e6%9e%90&P=6&ReDirect=%2fqk%2f82587X%2f201501%2f663442683.html&mid=17&RegDirect=%2fqk%2f82587X%2f201501%2f663442683.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663442683&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663442683" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('詹洁');">詹洁</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/82587X/">
+									《
+									<font style = 'color:red'>大</font>
+									学图书情报学刊》
+								</a>
+								<a target="_blank" href="/qk/82587X/201501/">2015年第1期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								研究数据管理服务是未来图书馆服务的新领域之一.为抓住这个发展机遇,尽快开展数据管理服务,图书馆应开展研究数据管理培训,使图书馆员成为合格的数据管理服务提供者.文章通过对四个英国...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663480436" onclick="TitleChk(this,'663480436')" />
+								19
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/97674X/201503/663480436.html">
+									浅谈
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									时代数字出版的发展趋势
+								</a>
+								<span id="d663480436" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663480436">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663480436&Tm=%e6%b5%85%e8%b0%88%e5%a4%a7%e6%95%b0%e6%8d%ae%e6%97%b6%e4%bb%a3%e6%95%b0%e5%ad%97%e5%87%ba%e7%89%88%e7%9a%84%e5%8f%91%e5%b1%95%e8%b6%8b%e5%8a%bf&P=6&ReDirect=%2fqk%2f97674X%2f201503%2f663480436.html&mid=537&RegDirect=%2fqk%2f97674X%2f201503%2f663480436.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663480436&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663480436" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('王岚');">王岚</a>
+								<a href="javascript:WriterSearch('张含晶');">张含晶</a>
+								<a href="javascript:WriterSearch('李耘');">李耘</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/97674X/">《科技与企业》</a>
+								<a target="_blank" href="/qk/97674X/201503/">2015年第3期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								大数据时代，是互联网时代发展到一定程度的一个阶段。从数字出版的角度来说，大数据包含了用户的题材喜好，阅读习惯，阅读频率，出版物消费行为特点等等多维、立体的信息。通过对大数据...
+							</dd>
+						</dl>
+
+						<dl>
+							<dd class="num">
+								<input type="checkbox" name="C" value="663274454" onclick="TitleChk(this,'663274454')" />
+								20
+							</dd>
+							<dt>
+								<strong>题名：</strong>
+								<a target="_blank" href="/qk/89632X/201501/663274454.html">
+									<font style = 'color:red'>大</font>
+									<font style = 'color:red'>数据</font>
+									环境下提高动态链接库（DLL）的命中效率
+								</a>
+								<span id="d663274454" class="down">
+									<a target="_blank" href="/read/detail.aspx?ID=663274454">
+										<img src="/images/zxyd.gif" alt="在线阅读" />
+									</a>
+									<a target="_blank" href="/download/login.aspx?id=663274454&Tm=%e5%a4%a7%e6%95%b0%e6%8d%ae%e7%8e%af%e5%a2%83%e4%b8%8b%e6%8f%90%e9%ab%98%e5%8a%a8%e6%80%81%e9%93%be%e6%8e%a5%e5%ba%93%ef%bc%88DLL%ef%bc%89%e7%9a%84%e5%91%bd%e4%b8%ad%e6%95%88%e7%8e%87&P=6&ReDirect=%2fqk%2f89632X%2f201501%2f663274454.html&mid=31&RegDirect=%2fqk%2f89632X%2f201501%2f663274454.html">
+										<img src="/images/xzqw.gif" alt="下载全文" />
+									</a>
+									<a target="_blank" href="http://www.cqvip.com/Main/Mobile.aspx?id=663274454&SUID=">
+										<img src="/images/sjzf.gif" alt="手机支付" />
+									</a>
+								</span>
+								<span name="ywcount" id="yw663274454" class="right_v"></span>
+							</dt>
+							<dd class="author">
+								<strong>作者：</strong>
+								<a href="javascript:WriterSearch('杨海鹰');">杨海鹰</a>
+							</dd>
+							<dd class="journal">
+								<strong>出处：</strong>
+								<a target="_blank" href="/qk/89632X/">《阴山学刊：自然科学版》</a>
+								<a target="_blank" href="/qk/89632X/201501/">2015年第1期</a>
+							</dd>
+							<dd class="abstract">
+								<strong>摘要：</strong>
+								人们对速度的追求没有止境。计算机从问世那天起，硬件速度、存储容量一直在快速增加和扩大，保存在计算机中的数据不断增加并累积，量变引起质变，一个被称为大数据的时代终于到来，面对...
+							</dd>
+						</dl>
+
+					</div>
+					<div class="page">
+						<div class="search_jg2">10422篇结果中的1-20篇</div>
+						<div class="pages">
+							页数：
+1
+							<a href='javascript:ScrollPage(2,20,0);'>2</a>
+							<a href='javascript:ScrollPage(3,20,0);'>3</a>
+							<a href='javascript:ScrollPage(4,20,0);'>4</a>
+							<a href='javascript:ScrollPage(5,20,0);'>5</a>
+							<a href='javascript:ScrollPage(6,20,0);'>6</a>
+							<a href='javascript:ScrollPage(7,20,0);'>7</a>
+							<a href='javascript:ScrollPage(8,20,0);'>8</a>
+							<a href='javascript:ScrollPage(9,20,0);'>9</a>
+							<a href='javascript:ScrollPage(10,20,0);'>10</a>
+							<a href='javascript:ScrollPage(11,20,0);'>下10页</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="pro_intro2">
+	<div class="googlesearch">
+		<a href="javascript:gotovgsd()">
+			<img src="/images/ggs.gif" alt="goolge学术搜索-维普" />
+		</a>
+	</div>
+	<div class="adv_show">
+		<div  id="index_12">
+			<div id="origin_index_12" ></div>
+		</div>
+		<div id="index_10">
+			<a id="origin_index_10" href="http://tougao.cqvip.com/"  target="_blank">
+				<img src="/images/show/btn198x62tg.jpg" />
+			</a>
+
+		</div>
+		<div id="index_11">
+			<a id="origin_index_11" target="_blank"  href="http://academic-conference.org">
+				<img src="/images/ad/ad01.gif" />
+			</a>
+		</div>
+		<div id="index_13">
+			<div id="origin_index_13" ></div>
+		</div>
+	</div>
+
+</div>
+</div>
+
+</div>
+<div class="webfoot">
+<a class="wj" target="_blank" href="http://www.cqnet110.gov.cn">
+<img alt="" src="http://image.cqvip.com/ipub/images/sentrybox.gif"></a>
+<p>
+<a href="/">网站首页</a>
+|
+<a target="_blank" href="http://www.cqvip.com/corp/about.shtml">关于我们</a>
+|
+<a target="_blank" href="http://www.cqvip.com/corp/contactus.shtml">联系我们</a>
+|
+<a target="_blank" href="http://www.cqvip.com/productor/pro_zk.shtml">产品服务</a>
+|
+<a target="_blank" href="http://service.cqvip.com/">客服中心</a>
+|
+<a target="_blank" href="http://www.cqvip.com/corp/adv.shtml">广告服务</a>
+|
+<a target="_blank" href="http://www.cqvip.com/corp/copyright.shtml">版权声明</a>
+|
+<a target="_blank" href="http://www.cqvip.com/cps/index.asp">网站联盟</a>
+|
+<a target="_blank" href="http://www.cqvip.com/links/links.shtml">友情链接</a>
+|
+<a target="_blank" href="http://www.cqvip.com/vipcard/vipcard.shtml">售卡网点</a>
+</p>
+<p>
+版权所有&copy;
+<script type="text/javascript">document.write("2001-" + new Date().getFullYear());</script>
+渝B2-20050021-1　渝公网备 500000015-00073　违法和不良信息举报中心
+</p>
+<p>
+互联网出版许可证 新出网证(渝)字10号
+<img alt="全国400电话 - 免长途话费" src="http://image.cqvip.com/ipub/images/400.gif"></img>
+</p>
+<a class="ba" target="_blank" href="http://beian.cqnet110.gov.cn/webrecord/innernet/Welcome.jsp?bano=50019902500073&bado=cqvip.com">
+<img alt="" src="http://image.cqvip.com/ipub/images/wa50019902500073.gif"></a>
+</div>
+<input type="hidden" id="zkSite" value="zk" />
+<script src="http://libad.cqvip.com/showad.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="http://cbjs.baidu.com/js/m.js"></script>
+<script type="text/javascript">BAIDU_CLB_fillSlotAsync("656348","origin_index_13");</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2219013-22']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script  type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F36a05ff8f5e8a5be3ff03e1d75c8a9d1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
+</body>
+</html>

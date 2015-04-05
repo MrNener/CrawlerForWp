@@ -28,7 +28,7 @@ namespace CrawlerForWp {
             string isNullId = Convert.ToString(model.Id);
             if (isNullId.Equals("") || isNullId.Equals("0") || isNullId.Equals(new Guid().ToString()) || isNullId.Equals(null))
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `sys_config`(`Key`, `Value`, `UpdateTime`, `Status`, `Note`) VALUES(@Key, @Value, @UpdateTime, @Status, @Note) SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `sys_config`(`Key`, `Value`, `UpdateTime`, `Status`, `Note`) VALUES(@Key, @Value, @UpdateTime, @Status, @Note); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Key", model.Key)
                         ,new MySqlParameter("@Value", model.Value)
                         ,new MySqlParameter("@UpdateTime", model.UpdateTime)
@@ -38,7 +38,7 @@ namespace CrawlerForWp {
             }
             else
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `sys_config`(`Id`, `Key`, `Value`, `UpdateTime`, `Status`, `Note`) VALUES(@Id, @Key, @Value, @UpdateTime, @Status, @Note) SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `sys_config`(`Id`, `Key`, `Value`, `UpdateTime`, `Status`, `Note`) VALUES(@Id, @Key, @Value, @UpdateTime, @Status, @Note); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@Key", model.Key)
                         ,new MySqlParameter("@Value", model.Value)
@@ -66,7 +66,7 @@ namespace CrawlerForWp {
         /// <param name="model">sys_config类的对象</param>
         /// <returns>更新是否成功</returns>
         public static bool Update(sys_config model) {
-            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `sys_config` SET `Key`=@Key, `Value`=@Value, `UpdateTime`=@UpdateTime, `Status`=@Status, `Note`=@Note WHERE `Id`=@Id"
+            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `sys_config` SET `Key`=@Key, `Value`=@Value, `UpdateTime`=@UpdateTime, `Status`=@Status, `Note`=@Note WHERE `Id`=@Id;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@Key", model.Key)
                         ,new MySqlParameter("@Value", model.Value)
@@ -101,7 +101,7 @@ namespace CrawlerForWp {
         /// <returns>sys_config类的对象的枚举</returns>
         public static IEnumerable<sys_config> ListAll() {
             List<sys_config> list = new List<sys_config>();
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Key`, `Value`, `UpdateTime`, `Status`, `Note` FROM `sys_config`");
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Key`, `Value`, `UpdateTime`, `Status`, `Note` FROM `sys_config`;");
             foreach (DataRow row in dt.Rows)  {
                 list.Add(ToModel(row));
             }

@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,18 +56,25 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Lib\Entity\DAL\crawler_configDAL.cs" />
+    <Compile Include="Lib\Entity\DAL\crawler_regexDAL.cs" />
+    <Compile Include="Lib\Entity\DAL\crawler_taskDAL.cs" />
     <Compile Include="Lib\Entity\DAL\logDAL.cs" />
     <Compile Include="Lib\Entity\DAL\statusDAL.cs" />
     <Compile Include="Lib\Entity\DAL\sys_configDAL.cs" />
     <Compile Include="Lib\Entity\DAL\taskDAL.cs" />
     <Compile Include="Lib\Entity\DAL\userDAL.cs" />
+    <Compile Include="Lib\Entity\DAL\weipu_resultDAL.cs" />
     <Compile Include="Lib\Entity\Model\crawler_configModel.cs" />
+    <Compile Include="Lib\Entity\Model\crawler_regexModel.cs" />
+    <Compile Include="Lib\Entity\Model\crawler_taskModel.cs" />
     <Compile Include="Lib\Entity\Model\logModel.cs" />
     <Compile Include="Lib\Entity\Model\statusModel.cs" />
     <Compile Include="Lib\Entity\Model\sys_configModel.cs" />
     <Compile Include="Lib\Entity\Model\taskModel.cs" />
     <Compile Include="Lib\Entity\Model\userModel.cs" />
+    <Compile Include="Lib\Entity\Model\weipu_resultModel.cs" />
     <Compile Include="Lib\Helper\GenericSQLGenerator.cs" />
+    <Compile Include="Lib\Entity\Crawler\HandleHtml.cs" />
     <Compile Include="Lib\Helper\HttpHelper.cs" />
     <Compile Include="Lib\Helper\MySqlHelper.cs" />
     <Compile Include="Program.cs" />
