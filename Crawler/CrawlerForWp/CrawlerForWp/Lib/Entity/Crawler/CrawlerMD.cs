@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace CrawlerForWp
 {
-    public static class HandleHtml
+    public static class CrawlerMD
     {
 
         /// <summary>
@@ -157,40 +157,48 @@ namespace CrawlerForWp
             crawler_taskDAL.Update(taskModel);
         }
         /// <summary>
+        /// 更新系统配置
+        /// </summary>
+        /// <param name="AddSeaC"></param>
+        /// <param name="AddCount"></param>
+        public static void UpdateSysCof(int AddSeaC = 0, int AddCount = 0) { }
+
+        /// <summary>
         /// 执行事务
         /// </summary>
         /// <param name="taskModel"></param>
         public static void ExecuteTask(crawler_task taskModel)
         {
+            UpdateTask(taskModel, "执行中...", 10);
             int stopCount = 0, //停止阀值
                 completeCount = 0,//已完成记录
                 allCount = 0;//搜索总记录
             //基础配置字典
-            Dictionary<string, string> cof = HandleHtml.GetCralerCof(taskModel.ConfigId);
+            Dictionary<string, string> cof = CrawlerMD.GetCralerCof(taskModel.ConfigId);
             //搜索字典
             Dictionary<string, string> cofSera = new Dictionary<string, string>();
             crawler_config cofModel = crawler_configDAL.GetById(taskModel.ConfigId);
             if (cofModel == null || cofModel.TableName.Trim().Equals(""))
             {
-                HandleHtml.AddLog("没有找到搜索所对应的正则配置；任务：" + taskModel.KeyWords + "   配置：" + cofModel.Name);
+                AddLog("没有找到搜索所对应的正则配置；任务：" + taskModel.KeyWords + "   配置：" + cofModel.Name);
                 UpdateTask(taskModel, "没有找到搜索所对应的正则配置", 11);
                 return;
             }
             cofModel.StopPageCount = cofModel.StopPageCount <= 0 ? 3 : cofModel.StopPageCount;
             //字段名
             List<string> lsTbCols = cofModel.Fields.Split('|').ToList();
-           // lsTbCols = lsTbCols.OrderBy(a => a).ToList();
+            // lsTbCols = lsTbCols.OrderBy(a => a).ToList();
             //正则配置｛每个字段对应一个｝
             List<crawler_regex> lsRegex = crawler_regexDAL.ListByWhere(new crawler_regex() { ConfigId = taskModel.ConfigId }, "", "ConfigId").ToList();
             if (lsRegex == null || lsRegex.Count <= 0)
             {
-                HandleHtml.AddLog("没有找到搜索所对应的正则配置；任务：" + taskModel.KeyWords + "   配置：" + cofModel.Name);
+                AddLog("没有找到搜索所对应的正则配置；任务：" + taskModel.KeyWords + "   配置：" + cofModel.Name);
                 UpdateTask(taskModel, "没有找到搜索所对应的正则配置", 11);
                 return;
             }
-           // lsRegex = lsRegex.OrderBy(a => a.ColName).ToList();
+            // lsRegex = lsRegex.OrderBy(a => a.ColName).ToList();
             //sql
-            string sql = "INSERT INTO `" + cofModel.TableName.Trim() + "`(`" + string.Join("`, `", lsTbCols) + "`,`SYS_AddTime`)VALUES(@" + string.Join(", @", lsTbCols) + ",@SYS_AddTime);";
+            string sql = ("INSERT INTO `" + cofModel.TableName.Trim() + "`(`" + string.Join("`, `", lsTbCols) + "`,`SYS_AddTime`,`TaskId`)VALUES(@" + string.Join(", @", lsTbCols) + ",@SYS_AddTime," + taskModel.Id + ");");
             //正则
             //所有记录
             Regex allRowRegex = new Regex(cofModel.AllRowConfig, RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.Singleline);
@@ -201,17 +209,27 @@ namespace CrawlerForWp
                 {
                     break;
                 }
-                cofSera = HandleHtml.PackageCof(cof, p.ToString(), taskModel.KeyWords);
-                StringBuilder sb = HandleHtml.GetHtml(cofSera);
+                cofSera = CrawlerMD.PackageCof(cof, p.ToString(), taskModel.KeyWords);
+                StringBuilder sb = CrawlerMD.GetHtml(cofSera);
                 string res = (sb == null) ? "" : sb.ToString();
                 try
                 {
                     //匹配一页所有记录
                     MatchCollection mcls = allRowRegex.Matches(res);
                     List<MySqlParameter> lsParam = new List<MySqlParameter>();
-                    for (int i = 0, c = mcls.Count; i < c; i++)
+                    int c = mcls.Count;
+                    if (c <= 0)
                     {
-                        allCount++;
+                        stopCount++;
+                        continue;
+                    }
+                    allCount += c;
+                    for (int i = 0; i < c; i++)
+                    {
+                        if (completeCount >= taskModel.SingleCount)
+                        {
+                            break;
+                        }
                         //单条记录处理
                         if (!mcls[i].Success)
                         {
@@ -220,6 +238,7 @@ namespace CrawlerForWp
                         lsParam.Clear();
                         string exSql = null;
                         bool isok = true;
+                        int defC = 0;
                         foreach (var item in lsTbCols)
                         {
                             crawler_regex craRegex = lsRegex.Find(a => a.ColName == item) as crawler_regex;
@@ -241,11 +260,16 @@ namespace CrawlerForWp
                                 {
                                     v = craRegex.Prdfix + mCol.Groups[item].Value + craRegex.Suffix;
                                 }
+                                else
+                                {
+                                    defC++;
+                                }
                             }
-                            v = HandleHtml.StrReplaceHtml(v).Replace("</", "");
+                            else { defC++; }
+                            v = StrReplaceHtml(v).Replace("</", "");
                             if (exSql == null)
                             {
-                                exSql = "SELECT * FROM `" + cofModel.TableName + "` WHERE `" + item + "`=@" + item + ";";
+                                exSql = ("SELECT * FROM `" + cofModel.TableName + "` WHERE `" + item + "`=@" + item + " AND TaskId IN(0," + taskModel.Id + ");");
                                 if (Helper.MySqlHelper.ExecuteScalar(exSql, new MySqlParameter("@" + item, v)) != null)
                                 {
                                     isok = false;
@@ -254,7 +278,7 @@ namespace CrawlerForWp
                             }
                             lsParam.Add(new MySqlParameter("@" + item, v));
                         }
-                        if (!isok)
+                        if (!isok || defC >= lsTbCols.Count)
                         {
                             continue;
                         }
@@ -267,12 +291,81 @@ namespace CrawlerForWp
                 }
                 catch (Exception ex)
                 {
-                    HandleHtml.AddLog("系统异常：" + ex.Message);
+                    AddLog("系统异常：" + ex.Message);
                     stopCount++;
                 }
             }
             UpdateTask(taskModel, "", 12);
             AddLog("搜索任务完毕：" + taskModel.KeyWords + "   配置：" + cofModel.Name);
+            UpdateSysCof(allCount, completeCount);
+        }
+
+        /// <summary>
+        ///  开始执行事务
+        /// </summary>
+        /// <param name="MaxThread">最大线程数量</param>
+        public static void BeginExecute(/*int MaxThread = 50*/)
+        {
+            //MaxThread = MaxThread <= 0 ? 1 : (MaxThread > 20 ? 20 : MaxThread);
+            //List<Thread> lsThread = new List<Thread>();
+            //for (int i = 0; i < MaxThread; i++)
+            //{
+            //    Thread th = null;
+            //    lsThread.Add(th);
+            //}
+            //更新过期事务
+            //获得当前需要执行的事务总数
+            object cObj = Helper.MySqlHelper.ExecuteScalar("UPDATE crawler_task SET crawler_task.`Status`=13 WHERE crawler_task.`Status` IN (1, 10,11, 12) AND crawler_task.ExpireTime < UNIX_TIMESTAMP(NOW());SELECT COUNT(1) AS count FROM crawler_task WHERE crawler_task.`Status` IN (1,10,11, 12) AND ( crawler_task.ExpireTime >= UNIX_TIMESTAMP(NOW()) ) AND ( crawler_task.UpdateTime + crawler_task.Cycle ) <= UNIX_TIMESTAMP(NOW());");
+            int count = 0;
+            if (cObj == null)
+            {
+                return;
+            }
+            count = int.Parse(cObj.ToString());
+            if (count <= 0)
+            {
+                return;
+            }
+            AddLog("开始搜索任务，当前任务总数：" + count + "");
+            for (int p = 1, maxP = (Int32)Math.Ceiling(((float)count) / 20.00); p <= maxP; p++)
+            {
+                List<crawler_task> lsTask = crawler_taskDAL.ListByPage(1, 20, "`UpdateTime`", false, "crawler_task.`Status` in(1,10,11,12)", "(crawler_task.ExpireTime>=UNIX_TIMESTAMP(NOW()))", "(crawler_task.UpdateTime+crawler_task.Cycle)<=UNIX_TIMESTAMP(NOW())").ToList();
+                if (lsTask == null || lsTask.Count <= 0)
+                {
+                    continue;
+                }
+                foreach (var item in lsTask)
+                {
+                    ExecuteTask(item);
+                    #region MyRegion 多线程算法，还没想好
+                    //int t = (--MaxThread);
+                    //if (t < 0)
+                    //{
+                    //    while (true)
+                    //    {
+                    //        t = -1;
+                    //        for (int i = 0, tc = lsThread.Count; i < tc; i++)
+                    //        {
+                    //            if (lsThread[i] == null || lsThread[i].ThreadState == ThreadState.Stopped)
+                    //            {
+                    //                t = i;
+                    //                break;
+                    //            }
+                    //        }
+                    //        if (t >= 0) { break; }
+
+                    //    }
+                    //}
+                    //lsThread[t] = new Thread(new ThreadStart(delegate
+                    //{
+                    //    ExecuteTask(item);
+                    //}));
+                    //lsThread[t].IsBackground = true;
+                    //lsThread[t].Start(); 
+                    #endregion
+                }
+            }
+            AddLog("完成搜索任务");
         }
     }
 }

@@ -74,7 +74,7 @@
     <Compile Include="Lib\Entity\Model\userModel.cs" />
     <Compile Include="Lib\Entity\Model\weipu_resultModel.cs" />
     <Compile Include="Lib\Helper\GenericSQLGenerator.cs" />
-    <Compile Include="Lib\Entity\Crawler\HandleHtml.cs" />
+    <Compile Include="Lib\Entity\Crawler\CrawlerMD.cs" />
     <Compile Include="Lib\Helper\HttpHelper.cs" />
     <Compile Include="Lib\Helper\MySqlHelper.cs" />
     <Compile Include="Program.cs" />
