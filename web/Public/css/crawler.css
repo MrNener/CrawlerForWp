@@ -1,0 +1,66 @@
+body {
+    background-color: #f2f2f2;
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+html,body{
+    height:100%;
+    font-family: "Microsoft YaHei","SimSun"
+}
+
+*::selection{color:#fff;background:#fa7d3c;}
+*::-moz-selection{color:#fff;background:#fa7d3c;}
+*::-webkit-selection{color:#fff;background:#fa7d3c;}
+
+#wrap{
+    min-height: 95%; 
+}
+
+#main{
+    overflow:auto;
+}
+footer {
+    background-color: #fff;
+    position: relative;
+    clear:both;
+}
+.alertmsg {
+    width: 100%;
+    position: fixed;
+    top: 42%;
+    left: 0px;
+    text-align: center;
+    z-index: 65533;
+    overflow: hidden;
+    height: 80px;
+    line-height: 60px;
+    display: none;
+    border-radius: 0px;
+}
+.msgbox {
+    font-size: 20px;
+    border-radius: 0px;
+    font-weight: 600;
+}
+.loadingimg {
+    display: none;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10086;
+    top: 46%;
+    left: 0;
+}
+#loadingimg {
+	background:#000;
+	background:rgba(0,0,0,0.5);
+    display: none;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10086;
+    top: 0;
+    left: 0;
+}

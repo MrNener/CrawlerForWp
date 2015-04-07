@@ -1,0 +1,76 @@
+<extend name="Public/common"/>
+<block name='content'>
+ <div>
+ 	<h1>Hello Word!</h1>
+ 	<table>
+ 		<tr>
+ 			<th>1</th>
+ 			<th>2</th>
+ 			<th>3</th>
+ 			<th>4</th>
+ 			<th>5</th>
+ 		</tr>
+
+ 	</table>
+ 	<div class="page">
+ 	{$res['page']}
+ 	</div>
+ </div>
+
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<form class="form-inline" role="form" action="{:U('juzi/Prize/index')}">
+					<div class="form-group">
+						<input type="text" class="form-control" name="code" value="{$prizecode}" placeholder="兑换码"></div>
+					<div class="form-group">
+						<input type="text" class="form-control" name="nick" value="{$nick}" placeholder="用户"></div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-default btn-expend">搜索</button>
+					</div>
+				</form>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<th>编号</th>
+						<th >用户</th>
+						<th >奖项</th>
+						<th >奖品</th>
+						<th >抽奖时间</th>
+						<th style="min-width: 80px;">兑奖时间</th>
+						<th >状态</th>
+						<th >操作</th>
+					</thead>
+					<tbody>
+						<foreach name='list' item='v'>
+							<tr class="{$v['Status']==-1?warning:''}">
+								<td>{$v['Code']}</td>
+								<td>{$v['Nick']}</td>
+								<td>{$v['PraiseName']}</td>
+								<td>{$v['PraiseContent']}</td>
+								<td>{:date('y-m-d H:i:s',$v['CreateTime'])}</td>
+								<td>
+									{$v['UpdateTime']==0?'':date('y-m-d H:i:s',$v['UpdateTime'])}
+								</td>
+								<td>{$v['Status']==-1?'已兑换':'未兑换'}</td>
+								<td>
+									<if condition="$v['Status'] eq 10">
+										<a href="javascript:void(0)" class="btn btn-success btn-small save" action="{:U('juzi/Prize/saveprize',array('Id'=>$v['Id']))}" >兑奖</a>
+									</if>
+								</td>
+							</tr>
+						</foreach>
+					</tbody>
+				</table>
+			</div>
+			<div class="page pull-right">{$page}</div>
+		</div>
+
+</block>
+<block name="js">
+<script type="text/javascript">
+	$(function(){
+		initPagination();
+	})
+</script>
+</block>
