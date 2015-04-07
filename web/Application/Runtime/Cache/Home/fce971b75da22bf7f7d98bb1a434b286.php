@@ -8,8 +8,8 @@
 	<meta name="author" content="Nener -周孟">
 	<title>智能爬虫</title>
 	<!-- Bootstrap Core CSS -->
-	<link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-	<link href="http://cdn.bootcss.com/normalize/3.0.1/normalize.min.css" rel="stylesheet">
+	<link href="/Public/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/Public/css/normalize.min.css" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="/Public/css/crawler.css" rel="stylesheet">
 	<!-- <link rel="shortcut icon" href="/Public/Img/favicon.png" type="image/x-icon" > -->
@@ -43,20 +43,15 @@
 	
 	<div class="panel panel-success">
 		<div class="panel-heading">
-			<form class="form-inline" role="form" action="<?php echo U('juzi/Prize/index');?>">
-				<div class="form-group">
-					<input type="text" class="form-control" name="code" value="<?php echo ($prizecode); ?>" placeholder="兑换码"></div>
-				<div class="form-group">
-					<input type="text" class="form-control" name="nick" value="<?php echo ($nick); ?>" placeholder="用户"></div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-default btn-expend">搜索</button>
-				</div>
-			</form>
+			<button id="additem" type="button" class="btn btn-success ">添加</button>
+			<button id="updateitem" type="button" class="btn btn-warning" disabled>修改</button>
+			<button id="delitem" type="button" class="btn btn-danger" disabled>删除</button>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-striped">
 				<thead>
-					<th ><input type="checkbox" id="select-all"> </th>
+					<th >
+						<input type="checkbox" id="select-all"></th>
 					<th  class="text-center" >关键字</th>
 					<th  class="text-center">配置项</th>
 					<th  class="text-center">单次数量</th>
@@ -65,19 +60,23 @@
 					<th  class="text-center">到期时间</th>
 					<th class="text-center">状态</th>
 					<th class="text-center">已收录</th>
-					<th class="text-center">备注</th>
+					<th class="text-center">操作</th>
 				</thead>
 				<tbody>
-					<?php if(is_array($res["list"])): foreach($res["list"] as $key=>$v): ?><tr>
-								<td><input type="checkbox" id="item-<?php echo ($v['Id']); ?>" class="check-item" value="<?php echo ($v['Id']); ?>"></td>
-								<td  class="text-center"><?php echo ($v['KeyWords']); ?></td>
-								<td  class="text-center"><?php echo ($v['ConfigName']); ?></td>
-								<td  class="text-center"><?php echo ($v['SingleCount']); ?></td>
-								<td  class="text-center"><?php echo ($v['Cycle']/(24*60*60)); ?></td>
-								<td  class="text-center"><?php echo date('Y/m/d H:i',$v['AddTime']);?></td>
-								<td  class="text-center"><?php echo date('Y/m/d H:i',$v['ExpireTime']);?></td>
-								<td  class="text-center"><?php echo ($v['StatusNote']); ?></td>
-								<td  class="text-center"><?php echo ($v['Note']); ?></td>
+					<?php if(is_array($res["list"])): foreach($res["list"] as $key=>$v): ?><tr data-id="<?php echo ($v['Id']); ?>">
+							<td>
+								<input type="checkbox"  class="check-item" value="<?php echo ($v['Id']); ?>"></td>
+							<td  class="text-center"><?php echo ($v['KeyWords']); ?></td>
+							<td  class="text-center"><?php echo ($v['ConfigName']); ?></td>
+							<td  class="text-center"><?php echo ($v['SingleCount']); ?></td>
+							<td  class="text-center"><?php echo ($v['Cycle']/(24*60*60)); ?></td>
+							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['AddTime']);?></td>
+							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['ExpireTime']);?></td>
+							<td  class="text-center"><?php echo ($v['StatusNote']); ?></td>
+							<td  class="text-center " data-count>查询中...</td>
+							<td  class="text-center">
+								<a target="_blank" href="<?php echo U('record',array('id'=>$v['Id']));?>" style="display:none;">查看记录</a>
+							</td>
 						</tr><?php endforeach; endif; ?>
 				</tbody>
 			</table>
@@ -107,13 +106,13 @@
 </div>
 </footer>
 <div  class="loadingimg" ><img src="/Public/img/loading.gif" /></div>
-<script src="http://libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="/Public/js/jquery-1.11.2.min.js"></script>
+<script src="/Public/js/bootstrap.min.js"></script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
-<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<script src="/Public/js/html5shiv.min.js"></script>
+<script src="/Public/js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script src="/Public/js/crawler.js"></script>
 <!--[if lt IE 9]>
@@ -127,9 +126,25 @@
 <!-- 额外js -->
 
 	<script type="text/javascript">
+	function getCount(){
+		var tsls=$('tbody').find('tr');
+		$.each(tsls, function(index, val) {
+			 var thisid=$(this).attr('data-id');
+			 ajaxbypost("<?php echo U('getCount');?>",{id:thisid},function(res,thisid){
+			 	if(!res||!res.status||res.data==0){
+			 		res.data=0;
+			 		$('tr[data-id="'+thisid+'"]').find('a').hide();
+			 	}else{
+			 		$('tr[data-id="'+thisid+'"]').find('a').show();
+			 	}
+			 	$('tr[data-id="'+thisid+'"]').find('td[data-count]').text(res.data);
+			 	$('tr[data-id="'+thisid+'"]').removeAttr('data-id');
+			 },'json',thisid);
+		});
+	}
 	$(function(){
 		initPagination();
-
+		getCount();
 	})
 </script>
 

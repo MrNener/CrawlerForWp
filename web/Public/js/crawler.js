@@ -35,10 +35,10 @@
         }
         /*ajax获取数据*/
         /*_url:url,_dada:请求数据，_callback:成功回调函数,_method：获取方法,_datatype:请求数据类型*/
-    function ajaxgetdata(_url, _data, _callback, _method, _datatype) {
+    function ajaxgetdata(_url, _data, _callback, _method, _datatype,_callbackparam) {
             var typearr = ["xml", "html", "json", "jsonp", "script", "text"];
             if (!_callback) {
-                _callback = function(res) {
+                _callback = function(res,_callbackparam) {
                     return res;
                 };
             }
@@ -66,7 +66,7 @@
                     loadingimg();
                 },
                 success: function(res) {
-                    return _callback(res);
+                    return _callback(res,_callbackparam);
                 },
                 complete: function() {
                     removeloadingimg();
@@ -75,13 +75,13 @@
         }
         /*ajax get 获取数据*/
         /*_url:url,_dada:请求数据，_callback:成功回调函数,_datatype:请求数据类型*/
-    function ajaxbyget(_url, _data, _callback, _datatype) {
-            return ajaxgetdata(_url, _data, _callback, 'get', _datatype);
+    function ajaxbyget(_url, _data, _callback, _datatype,_callbackparam) {
+            return ajaxgetdata(_url, _data, _callback, 'get', _datatype,_callbackparam);
         }
         /*ajax post获取数据*/
         /*_url:url,_dada:请求数据，_callback:成功回调函数,_datatype:请求数据类型*/
-    function ajaxbypost(_url, _data, _callback, _datatype) {
-        return ajaxgetdata(_url, _data, _callback, 'post', _datatype);
+    function ajaxbypost(_url, _data, _callback, _datatype,_callbackparam) {
+        return ajaxgetdata(_url, _data, _callback, 'post', _datatype,_callbackparam);
     }
 
     function initPagination(selector) {
@@ -95,16 +95,47 @@
                 } else if ($(o2).is('span')) {
                     linkHtml = '<a>' + $(o2).text() + '</a>';
                 }
-
                 var css = '';
                 if ($(o2).hasClass('current')) {
                     css = ' class="active" ';
                 }
-
                 html += '<li' + css + '>' + linkHtml + '</li>';
             });
-
             html += '</ul>';
             $(o).html(html).fadeIn();
         });
     }
+    $(function(){
+        //全选
+        //联动增删改
+        $('#select-all').on('click', function(event) {
+            var isc= $(this).prop('checked');
+            $('tbody').find('input[type="checkbox"]').prop('checked',isc);
+            var len=$('tbody').find('input[type="checkbox"]:checked').length;
+            $('#updateitem').prop('disabled', true);
+            $('#delitem').prop('disabled', true);
+            if (isc) {
+                if (len==1) {
+                    $('#updateitem').prop('disabled', false);
+                    $('#delitem').prop('disabled', false);
+                }else if(len>1){
+                    $('#delitem').prop('disabled', false);
+                }
+            }
+        });
+        //子选项联动全选按钮
+        //联动增删改
+        $('.check-item').on('click',  function(event) {
+            var len=$('tbody').find('input[type="checkbox"]:checked').length;
+            var  isc=(($(this).prop('checked')||$(this).prop('checked')=='checked')&&len==$('tbody').find('input[type="checkbox"]').length);
+            $('#select-all').prop('checked', isc);
+            $('#delitem').prop('disabled', true);
+            $('#updateitem').prop('disabled', true);
+            if(len==1){
+                $('#updateitem').prop('disabled', false);
+                $('#delitem').prop('disabled', false);
+            }else if(len>1){
+                $('#delitem').prop('disabled', false);
+            }
+        });
+    });
