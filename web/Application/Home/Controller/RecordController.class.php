@@ -40,6 +40,6 @@ class RecordController extends Controller {
         $tb=!$tb?I('tb'):$tb;
         $res=new recordModel();
         $res=$res->delById($id,$tb);
-        echo json_encode($res);
+        $this->ajaxReturn($res,'json');
     }
 }

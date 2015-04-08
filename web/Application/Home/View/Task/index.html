@@ -15,7 +15,7 @@
 					<th  class="text-center">配置项</th>
 					<th  class="text-center">单次数量</th>
 					<th  class="text-center">周期</th>
-					<th  class="text-center">添加时间</th>
+					<th  class="text-center">添加/更新时间</th>
 					<th  class="text-center">到期时间</th>
 					<th class="text-center">状态</th>
 					<th class="text-center">已收录</th>
@@ -47,43 +47,7 @@
 		<div class="page pull-right">{$res['page']}</div>
 	</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">修改</h4>
-				</div>
-				<form action="">
-					<div class="modal-body">
-						<input type="hidden" name="Id" value="">
-						<input type="hidden" name="Modif" value="add">
-						<div class="form-group">
-							<label for="KeyWords">关键字：</label>
-							<input type="text" class="form-control" name="KeyWords" id="KeyWords" placeholder="关键字" required></div>
-						<div class="form-group">
-							<label for="ConfigId">配置：</label>
-							<input type="email" class="form-control" name="ConfigId" id="ConfigId" placeholder="配置" required></div>
-						<div class="form-group">
-							<label for="SingleCount">单次数量</label>
-							<input type="number" class="form-control" name="SingleCount" id="SingleCount" placeholder="单次数量" required></div>
-						<div class="form-group">
-							<label for="Cycle">周期：</label>
-							<input type="number" class="form-control" name="Cycle" id="Cycle" placeholder="周期" required></div>
-						<div class="form-group">
-							<label for="ExpireTime">到期时间：</label>
-							<input type="date" class="form-control" name="ExpireTime" id="ExpireTime" placeholder="到期时间" required></div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button type="submit" class="btn btn-success">保存</button>
-					</div>
-				</form>
-			</div>
-		</div>
 	</div>
-
 </block>
 <block name="js">
 	<script type="text/javascript">
@@ -104,22 +68,67 @@
 			 $('tr[data-id="'+thisid+'"]').removeAttr('data-tb');
 		});
 	}
-	function add_update_get(params,_callback,eventhis){
-		$('form').attr('action', $(eventhis).attr('acurl'));
-		$('form').find('input[name="Modif"]').val($(eventhis).attr('data-p'));
-		$('form').find('input[name="Id"]').val("");
-		ajaxbypost($(eventhis).attr('geturl'),params,function(res){
-			_callback(res);
-		},'json');
+	function submitform(){
+		$('#myModal').find('form').on('submit', function(event) {
+			if (parseInt($('#Cycle').val(), 10)<=0) {
+				showerrormsg($('#Cycle').attr('placeholder')+'不正确',1,900);
+				$('#Cycle').focus();
+				return false;
+			}
+			if (parseInt($('#SingleCount').val(), 10)<=0) {
+				showerrormsg($('#SingleCount').attr('placeholder')+'不正确',1,900);
+				$('#SingleCount').focus();
+				return false;
+			}
+			ajaxbypost($(this).attr('action'),$(this).serialize(),function(res){
+				if (!res||res.status==0) {
+					showerrormsg('保存失败！',1,900);
+					return false;
+				}
+				showsuccessmsg('OK!',1,900);
+				$('#myModal').modal('hide');
+				window.location.href=window.location.href;
+				return false;
+			},'json');
+			return false;
+		});
 	}
 	$(function(){
 		initPagination();
 		getCount();
 		$('#additem').on('click', function(event) {
-			add_update_get("",function(res){
-				alert(res.status);
-			},this);
+			ajaxbypost($(this).attr('geturl'),"",function(res){
+				if (!res||res.status==0) {
+					showerrormsg('加载配置失败！',1,900);
+					return false;
+				}else{
+					loadingimg();
+					$('#myModal').html(res.data);
+					$('#myModal').modal('show');
+				}
+			},'json');
 		});
-	})
+		$('#updateitem').on('click', function(event) {
+			var len=$('tbody').find('input:checked');
+			if(!len.length==1){
+				showerrormsg('请选择一项数据进行操作！',1,900);
+				return false;
+			}
+			ajaxbypost($(this).attr('geturl'),{id:$(len).val()},function(res){
+				if (!res||res.status==0) {
+					showerrormsg('加载配置失败！',1,900);
+					return false;
+				}else{
+					loadingimg();
+					$('#myModal').html(res.data);
+					$('#myModal').modal('show');
+				}
+			},'json');
+		});
+		$('#myModal').on('shown.bs.modal',  function(event) {
+			removeloadingimg();
+			submitform();
+		});
+	});
 </script>
 </block>

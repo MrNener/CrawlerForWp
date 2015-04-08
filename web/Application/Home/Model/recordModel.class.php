@@ -18,17 +18,17 @@ class recordModel
 	public function listByPage($taskid,$pageSize=10,$whereArr=null,$params=null)
 	{
 		if (!$taskid) {
-			return null;
+			return false;
 		}
 		$m=new crawler_taskModel();
 		$m=$m->getById($taskid);
 		if (!$m||!$m['ConfigId']) {
-			return null;
+			return false;
 		}
 		$c=new crawler_configModel();
 		$c=$c->getById($m['ConfigId']);
 		if (!$c||!$c['Fields']||!$c['FieldsNote']||!$c['TableName']) {
-			return null;
+			return false;
 		}
 		$arr=array('TaskId'=>$taskid);
 		if ($whereArr&&is_array($whereArr)) {
@@ -62,6 +62,22 @@ class recordModel
 		}
 		return array('status'=>0,'data'=>'删除失败！');
 	}
-
+	public function delByTaskId($idArr,$tb)
+	{
+		if (!$idArr||!$tb) {
+			return false;
+		}
+		if (!is_array($idArr)) {
+			$idArr=array($idArr);
+		}
+		if (count($idArr)<=0) {
+			return false;
+		}
+		$wa['TaskId']=array('in',$idArr);
+		if (D($tb)->where($wa)->delete()) {
+			return true;
+		}
+		return false;
+	}
 }
 ?>

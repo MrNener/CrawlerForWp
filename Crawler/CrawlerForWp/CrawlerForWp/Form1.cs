@@ -13,6 +13,7 @@ namespace CrawlerForWp
 {
     public partial class Form1 : Form
     {
+        System.Timers.Timer t1 = new System.Timers.Timer();
         public Form1()
         {
             InitializeComponent();
@@ -20,9 +21,11 @@ namespace CrawlerForWp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Thread th = new Thread(new ThreadStart(delegate { CrawlerMD.BeginExecute(); }));
-            th.IsBackground = true;
-            th.Start();
+            t1.Interval = 20000;
+            t1.Elapsed += delegate { CrawlerMD.BeginExecute(); };
+            t1.AutoReset = true;
+            t1.Start();
+            this.Hide();
             
             /**Todo List
              *筛选事务->周期计算，过期计算，过期更新   OK
@@ -32,12 +35,6 @@ namespace CrawlerForWp
              *
              */
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
+       
     }
 }
