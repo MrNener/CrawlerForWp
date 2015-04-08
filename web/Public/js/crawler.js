@@ -138,4 +138,29 @@
                 $('#delitem').prop('disabled', false);
             }
         });
+        //删除按钮
+        $('#delitem').on('click',  function(event) {
+            var len=$('tbody').find('input:checked')||null;
+            if (!len||len.length<=0) {
+                return false;
+            }
+            var idArr=new Array();
+            $.each(len, function(index, val) {
+                 idArr.push($(val).val());
+            });
+            if (idArr.length<=0) {
+                return false;
+            }
+            if (!confirm('确认删除选中的'+len.length+'条数据？')) {
+                return false;
+            }
+            ajaxbypost($(this).attr('acurl'),{id:idArr.join('|'),tb:$(this).attr('data-tb')},function(res){
+                if (!res||res.status==0) {
+                    showerrormsg(res.data||'操作失败！',1,900);
+                    return false;
+                }
+                showsuccessmsg(res.data,1,900);
+                window.location.href=window.location.href;
+            },'json');
+        });
     });

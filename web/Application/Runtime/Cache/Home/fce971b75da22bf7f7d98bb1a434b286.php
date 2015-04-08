@@ -6,7 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="copyright" content="Nener">
 	<meta name="author" content="Nener -周孟">
-	<title>智能爬虫</title>
+	<title>智能爬虫
+	<?php if($title): ?>-<?php echo ($title); endif; ?>
+	</title>
 	<!-- Bootstrap Core CSS -->
 	<link href="/Public/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/Public/css/normalize.min.css" rel="stylesheet">
@@ -43,12 +45,12 @@
 	
 	<div class="panel panel-success">
 		<div class="panel-heading">
-			<button id="additem" type="button" class="btn btn-success ">添加</button>
-			<button id="updateitem" type="button" class="btn btn-warning" disabled>修改</button>
-			<button id="delitem" type="button" class="btn btn-danger" disabled>删除</button>
+			<button id="additem" geturl="<?php echo U('getconf');?>" data-p="add" acurl="<?php echo U('savetask');?>" type="button" class="btn btn-success ">添加</button>
+			<button id="updateitem"  geturl="<?php echo U('gettask');?>" data-p="update" acurl="<?php echo U('savetask');?>" type="button" class="btn btn-warning" disabled>修改</button>
+			<button id="delitem" type="button" acurl="<?php echo U('del');?>" class="btn btn-danger " data-tb="" disabled>删除</button>
 		</div>
 		<div class="table-responsive">
-			<table class="table table-striped">
+			<table class="table table-striped table-hover">
 				<thead>
 					<th >
 						<input type="checkbox" id="select-all"></th>
@@ -63,26 +65,66 @@
 					<th class="text-center">操作</th>
 				</thead>
 				<tbody>
-					<?php if(is_array($res["list"])): foreach($res["list"] as $key=>$v): ?><tr data-id="<?php echo ($v['Id']); ?>">
+					<?php if(is_array($res["list"])): $i = 0; $__LIST__ = $res["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr data-id="<?php echo ($v['Id']); ?>" data-tb="<?php echo ($v['TableName']); ?>">
 							<td>
 								<input type="checkbox"  class="check-item" value="<?php echo ($v['Id']); ?>"></td>
 							<td  class="text-center"><?php echo ($v['KeyWords']); ?></td>
 							<td  class="text-center"><?php echo ($v['ConfigName']); ?></td>
 							<td  class="text-center"><?php echo ($v['SingleCount']); ?></td>
-							<td  class="text-center"><?php echo ($v['Cycle']/(24*60*60)); ?></td>
+							<td  class="text-center"><?php echo floor($v['Cycle']/86400);?></td>
 							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['AddTime']);?></td>
 							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['ExpireTime']);?></td>
 							<td  class="text-center"><?php echo ($v['StatusNote']); ?></td>
-							<td  class="text-center " data-count>查询中...</td>
-							<td  class="text-center">
-								<a target="_blank" href="<?php echo U('record',array('id'=>$v['Id']));?>" style="display:none;">查看记录</a>
+							<td  class="text-center " data-count>
+								<img src="/Public/img/min-load.gif" />
 							</td>
-						</tr><?php endforeach; endif; ?>
+							<td  class="text-center">
+								<a target="_blank" href="<?php echo U('Record/index',array('id'=>$v['Id']));?>" style="display:none;">查看记录</a>
+							</td>
+						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 				</tbody>
 			</table>
 		</div>
 		<div class="page pull-right"><?php echo ($res['page']); ?></div>
 	</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改</h4>
+				</div>
+				<form action="">
+					<div class="modal-body">
+						<input type="hidden" name="Id" value="">
+						<input type="hidden" name="Modif" value="add">
+						<div class="form-group">
+							<label for="KeyWords">关键字：</label>
+							<input type="text" class="form-control" name="KeyWords" id="KeyWords" placeholder="关键字" required></div>
+						<div class="form-group">
+							<label for="ConfigId">配置：</label>
+							<input type="email" class="form-control" name="ConfigId" id="ConfigId" placeholder="配置" required></div>
+						<div class="form-group">
+							<label for="SingleCount">单次数量</label>
+							<input type="number" class="form-control" name="SingleCount" id="SingleCount" placeholder="单次数量" required></div>
+						<div class="form-group">
+							<label for="Cycle">周期：</label>
+							<input type="number" class="form-control" name="Cycle" id="Cycle" placeholder="周期" required></div>
+						<div class="form-group">
+							<label for="ExpireTime">到期时间：</label>
+							<input type="date" class="form-control" name="ExpireTime" id="ExpireTime" placeholder="到期时间" required></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="submit" class="btn btn-success">保存</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 
 </div>
 </div>
@@ -91,7 +133,7 @@
 	<div class="row hidden-xs">
 		<div class="col-md-12 text-center text-p">
 			<p>
-				<a href="#">Copyright &copy; 2014, Nener</a>
+				<a href="#">Copyright &copy; <?php echo date('Y');?>, Nener</a>
 			</p>
 
 		</div>
@@ -99,7 +141,7 @@
 	<div class="row visible-xs-inline">
 		<div class="col-md-12 text-center text-p">
 			<p>
-				<a href="#">Copyright &copy; 2014, Nener</a>
+				<a href="#">Copyright &copy; <?php echo date('Y');?>, Nener</a>
 			</p>
 		</div>
 	</div>
@@ -130,7 +172,7 @@
 		var tsls=$('tbody').find('tr');
 		$.each(tsls, function(index, val) {
 			 var thisid=$(this).attr('data-id');
-			 ajaxbypost("<?php echo U('getCount');?>",{id:thisid},function(res,thisid){
+			 ajaxbypost("<?php echo U('getCount');?>",{id:thisid,tb:$(this).attr('data-tb')},function(res,thisid){
 			 	if(!res||!res.status||res.data==0){
 			 		res.data=0;
 			 		$('tr[data-id="'+thisid+'"]').find('a').hide();
@@ -140,11 +182,25 @@
 			 	$('tr[data-id="'+thisid+'"]').find('td[data-count]').text(res.data);
 			 	$('tr[data-id="'+thisid+'"]').removeAttr('data-id');
 			 },'json',thisid);
+			 $('tr[data-id="'+thisid+'"]').removeAttr('data-tb');
 		});
+	}
+	function add_update_get(params,_callback,eventhis){
+		$('form').attr('action', $(eventhis).attr('acurl'));
+		$('form').find('input[name="Modif"]').val($(eventhis).attr('data-p'));
+		$('form').find('input[name="Id"]').val("");
+		ajaxbypost($(eventhis).attr('geturl'),params,function(res){
+			_callback(res);
+		},'json');
 	}
 	$(function(){
 		initPagination();
 		getCount();
+		$('#additem').on('click', function(event) {
+			add_update_get("",function(res){
+				alert(res.status);
+			},this);
+		});
 	})
 </script>
 

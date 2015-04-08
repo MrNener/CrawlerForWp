@@ -64,3 +64,8 @@ footer {
     top: 0;
     left: 0;
 }
+@media (min-width: 1440px){
+    .container {
+        width: 1300px;
+    }
+}
