@@ -6,6 +6,7 @@
         public System.String KeyWordField {get; set;}
         public System.String PageField {get; set;}
         public System.String Fields {get; set;}
+        public System.String FieldsNote {get; set;}
         public System.String AllRowConfig {get; set;}
         public System.Int32 MaxPage {get; set;}
         public System.Int32 StopPageCount {get; set;}

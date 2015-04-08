@@ -8,6 +8,6 @@
         public System.String DefaultValue {get; set;}
         public System.String Prdfix {get; set;}
         public System.String Suffix {get; set;}
-        public System.Int32 Statue {get; set;}
+        public System.Int32 Status {get; set;}
     }
 }

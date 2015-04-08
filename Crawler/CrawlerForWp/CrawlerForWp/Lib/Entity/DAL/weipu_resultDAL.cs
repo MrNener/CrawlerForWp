@@ -15,6 +15,8 @@ namespace CrawlerForWp {
             model.Author = (System.String)row["Author"];
             model.Journal = (System.String)row["Journal"];
             model.Abstract = (System.String)row["Abstract"];
+            model.SYS_AddTime = (System.Int32)row["SYS_AddTime"];
+            model.TaskId = (System.Int32)row["TaskId"];
             return model;
         }
 
@@ -28,23 +30,27 @@ namespace CrawlerForWp {
             string isNullId = Convert.ToString(model.Id);
             if (isNullId.Equals("") || isNullId.Equals("0") || isNullId.Equals(new Guid().ToString()) || isNullId.Equals(null))
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `weipu_result`(`Url`, `Title`, `Author`, `Journal`, `Abstract`) VALUES(@Url, @Title, @Author, @Journal, @Abstract); SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `weipu_result`(`Url`, `Title`, `Author`, `Journal`, `Abstract`, `SYS_AddTime`, `TaskId`) VALUES(@Url, @Title, @Author, @Journal, @Abstract, @SYS_AddTime, @TaskId); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Url", model.Url)
                         ,new MySqlParameter("@Title", model.Title)
                         ,new MySqlParameter("@Author", model.Author)
                         ,new MySqlParameter("@Journal", model.Journal)
                         ,new MySqlParameter("@Abstract", model.Abstract)
+                        ,new MySqlParameter("@SYS_AddTime", model.SYS_AddTime)
+                        ,new MySqlParameter("@TaskId", model.TaskId)
                     );
             }
             else
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `weipu_result`(`Id`, `Url`, `Title`, `Author`, `Journal`, `Abstract`) VALUES(@Id, @Url, @Title, @Author, @Journal, @Abstract); SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `weipu_result`(`Id`, `Url`, `Title`, `Author`, `Journal`, `Abstract`, `SYS_AddTime`, `TaskId`) VALUES(@Id, @Url, @Title, @Author, @Journal, @Abstract, @SYS_AddTime, @TaskId); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@Url", model.Url)
                         ,new MySqlParameter("@Title", model.Title)
                         ,new MySqlParameter("@Author", model.Author)
                         ,new MySqlParameter("@Journal", model.Journal)
                         ,new MySqlParameter("@Abstract", model.Abstract)
+                        ,new MySqlParameter("@SYS_AddTime", model.SYS_AddTime)
+                        ,new MySqlParameter("@TaskId", model.TaskId)
                     );
             }
         return obj;
@@ -66,13 +72,15 @@ namespace CrawlerForWp {
         /// <param name="model">weipu_result类的对象</param>
         /// <returns>更新是否成功</returns>
         public static bool Update(weipu_result model) {
-            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `weipu_result` SET `Url`=@Url, `Title`=@Title, `Author`=@Author, `Journal`=@Journal, `Abstract`=@Abstract WHERE `Id`=@Id;"
+            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `weipu_result` SET `Url`=@Url, `Title`=@Title, `Author`=@Author, `Journal`=@Journal, `Abstract`=@Abstract, `SYS_AddTime`=@SYS_AddTime, `TaskId`=@TaskId WHERE `Id`=@Id;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@Url", model.Url)
                         ,new MySqlParameter("@Title", model.Title)
                         ,new MySqlParameter("@Author", model.Author)
                         ,new MySqlParameter("@Journal", model.Journal)
                         ,new MySqlParameter("@Abstract", model.Abstract)
+                        ,new MySqlParameter("@SYS_AddTime", model.SYS_AddTime)
+                        ,new MySqlParameter("@TaskId", model.TaskId)
             );
         return count > 0;
         }
@@ -83,7 +91,7 @@ namespace CrawlerForWp {
         /// <param name="Id">主键</param>
         /// <returns>weipu_result类的对象</returns>
         public static weipu_result GetById(System.Int64 Id) {
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Url`, `Title`, `Author`, `Journal`, `Abstract` FROM `weipu_result` WHERE `Id`=@Id", new MySqlParameter("@Id", Id));
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Url`, `Title`, `Author`, `Journal`, `Abstract`, `SYS_AddTime`, `TaskId` FROM `weipu_result` WHERE `Id`=@Id", new MySqlParameter("@Id", Id));
             if (dt.Rows.Count > 1) {
                 throw new Exception("more than 1 row was found");
             }
@@ -101,7 +109,7 @@ namespace CrawlerForWp {
         /// <returns>weipu_result类的对象的枚举</returns>
         public static IEnumerable<weipu_result> ListAll() {
             List<weipu_result> list = new List<weipu_result>();
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Url`, `Title`, `Author`, `Journal`, `Abstract` FROM `weipu_result`;");
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Url`, `Title`, `Author`, `Journal`, `Abstract`, `SYS_AddTime`, `TaskId` FROM `weipu_result`;");
             foreach (DataRow row in dt.Rows)  {
                 list.Add(ToModel(row));
             }

@@ -6,5 +6,7 @@
         public System.String Author {get; set;}
         public System.String Journal {get; set;}
         public System.String Abstract {get; set;}
+        public System.Int32 SYS_AddTime {get; set;}
+        public System.Int32 TaskId {get; set;}
     }
 }

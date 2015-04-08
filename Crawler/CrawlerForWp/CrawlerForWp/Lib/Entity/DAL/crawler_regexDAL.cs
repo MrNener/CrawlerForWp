@@ -17,7 +17,7 @@ namespace CrawlerForWp {
             model.DefaultValue = (System.String)row["DefaultValue"];
             model.Prdfix = (System.String)row["Prdfix"];
             model.Suffix = (System.String)row["Suffix"];
-            model.Statue = (System.Int32)row["Statue"];
+            model.Status = (System.Int32)row["Status"];
             return model;
         }
 
@@ -31,7 +31,7 @@ namespace CrawlerForWp {
             string isNullId = Convert.ToString(model.Id);
             if (isNullId.Equals("") || isNullId.Equals("0") || isNullId.Equals(new Guid().ToString()) || isNullId.Equals(null))
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `crawler_regex`(`ConfigId`, `ColName`, `ColNote`, `Regex`, `DefaultValue`, `Prdfix`, `Suffix`, `Statue`) VALUES(@ConfigId, @ColName, @ColNote, @Regex, @DefaultValue, @Prdfix, @Suffix, @Statue); SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `crawler_regex`(`ConfigId`, `ColName`, `ColNote`, `Regex`, `DefaultValue`, `Prdfix`, `Suffix`, `Status`) VALUES(@ConfigId, @ColName, @ColNote, @Regex, @DefaultValue, @Prdfix, @Suffix, @Status); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@ConfigId", model.ConfigId)
                         ,new MySqlParameter("@ColName", model.ColName)
                         ,new MySqlParameter("@ColNote", Helper.MySqlHelper.ToDBValue(model.ColNote))
@@ -39,12 +39,12 @@ namespace CrawlerForWp {
                         ,new MySqlParameter("@DefaultValue", model.DefaultValue)
                         ,new MySqlParameter("@Prdfix", model.Prdfix)
                         ,new MySqlParameter("@Suffix", model.Suffix)
-                        ,new MySqlParameter("@Statue", model.Statue)
+                        ,new MySqlParameter("@Status", model.Status)
                     );
             }
             else
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `crawler_regex`(`Id`, `ConfigId`, `ColName`, `ColNote`, `Regex`, `DefaultValue`, `Prdfix`, `Suffix`, `Statue`) VALUES(@Id, @ConfigId, @ColName, @ColNote, @Regex, @DefaultValue, @Prdfix, @Suffix, @Statue); SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `crawler_regex`(`Id`, `ConfigId`, `ColName`, `ColNote`, `Regex`, `DefaultValue`, `Prdfix`, `Suffix`, `Status`) VALUES(@Id, @ConfigId, @ColName, @ColNote, @Regex, @DefaultValue, @Prdfix, @Suffix, @Status); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@ConfigId", model.ConfigId)
                         ,new MySqlParameter("@ColName", model.ColName)
@@ -53,7 +53,7 @@ namespace CrawlerForWp {
                         ,new MySqlParameter("@DefaultValue", model.DefaultValue)
                         ,new MySqlParameter("@Prdfix", model.Prdfix)
                         ,new MySqlParameter("@Suffix", model.Suffix)
-                        ,new MySqlParameter("@Statue", model.Statue)
+                        ,new MySqlParameter("@Status", model.Status)
                     );
             }
         return obj;
@@ -75,7 +75,7 @@ namespace CrawlerForWp {
         /// <param name="model">crawler_regex类的对象</param>
         /// <returns>更新是否成功</returns>
         public static bool Update(crawler_regex model) {
-            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `crawler_regex` SET `ConfigId`=@ConfigId, `ColName`=@ColName, `ColNote`=@ColNote, `Regex`=@Regex, `DefaultValue`=@DefaultValue, `Prdfix`=@Prdfix, `Suffix`=@Suffix, `Statue`=@Statue WHERE `Id`=@Id;"
+            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `crawler_regex` SET `ConfigId`=@ConfigId, `ColName`=@ColName, `ColNote`=@ColNote, `Regex`=@Regex, `DefaultValue`=@DefaultValue, `Prdfix`=@Prdfix, `Suffix`=@Suffix, `Status`=@Status WHERE `Id`=@Id;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@ConfigId", model.ConfigId)
                         ,new MySqlParameter("@ColName", model.ColName)
@@ -84,7 +84,7 @@ namespace CrawlerForWp {
                         ,new MySqlParameter("@DefaultValue", model.DefaultValue)
                         ,new MySqlParameter("@Prdfix", model.Prdfix)
                         ,new MySqlParameter("@Suffix", model.Suffix)
-                        ,new MySqlParameter("@Statue", model.Statue)
+                        ,new MySqlParameter("@Status", model.Status)
             );
         return count > 0;
         }
@@ -95,7 +95,7 @@ namespace CrawlerForWp {
         /// <param name="Id">主键</param>
         /// <returns>crawler_regex类的对象</returns>
         public static crawler_regex GetById(System.Int32 Id) {
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `ConfigId`, `ColName`, `ColNote`, `Regex`, `DefaultValue`, `Prdfix`, `Suffix`, `Statue` FROM `crawler_regex` WHERE `Id`=@Id", new MySqlParameter("@Id", Id));
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `ConfigId`, `ColName`, `ColNote`, `Regex`, `DefaultValue`, `Prdfix`, `Suffix`, `Status` FROM `crawler_regex` WHERE `Id`=@Id", new MySqlParameter("@Id", Id));
             if (dt.Rows.Count > 1) {
                 throw new Exception("more than 1 row was found");
             }
@@ -113,7 +113,7 @@ namespace CrawlerForWp {
         /// <returns>crawler_regex类的对象的枚举</returns>
         public static IEnumerable<crawler_regex> ListAll() {
             List<crawler_regex> list = new List<crawler_regex>();
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `ConfigId`, `ColName`, `ColNote`, `Regex`, `DefaultValue`, `Prdfix`, `Suffix`, `Statue` FROM `crawler_regex`;");
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `ConfigId`, `ColName`, `ColNote`, `Regex`, `DefaultValue`, `Prdfix`, `Suffix`, `Status` FROM `crawler_regex`;");
             foreach (DataRow row in dt.Rows)  {
                 list.Add(ToModel(row));
             }
