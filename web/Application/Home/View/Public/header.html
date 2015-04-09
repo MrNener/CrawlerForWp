@@ -7,16 +7,14 @@
 	<meta name="copyright" content="Nener">
 	<meta name="author" content="Nener -周孟">
 	<title>智能爬虫
-	<if condition="$title">
-		-{$title}
-	</if>
-	</title>
+		<if condition="$title">-{$title}</if></title> 
 	<!-- Bootstrap Core CSS -->
 	<link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
 	<link href="__PUBLIC__/css/normalize.min.css" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="__PUBLIC__/css/crawler.css" rel="stylesheet">
-	<!-- <link rel="shortcut icon" href="__PUBLIC__/Img/favicon.png" type="image/x-icon" > -->
+	<!-- <link rel="shortcut icon" href="__PUBLIC__/Img/favicon.png" type="image/x-icon" >
+	-->
 	<block name="css"></block>
 </head>
 <body>
@@ -37,7 +35,16 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li>
-							<a href="/">首页</a>
+							<a  href="/">首页</a>
+						</li>
+						<li>
+							<a  href="{:U('Task/index')}">事务列表</a>
+						</li>
+						<li>
+							<a  href="{:U('Config/index')}">配置列表</a>
+						</li>
+						<li>
+							<a  href="{:U('Setting/index')}">设置</a>
 						</li>
 					</ul>
 				</div>

@@ -23,6 +23,7 @@ class TaskController extends Controller {
     	$res=new crawler_configModel();
     	$res=$res->listByPage(2000,array('Status'=>1));
     	$this->assign('cls',$res['list']);
+        $this->assign('title','事务列表');
         $this->display();
     }
     /**
@@ -79,7 +80,7 @@ class TaskController extends Controller {
     {
         if (!IS_POST) {
           $this->error('不要瞎搞！',U('/'));
-          return null;
+          return false;
         }
         $res=new crawler_configModel();
         $res=$res->listByPage(1000,array('Status'=>1));
@@ -94,10 +95,11 @@ class TaskController extends Controller {
     {
     	if (!IS_POST) {
     	  $this->error('不要瞎搞！',U('/'));
-    	  return null;
+    	  return false;
     	}
         $res=new crawler_taskModel();
         $res=$res->savetask(I('post.'));
     	$this->ajaxReturn($res);
     }
+
 }

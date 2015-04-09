@@ -7,14 +7,14 @@
 	<meta name="copyright" content="Nener">
 	<meta name="author" content="Nener -周孟">
 	<title>智能爬虫
-	<?php if($title): ?>-<?php echo ($title); endif; ?>
-	</title>
+		<?php if($title): ?>-<?php echo ($title); endif; ?></title> 
 	<!-- Bootstrap Core CSS -->
 	<link href="/Public/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/Public/css/normalize.min.css" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="/Public/css/crawler.css" rel="stylesheet">
-	<!-- <link rel="shortcut icon" href="/Public/Img/favicon.png" type="image/x-icon" > -->
+	<!-- <link rel="shortcut icon" href="/Public/Img/favicon.png" type="image/x-icon" >
+	-->
 	
 	<style>
 	td {
@@ -44,7 +44,16 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li>
-							<a href="/">首页</a>
+							<a  href="/">首页</a>
+						</li>
+						<li>
+							<a  href="<?php echo U('Task/index');?>">事务列表</a>
+						</li>
+						<li>
+							<a  href="<?php echo U('Config/index');?>">配置列表</a>
+						</li>
+						<li>
+							<a  href="<?php echo U('Setting/index');?>">设置</a>
 						</li>
 					</ul>
 				</div>
@@ -52,7 +61,7 @@
 		</nav>
 <div id="main" class="container">
 	
-	<div class="panel panel-success">
+	<div class="panel panel-info">
 		<div class="panel-heading">
 			<button id="updateitem" type="button" class="btn btn-warning hide" disabled>修改</button>
 			<button id="delitem" type="button" acurl="<?php echo U('del');?>" class="btn btn-danger " data-tb="<?php echo ($res['config']['TableName']); ?>" disabled>删除</button>
@@ -75,7 +84,9 @@
 							<td >
 								<input type="checkbox"  class="check-item" value="<?php echo ($v['Id']); ?>"></td>
 							<?php if(is_array($res["config"]["Fields"])): foreach($res["config"]["Fields"] as $k=>$vk): ?><td  class="text-center record">
-									<?php echo ($v[$vk]); ?>
+								<?php if(strtolower($vk)=='url'): ?><a href="<?php echo ($v[$vk]); ?>" target="_blank"><?php echo ($v[$vk]); ?></a>
+								<?php else: ?>
+									<?php echo ($v[$vk]); endif; ?>
 								</td><?php endforeach; endif; ?>
 							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['SYS_AddTime']);?></td>
 							<td  class="text-center">
@@ -95,7 +106,7 @@
 	<div class="row hidden-xs">
 		<div class="col-md-12 text-center text-p">
 			<p>
-				<a href="#">Copyright &copy; <?php echo date('Y');?>, Nener</a>
+				Copyright &copy; <?php echo date('Y');?>, Nener
 			</p>
 
 		</div>
@@ -103,7 +114,7 @@
 	<div class="row visible-xs-inline">
 		<div class="col-md-12 text-center text-p">
 			<p>
-				<a href="#">Copyright &copy; <?php echo date('Y');?>, Nener</a>
+				Copyright &copy; <?php echo date('Y');?>, Nener
 			</p>
 		</div>
 	</div>

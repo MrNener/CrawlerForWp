@@ -1,0 +1,149 @@
+<extend name="Public/common"/>
+<block name='content'>
+	<div class="panel panel-warning">
+		<div class="panel-heading">
+			<button id="additem" geturl="{:U('getcof',array('modif'=>'add'))}" data-p="add" acurl="" type="button" class="btn btn-success ">添加</button>
+			<button id="updateitem"  geturl="{:U('getcof',array('modif'=>'update'))}" data-p="update" acurl="" type="button" class="btn btn-warning" disabled>修改</button>
+			<button id="delitem" type="button" acurl="{:U('del')}" class="btn btn-danger " data-tb="" disabled>删除</button>
+		</div>
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<thead>
+					<th >
+						<input type="checkbox" id="select-all"></th>
+					<th  class="text-center" >配置名</th>
+					<th  class="text-center">提交Url</th>
+					<th  class="text-center">关键字标识符</th>
+					<th  class="text-center">翻页标识符</th>
+					<th  class="text-center">分页大小</th>
+					<th class="text-center">最大翻页</th>
+					<th class="text-center">对应表</th>
+					<th class="text-center">添加/更新时间</th>
+					<th class="text-center">操作</th>
+				</thead>
+				<tbody>
+					<volist name="res.list" id="v">
+						<tr data-id="{$v['Id']}">
+							<td>
+								<input type="checkbox"  class="check-item" value="{$v['Id']}"></td>
+							<td  class="text-center">{$v['Name']}</td>
+							<td  class="text-center">{$v['SubmitUrl']}</td>
+							<td  class="text-center">{$v['KeyWordField']}</td>
+							<td  class="text-center">{$v['PageField']}</td>
+							<td  class="text-center">{$v['PageSize']}</td>
+							<td  class="text-center">{$v['MaxPage']}</td>
+							<td  class="text-center">{$v['TableName']}</td>
+							<td  class="text-center">{:date('Y/m/d H:i',$v['AddTime'])}</td>
+							<td  class="text-center">
+								<a class="getdetil" href="javascript:void(0);" geturl="{:U('getcof',array('id'=>$v['Id'],'modif'=>'get'))}">查看详情</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+								<a class="getregex" href="javascript:void(0);" geturl="{:U('listregex',array('id'=>$v['Id']))}" >正则配置</a>
+							</td>
+						</tr>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+		<div class="page pull-right">{$res['page']}</div>
+	</div>
+	<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+		<div class="modal-dialog modal-lg ">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+</block>
+<block name="js">
+	<script type="text/javascript">
+	function submitform(){
+		$('#myModal').find('form').on('submit', function(event) {
+			ajaxbypost($(this).attr('action'),$(this).serialize(),function(res){
+				if (!res||res.status==0) {
+					showerrormsg('保存失败！',1,900);
+					return false;
+				}
+				showsuccessmsg('OK!',1,900);
+				$('#myModal').modal('hide');
+				window.location.href=window.location.href;
+				return false;
+			},'json');
+			return false;
+		});
+	}
+	$(function(){
+		$('.getregex').on('click', function(event) {
+			loadingimg();
+			$("#myModal").find('.modal-dialog').addClass('x-blg');
+			$("#myModal").find('.modal-content').html('');
+			$("#myModal").modal({
+			    remote: $(this).attr( 'geturl')
+			});
+		});
+		$('#myModal').on('loaded.bs.modal',  function(event) {
+			$("#myModal").modal('show');
+		});
+		$('.getdetil').on('click', function(event) {
+			ajaxbyget($(this).attr('geturl'),"",function(res){
+				if (!res||res.status==0) {
+					showerrormsg('加载配置失败！',1,900);
+					return false;
+				}else{
+					loadingimg();
+					$('#myModal').html(res.data);
+					$('#myModal').modal('show');
+				}
+			},'json');
+		});
+		$('#additem').on('click', function(event) {
+			ajaxbyget($(this).attr('geturl'),"",function(res){
+				if (!res||res.status==0) {
+					showerrormsg('加载配置失败！',1,900);
+					return false;
+				}else{
+					loadingimg();
+					$('#myModal').html(res.data);
+					$('#myModal').modal('show');
+					submitform();
+				}
+			},'json');
+		});
+		$('#myModal').on('shown.bs.modal',  function(event) {
+			removeloadingimg();
+		});
+
+		$('#myModal').on('hidden.bs.modal',  function(event) {
+			$(this).removeData("bs.modal");
+		});
+		$('#updateitem').on('click', function(event) {
+			var len=$('tbody').find('input:checked');
+			if(!len.length==1){
+				showerrormsg('请选择一项数据进行操作！',1,900);
+				return false;
+			}
+			ajaxbyget($(this).attr('geturl'),{id:$(len).val()},function(res){
+				if (!res||res.status==0) {
+					showerrormsg('加载配置失败！',1,900);
+					return false;
+				}else{
+					loadingimg();
+					$('#myModal').html(res.data);
+					$('#myModal').modal('show');
+					submitform();
+				}
+			},'json');
+		});
+	});
+	</script>
+</block>
+<block name="css">
+	<style>
+	td {
+		max-width: 160px !important;
+		min-width: 50px !important;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.x-blg{
+		min-width: 80%;
+	}
+	</style>
+</block>

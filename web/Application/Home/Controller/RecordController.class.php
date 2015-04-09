@@ -23,8 +23,9 @@ class RecordController extends Controller {
         $res=$res->listByPage($id,$pagesize,null,array('id'=>$id,'pagesize'=>$pagesize));
         if(!$res){
             $this->error('不要瞎搞！',U('/'));
-            return null;
+            return false;
         }
+        $this->assign('title','记录列表');
         $this->assign('res',$res);
         $this->display();
     }
@@ -33,7 +34,7 @@ class RecordController extends Controller {
     {
         if (!IS_POST) {
            $this->error('不要瞎搞！',U('/'));
-           return null;
+           return false;
         }
         $id=!$id?I('id'):$id;
         $id=explode('|', $id);

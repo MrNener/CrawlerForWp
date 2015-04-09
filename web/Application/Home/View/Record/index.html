@@ -1,6 +1,6 @@
 <extend name="Public/common"/>
 <block name='content'>
-	<div class="panel panel-success">
+	<div class="panel panel-info">
 		<div class="panel-heading">
 			<button id="updateitem" type="button" class="btn btn-warning hide" disabled>修改</button>
 			<button id="delitem" type="button" acurl="{:U('del')}" class="btn btn-danger " data-tb="{$res['config']['TableName']}" disabled>删除</button>
@@ -29,7 +29,11 @@
 								<input type="checkbox"  class="check-item" value="{$v['Id']}"></td>
 							<foreach name="res.config.Fields" item="vk" key="k">
 								<td  class="text-center record">
+								<if condition="strtolower($vk)=='url'">
+									<a href="{$v[$vk]}" target="_blank">{$v[$vk]}</a>
+								<else/>
 									{$v[$vk]}
+								</if>
 								</td>
 							</foreach>
 							<td  class="text-center">{:date('Y/m/d H:i',$v['SYS_AddTime'])}</td>

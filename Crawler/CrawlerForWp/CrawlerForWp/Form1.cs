@@ -14,6 +14,7 @@ namespace CrawlerForWp
     public partial class Form1 : Form
     {
         System.Timers.Timer t1 = new System.Timers.Timer();
+        bool isbegin = false;
         public Form1()
         {
             InitializeComponent();
@@ -21,8 +22,14 @@ namespace CrawlerForWp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            t1.Interval = 20000;
-            t1.Elapsed += delegate { CrawlerMD.BeginExecute(); };
+            t1.Interval = 10000;
+            t1.Elapsed += delegate {
+                if (!isbegin) {
+                    isbegin = true;
+                    CrawlerMD.BeginExecute();
+                    isbegin = false;
+                }
+            };
             t1.AutoReset = true;
             t1.Start();
             this.Hide();

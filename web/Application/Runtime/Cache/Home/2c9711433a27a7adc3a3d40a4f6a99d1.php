@@ -16,6 +16,19 @@
 	<!-- <link rel="shortcut icon" href="/Public/Img/favicon.png" type="image/x-icon" >
 	-->
 	
+	<style>
+	td {
+		max-width: 160px !important;
+		min-width: 50px !important;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.x-blg{
+		min-width: 80%;
+	}
+	</style>
+
 </head>
 <body>
 	<!-- 页身 -->
@@ -52,10 +65,10 @@
 		</nav>
 <div id="main" class="container">
 	
-	<div class="panel panel-success">
+	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<button id="additem" geturl="<?php echo U('getconf');?>" data-p="add" acurl="<?php echo U('savetask');?>" type="button" class="btn btn-success ">添加</button>
-			<button id="updateitem"  geturl="<?php echo U('gettask');?>" data-p="update" acurl="<?php echo U('savetask');?>" type="button" class="btn btn-warning" disabled>修改</button>
+			<button id="additem" geturl="<?php echo U('getcof',array('modif'=>'add'));?>" data-p="add" acurl="" type="button" class="btn btn-success ">添加</button>
+			<button id="updateitem"  geturl="<?php echo U('getcof',array('modif'=>'update'));?>" data-p="update" acurl="" type="button" class="btn btn-warning" disabled>修改</button>
 			<button id="delitem" type="button" acurl="<?php echo U('del');?>" class="btn btn-danger " data-tb="" disabled>删除</button>
 		</div>
 		<div class="table-responsive">
@@ -63,32 +76,31 @@
 				<thead>
 					<th >
 						<input type="checkbox" id="select-all"></th>
-					<th  class="text-center" >关键字</th>
-					<th  class="text-center">配置项</th>
-					<th  class="text-center">单次数量</th>
-					<th  class="text-center">周期</th>
-					<th  class="text-center">添加/更新时间</th>
-					<th  class="text-center">到期时间</th>
-					<th class="text-center">状态</th>
-					<th class="text-center">已收录</th>
+					<th  class="text-center" >配置名</th>
+					<th  class="text-center">提交Url</th>
+					<th  class="text-center">关键字标识符</th>
+					<th  class="text-center">翻页标识符</th>
+					<th  class="text-center">分页大小</th>
+					<th class="text-center">最大翻页</th>
+					<th class="text-center">对应表</th>
+					<th class="text-center">添加/更新时间</th>
 					<th class="text-center">操作</th>
 				</thead>
 				<tbody>
-					<?php if(is_array($res["list"])): $i = 0; $__LIST__ = $res["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr data-id="<?php echo ($v['Id']); ?>" data-tb="<?php echo ($v['TableName']); ?>">
+					<?php if(is_array($res["list"])): $i = 0; $__LIST__ = $res["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr data-id="<?php echo ($v['Id']); ?>">
 							<td>
 								<input type="checkbox"  class="check-item" value="<?php echo ($v['Id']); ?>"></td>
-							<td  class="text-center"><?php echo ($v['KeyWords']); ?></td>
-							<td  class="text-center"><?php echo ($v['ConfigName']); ?></td>
-							<td  class="text-center"><?php echo ($v['SingleCount']); ?></td>
-							<td  class="text-center"><?php echo floor($v['Cycle']/86400);?></td>
+							<td  class="text-center"><?php echo ($v['Name']); ?></td>
+							<td  class="text-center"><?php echo ($v['SubmitUrl']); ?></td>
+							<td  class="text-center"><?php echo ($v['KeyWordField']); ?></td>
+							<td  class="text-center"><?php echo ($v['PageField']); ?></td>
+							<td  class="text-center"><?php echo ($v['PageSize']); ?></td>
+							<td  class="text-center"><?php echo ($v['MaxPage']); ?></td>
+							<td  class="text-center"><?php echo ($v['TableName']); ?></td>
 							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['AddTime']);?></td>
-							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['ExpireTime']);?></td>
-							<td  class="text-center"><?php echo ($v['StatusNote']); ?></td>
-							<td  class="text-center " data-count>
-								<img src="/Public/img/min-load.gif" />
-							</td>
 							<td  class="text-center">
-								<a target="_blank" href="<?php echo U('Record/index',array('id'=>$v['Id']));?>" style="display:none;">查看记录</a>
+								<a class="getdetil" href="javascript:void(0);" geturl="<?php echo U('getcof',array('id'=>$v['Id'],'modif'=>'get'));?>">查看详情</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+								<a class="getregex" href="javascript:void(0);" geturl="<?php echo U('listregex',array('id'=>$v['Id']));?>" >正则配置</a>
 							</td>
 						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 				</tbody>
@@ -96,7 +108,10 @@
 		</div>
 		<div class="page pull-right"><?php echo ($res['page']); ?></div>
 	</div>
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+	<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+		<div class="modal-dialog modal-lg ">
+			<div class="modal-content"></div>
+		</div>
 	</div>
 
 </div>
@@ -141,35 +156,8 @@
 <!-- 额外js -->
 
 	<script type="text/javascript">
-	function getCount(){
-		var tsls=$('tbody').find('tr');
-		$.each(tsls, function(index, val) {
-			 var thisid=$(this).attr('data-id');
-			 ajaxbypost("<?php echo U('getCount');?>",{id:thisid,tb:$(this).attr('data-tb')},function(res,thisid){
-			 	if(!res||!res.status||res.data==0){
-			 		res.data=0;
-			 		$('tr[data-id="'+thisid+'"]').find('a').hide();
-			 	}else{
-			 		$('tr[data-id="'+thisid+'"]').find('a').show();
-			 	}
-			 	$('tr[data-id="'+thisid+'"]').find('td[data-count]').text(res.data);
-			 	$('tr[data-id="'+thisid+'"]').removeAttr('data-id');
-			 },'json',thisid);
-			 $('tr[data-id="'+thisid+'"]').removeAttr('data-tb');
-		});
-	}
 	function submitform(){
 		$('#myModal').find('form').on('submit', function(event) {
-			if (parseInt($('#Cycle').val(), 10)<=0) {
-				showerrormsg($('#Cycle').attr('placeholder')+'不正确',1,900);
-				$('#Cycle').focus();
-				return false;
-			}
-			if (parseInt($('#SingleCount').val(), 10)<=0) {
-				showerrormsg($('#SingleCount').attr('placeholder')+'不正确',1,900);
-				$('#SingleCount').focus();
-				return false;
-			}
 			ajaxbypost($(this).attr('action'),$(this).serialize(),function(res){
 				if (!res||res.status==0) {
 					showerrormsg('保存失败！',1,900);
@@ -184,10 +172,19 @@
 		});
 	}
 	$(function(){
-		initPagination();
-		getCount();
-		$('#additem').on('click', function(event) {
-			ajaxbypost($(this).attr('geturl'),"",function(res){
+		$('.getregex').on('click', function(event) {
+			loadingimg();
+			$("#myModal").find('.modal-dialog').addClass('x-blg');
+			$("#myModal").find('.modal-content').html('');
+			$("#myModal").modal({
+			    remote: $(this).attr( 'geturl')
+			});
+		});
+		$('#myModal').on('loaded.bs.modal',  function(event) {
+			$("#myModal").modal('show');
+		});
+		$('.getdetil').on('click', function(event) {
+			ajaxbyget($(this).attr('geturl'),"",function(res){
 				if (!res||res.status==0) {
 					showerrormsg('加载配置失败！',1,900);
 					return false;
@@ -197,6 +194,26 @@
 					$('#myModal').modal('show');
 				}
 			},'json');
+		});
+		$('#additem').on('click', function(event) {
+			ajaxbyget($(this).attr('geturl'),"",function(res){
+				if (!res||res.status==0) {
+					showerrormsg('加载配置失败！',1,900);
+					return false;
+				}else{
+					loadingimg();
+					$('#myModal').html(res.data);
+					$('#myModal').modal('show');
+					submitform();
+				}
+			},'json');
+		});
+		$('#myModal').on('shown.bs.modal',  function(event) {
+			removeloadingimg();
+		});
+
+		$('#myModal').on('hidden.bs.modal',  function(event) {
+			$(this).removeData("bs.modal");
 		});
 		$('#updateitem').on('click', function(event) {
 			var len=$('tbody').find('input:checked');
@@ -204,7 +221,7 @@
 				showerrormsg('请选择一项数据进行操作！',1,900);
 				return false;
 			}
-			ajaxbypost($(this).attr('geturl'),{id:$(len).val()},function(res){
+			ajaxbyget($(this).attr('geturl'),{id:$(len).val()},function(res){
 				if (!res||res.status==0) {
 					showerrormsg('加载配置失败！',1,900);
 					return false;
@@ -212,15 +229,12 @@
 					loadingimg();
 					$('#myModal').html(res.data);
 					$('#myModal').modal('show');
+					submitform();
 				}
 			},'json');
 		});
-		$('#myModal').on('shown.bs.modal',  function(event) {
-			removeloadingimg();
-			submitform();
-		});
 	});
-</script>
+	</script>
 
 </body>
 </html>

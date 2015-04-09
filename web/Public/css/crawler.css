@@ -64,6 +64,9 @@ footer {
     top: 0;
     left: 0;
 }
+.chide{
+    display: none !important;
+}
 @media (min-width: 1440px){
     .container {
         width: 1300px;
