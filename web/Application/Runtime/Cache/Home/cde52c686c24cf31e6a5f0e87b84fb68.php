@@ -90,13 +90,18 @@
 								</td><?php endforeach; endif; ?>
 							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['SYS_AddTime']);?></td>
 							<td  class="text-center">
-								<a target="_blank" href="<?php echo U('record',array('id'=>$v['Id']));?>" >查看记录</a>
+								<a href="javascript:void(0);" class="getrec" geturl="<?php echo U('gettpl',array('id'=>$v['Id'],'tb'=>$res['config']['TableName']));?>" >查看</a>
 							</td>
 						</tr><?php endforeach; endif; ?>
 				</tbody>
 			</table>
 		</div>
 		<div class="page pull-right"><?php echo ($res['page']); ?></div>
+	</div>
+	<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+		<div class="modal-dialog modal-lg ">
+			<div class="modal-content"></div>
+		</div>
 	</div>
 
 </div>
@@ -144,6 +149,20 @@
 
 	$(function(){
 		initPagination();
+		$('.getrec').on('click', function(event) {
+			ajaxbyget($(this).attr('geturl'),"",function(res){
+				if (!res||res.status==0||!res.data) {
+					showerrormsg('加载失败！',1,900);
+					return false;
+				}
+				loadingimg();
+				$('#myModal').html(res.data);
+				$('#myModal').modal('show');
+			},'json')
+		});
+		$('#myModal').on('shown.bs.modal',  function(event) {
+			removeloadingimg();
+		});
 	})
 </script>
 

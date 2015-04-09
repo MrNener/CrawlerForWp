@@ -6,7 +6,7 @@
 		<table class="table table-striped table-bordered table-hover">
 			<thead>
 				<th >#</th>
-				<th  class="text-center" >列名</th>
+				<th  class="text-center" >字段</th>
 				<th  class="text-center">正则</th>
 				<th  class="text-center">默认值</th>
 				<th  class="text-center">前缀</th>
@@ -18,13 +18,13 @@
 						<td><?php echo ($v['Id']); ?></td>
 						<td  class="text-center"><?php echo ($v['ColName']); ?></td>
 						<td  class="text-center">
-							<input type="text" class="form-control" name="Regex"  placeholder="正则" required value="<?php echo htmlentities($v['Regex']);?>" ></td>
+							<input type="text" class="form-control" name="Regex"  placeholder="正则" required value="<?php echo htmlspecialchars($v['Regex']);?>" ></td>
 						<td  class="text-center">
-							<input type="text" class="form-control" name="DefaultValue"  placeholder="默认值"  value="<?php echo htmlentities($v['DefaultValue']);?>" ></td>
+							<input type="text" class="form-control" name="DefaultValue"  placeholder="默认值"  value="<?php echo htmlspecialchars($v['DefaultValue']);?>" ></td>
 						<td  class="text-center">
-							<input type="text" class="form-control" name="Prdfix"  placeholder="前缀"  value="<?php echo htmlentities($v['Prdfix']);?>" ></td>
+							<input type="text" class="form-control" name="Prdfix"  placeholder="前缀"  value="<?php echo htmlspecialchars($v['Prdfix']);?>" ></td>
 						<td  class="text-center">
-							<input type="text" class="form-control" name="Suffix"  placeholder="后缀"  value="<?php echo htmlentities($v['Suffix']);?>" ></td>
+							<input type="text" class="form-control" name="Suffix"  placeholder="后缀"  value="<?php echo htmlspecialchars($v['Suffix']);?>" ></td>
 						<td  class="text-center">
 							<a class="save" data-id="<?php echo ($v['Id']); ?>" href="javascript:void(0);" >保存</a>
 						</td>
@@ -51,7 +51,7 @@ td {
 }
 #close:hover{
 	cursor: pointer;
-	font-size: 24px;
+	font-size: 22px;
 	font-weight: 900;
 	color: #5A4624;
 }

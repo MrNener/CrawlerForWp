@@ -188,7 +188,7 @@
 		getCount();
 		$('#additem').on('click', function(event) {
 			ajaxbypost($(this).attr('geturl'),"",function(res){
-				if (!res||res.status==0) {
+				if (!res||res.status==0||!res.data) {
 					showerrormsg('加载配置失败！',1,900);
 					return false;
 				}else{
@@ -205,7 +205,7 @@
 				return false;
 			}
 			ajaxbypost($(this).attr('geturl'),{id:$(len).val()},function(res){
-				if (!res||res.status==0) {
+				if (!res||res.status==0||!res.data) {
 					showerrormsg('加载配置失败！',1,900);
 					return false;
 				}else{

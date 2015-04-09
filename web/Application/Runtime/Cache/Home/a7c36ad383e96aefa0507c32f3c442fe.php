@@ -36,7 +36,7 @@
 					<input type="text" class="form-control" name="FieldsNote" id="FieldsNote" placeholder="字段备注" required value="<?php echo ($model['FieldsNote']); ?>" <?php echo ($readonly); ?> ></div>
 				<div class="form-group">
 					<label for="AllRowConfig">内容正则：</label>
-					<input type="text" class="form-control" name="AllRowConfig" id="AllRowConfig" placeholder="内容正则" required value="<?php echo ($model['AllRowConfig']); ?>" <?php echo ($readonly); ?> ></div>
+					<input type="text" class="form-control" name="AllRowConfig" id="AllRowConfig" placeholder="内容正则" required value="<?php echo htmlspecialchars($model['AllRowConfig']);?>" <?php echo ($readonly); ?> ></div>
 				<div class="form-group">
 					<label for="MaxPage">最大页码：</label>
 					<input type="number" class="form-control" name="MaxPage" id="MaxPage" placeholder="最大页码" required value="<?php echo ($model['MaxPage']); ?>" <?php echo ($readonly); ?>  min="1" max="100000"></div>

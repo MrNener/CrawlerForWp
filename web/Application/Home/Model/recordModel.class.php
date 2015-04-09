@@ -45,6 +45,20 @@ class recordModel
 		return array('page'=>$showPage,'list'=>$list,'config'=>$c);
 	}
 
+	public function getById($idArr,$tb)
+	{
+		if (!$idArr||!$tb) {
+			return array('status'=>0,'data'=>'删除失败！');
+		}
+		if (!is_array($idArr)) {
+			$idArr=array($idArr);
+		}
+		if (count($idArr)<=0) {
+			return array('status'=>0,'data'=>'删除失败！');
+		}
+		$wa['Id']=array('in',$idArr);
+		return D($tb)->where($wa)->select();
+	}
 	public function delById($idArr,$tb)
 	{
 		if (!$idArr||!$tb) {

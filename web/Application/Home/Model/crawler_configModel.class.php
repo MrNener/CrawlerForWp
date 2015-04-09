@@ -38,7 +38,7 @@ class crawler_configModel extends Model
 		$id=$data['Id'];
 		unset($data['Id']);
 		unset($data['Modif']);
-		$data['AllRowConfig']=html_entity_decode($data['AllRowConfig']);
+		$data['AllRowConfig']=htmlspecialchars_decode($data['AllRowConfig']);
 		if (!$modif||!in_array($modif, array('add','update'))) {
 			return array('status'=>0,'data'=>'保存失败！');
 		}

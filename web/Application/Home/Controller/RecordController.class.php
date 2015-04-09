@@ -29,6 +29,25 @@ class RecordController extends Controller {
         $this->assign('res',$res);
         $this->display();
     }
+    public function gettpl($id=null,$tb=null)
+    {   
+        $id=!$id?I('id'):$id;
+        $tb=!$tb?I('tb'):$tb;
+        $res=new recordModel();
+        $res=$res->getById($id,$tb);
+        if (!$res||!$res[0]) {
+            $this->ajaxReturn(array('status'=>0,'data'=>'加载失败！'),'json');
+            return false;
+        }
+        $res=$res[0];
+        $arr=array();
+        foreach ($res as $key => $value) {
+           $arr[$key]=$value;
+        }
+        $this->assign('list',$arr);
+        $data=$this->fetch('gettpl');
+        $this->ajaxReturn(array('status'=>1,'data'=>$data),'json');
+    }
 
     public function del($id,$tb)
     {

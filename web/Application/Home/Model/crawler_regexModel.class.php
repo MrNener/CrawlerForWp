@@ -12,9 +12,9 @@ class crawler_regexModel extends Model
 			return array('status'=>0,'data'=>'保存失败');
 		}
 		$ar['Id']=$data['Id'];
-		$reg=array('Regex'=>html_entity_decode($data['Regex']),'DefaultValue'=>html_entity_decode($data['DefaultValue']),'Prdfix'=>html_entity_decode($data['Prdfix']),'Suffix'=>html_entity_decode($data['Suffix']));
+		$reg=array('Regex'=>htmlspecialchars_decode($data['Regex']),'DefaultValue'=>htmlspecialchars_decode($data['DefaultValue']),'Prdfix'=>htmlspecialchars_decode($data['Prdfix']),'Suffix'=>htmlspecialchars_decode($data['Suffix']));
 		if (!$this->where($ar)->save($reg)) {
-			return array('status'=>0,'data'=>'保存失败');
+			return array('status'=>0,'data'=>'');
 		}
 		return array('status'=>1,'data'=>'OK!');
 	}

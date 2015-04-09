@@ -12,4 +12,13 @@ function randstr($length = 8) {
 	}
 	return $rst;
 }
+function objectToArray($e){
+    $e=(array)$e;
+    foreach($e as $k=>$v){
+        if( gettype($v)=='resource' ) return;
+        if( gettype($v)=='object' || gettype($v)=='array' )
+            $e[$k]=(array)objectToArray($v);
+    }
+    return $e;
+}
 ?>

@@ -190,6 +190,10 @@ namespace CrawlerForWp
             // lsTbCols = lsTbCols.OrderBy(a => a).ToList();
             //正则配置｛每个字段对应一个｝
             List<crawler_regex> lsRegex = crawler_regexDAL.ListByWhere(new crawler_regex() { ConfigId = taskModel.ConfigId }, "", "ConfigId").ToList();
+            if (lsRegex != null && lsRegex.Count > 0)
+            {
+                lsRegex = lsRegex.Where(a => a.Regex != null && !a.Regex.Trim().Equals("")).ToList();
+            }
             if (lsRegex == null || lsRegex.Count <= 0)
             {
                 AddLog("没有找到搜索所对应的正则配置；任务：" + taskModel.KeyWords + "   配置：" + cofModel.Name);

@@ -10,7 +10,8 @@ namespace Helper
 {
     public static class MySqlHelper
     {
-        public static readonly string connstr = "Server=localhost;Database=crawlerwp;uid=root;pwd=8520;";//ConfigurationManager.ConnectionStrings["connstr"].ConnectionString;
+       // "Server=localhost;Database=crawlerwp;uid=root;pwd=8520;";//
+        public static readonly string connstr = System.Configuration.ConfigurationManager.AppSettings["connstr"];
         /// <summary>
         /// 打开数据库
         /// </summary>
