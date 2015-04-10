@@ -14,34 +14,87 @@ namespace CrawlerForWp
     public partial class Form1 : Form
     {
         System.Timers.Timer t1 = new System.Timers.Timer();
-        bool isbegin = false;
+        Thread main = null;
+        public static bool isbegin = false;
+        private static int maxthreda = 0;
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void GoCrawler(object sender, EventArgs e)
         {
-            t1.Interval = 10000;
-            t1.Elapsed += delegate {
-                if (!isbegin) {
-                    isbegin = true;
-                    CrawlerMD.BeginExecute();
-                    isbegin = false;
+            t1.Stop();
+            if (maxthreda <= 0)
+            {
+                var ls = sys_configDAL.ListByWhere(new sys_config() { Key = "MaxThread" }, null, "Key").ToList();
+                if (ls == null || ls.Count <= 0 || ls[0] == null)
+                {
+                    maxthreda = 2;
                 }
-            };
+                else
+                {
+                    maxthreda = ls[0].Value;
+                    maxthreda = maxthreda <= 0 ? 1 : (maxthreda > 10 ? 10 : maxthreda);
+                }
+            }
+            label1.Invoke(new Action(() =>
+            {
+                label1.Text = "监测中...";
+            }));
+            if (!isbegin)
+            {
+                label1.Invoke(new Action(() =>
+                {
+                    label1.Text = "执行中...";
+                }));
+                isbegin = true;
+                try
+                {
+                    for (int i = 0; i < maxthreda; i++)
+                    {
+                        bool isdes = (i % 2 == 0) ? false : true;
+                        Thread th = new Thread(new ThreadStart(delegate
+                        {
+                            CrawlerMD.BeginExecute(isdes);
+
+                        }));
+                        th.IsBackground = true;
+                        th.Start();
+                        Thread.Sleep(5000);
+                    }
+                }
+                catch (Exception)
+                {
+                    isbegin = false;
+                    t1.Start();
+                    return;
+                }
+                GC.Collect();
+                // isbegin = false;
+            }
+            else
+            {
+                label1.Invoke(new Action(() =>
+                {
+                    label1.Text = "执行中...";
+                }));
+            }
+            t1.Start();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            t1.Interval = 12000;
+            t1.Elapsed += GoCrawler;
             t1.AutoReset = true;
             t1.Start();
-            this.Hide();
-            
-            /**Todo List
-             *筛选事务->周期计算，过期计算，过期更新   OK
-             *多线程->根据配置选择线程数量，任务锁死
-             *计时器->自动获取配置，自动执行事务
-             *配置更新与获取
-             *
-             */
         }
-       
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+            e.Cancel = true;
+        }
     }
 }

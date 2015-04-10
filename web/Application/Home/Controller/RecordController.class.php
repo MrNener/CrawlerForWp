@@ -7,7 +7,7 @@ use Home\Model\recordModel;
  *
  *任务控制器
  */
-class RecordController extends Controller {
+class RecordController extends BaseController {
     /**
      *查看记录
      *@param int $id 事务Id

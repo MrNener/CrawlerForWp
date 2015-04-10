@@ -5,6 +5,7 @@
         public System.String SubmitUrl {get; set;}
         public System.String KeyWordField {get; set;}
         public System.String PageField {get; set;}
+        public System.Int32 PageSize {get; set;}
         public System.String Fields {get; set;}
         public System.String FieldsNote {get; set;}
         public System.String AllRowConfig {get; set;}

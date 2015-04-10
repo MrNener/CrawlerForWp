@@ -8,7 +8,7 @@ use Home\Model\crawler_regexModel;
  *
  *任务控制器
  */
-class ConfigController extends Controller {
+class ConfigController extends BaseController {
     /**
      *查看记录
      *@param int $id 事务Id
@@ -38,7 +38,7 @@ class ConfigController extends Controller {
         $arr=I('post.');
         $res=new crawler_configModel();
         $res=$res->saveConf($arr);
-        $this->ajaxReturn($res);
+        $this->ajaxReturn($res,'json');
     }
     public function saveregex()
     {
@@ -48,7 +48,7 @@ class ConfigController extends Controller {
         }
         $res=new crawler_regexModel();
         $res=$res->updateById(I('post.'));
-        $this->ajaxReturn($res);
+        $this->ajaxReturn($res,'json');
     }
     public function del($id)
     {

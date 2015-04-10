@@ -11,9 +11,9 @@ namespace CrawlerForWp {
             sys_config model = new sys_config();
             model.Id = (System.Int32)row["Id"];
             model.Key = (System.String)row["Key"];
-            model.Value = (System.String)row["Value"];
+            model.Value = (System.Int32)row["Value"];
             model.UpdateTime = (System.Int32)row["UpdateTime"];
-            model.Status = (System.Int32?)Helper.MySqlHelper.FromDBValue(row["Status"]);
+            model.Status = (System.Int32)row["Status"];
             model.Note = (System.String)Helper.MySqlHelper.FromDBValue(row["Note"]);
             return model;
         }
@@ -32,7 +32,7 @@ namespace CrawlerForWp {
                         ,new MySqlParameter("@Key", model.Key)
                         ,new MySqlParameter("@Value", model.Value)
                         ,new MySqlParameter("@UpdateTime", model.UpdateTime)
-                        ,new MySqlParameter("@Status", Helper.MySqlHelper.ToDBValue(model.Status))
+                        ,new MySqlParameter("@Status", model.Status)
                         ,new MySqlParameter("@Note", Helper.MySqlHelper.ToDBValue(model.Note))
                     );
             }
@@ -43,7 +43,7 @@ namespace CrawlerForWp {
                         ,new MySqlParameter("@Key", model.Key)
                         ,new MySqlParameter("@Value", model.Value)
                         ,new MySqlParameter("@UpdateTime", model.UpdateTime)
-                        ,new MySqlParameter("@Status", Helper.MySqlHelper.ToDBValue(model.Status))
+                        ,new MySqlParameter("@Status", model.Status)
                         ,new MySqlParameter("@Note", Helper.MySqlHelper.ToDBValue(model.Note))
                     );
             }
@@ -71,7 +71,7 @@ namespace CrawlerForWp {
                         ,new MySqlParameter("@Key", model.Key)
                         ,new MySqlParameter("@Value", model.Value)
                         ,new MySqlParameter("@UpdateTime", model.UpdateTime)
-                        ,new MySqlParameter("@Status", Helper.MySqlHelper.ToDBValue(model.Status))
+                        ,new MySqlParameter("@Status", model.Status)
                         ,new MySqlParameter("@Note", Helper.MySqlHelper.ToDBValue(model.Note))
             );
         return count > 0;
@@ -149,7 +149,7 @@ namespace CrawlerForWp {
             List<sys_config> list = new List<sys_config>();
             if (whereArr != null && whereArr.Length > 0) { whereStr = " and " + string.Join(" and ", whereArr); }
             if (isDesc) { orderBy += " desc"; }
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable(string.Format(@"SELECT * FROM `sys_config` WHERE (1=1) {0} ORDER BY {1} ASC LIMIT {2}, {3};" , whereStr,orderBy,  ((page -1)* num), num));
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable(string.Format(@"SELECT * FROM `sys_config` WHERE (1=1) {0} ORDER BY {1}  LIMIT {2}, {3};" , whereStr,orderBy,  ((page -1)* num), num));
             foreach (DataRow row in dt.Rows) { list.Add(ToModel(row)); }
             return list;
         }

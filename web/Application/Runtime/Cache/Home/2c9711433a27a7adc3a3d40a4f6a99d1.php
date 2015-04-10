@@ -51,13 +51,27 @@
 							<a  href="/">首页</a>
 						</li>
 						<li>
-							<a  href="<?php echo U('Task/index');?>">事务列表</a>
+							<a  href="<?php echo U('Task/index');?>">任务列表</a>
 						</li>
 						<li>
 							<a  href="<?php echo U('Config/index');?>">配置列表</a>
 						</li>
 						<li>
-							<a  href="<?php echo U('Setting/index');?>">设置</a>
+							<a  href="javascript:void(0)">设置</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a class="dropdown-toggle" href="javascript:void(0);">
+								<span><?php echo ($username); ?></span>
+								&nbsp
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="<?php echo U('Login/logout');?>">退出</a>
+								</li>
+							</ul>
 						</li>
 					</ul>
 				</div>

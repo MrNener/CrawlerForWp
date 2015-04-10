@@ -11,7 +11,7 @@ namespace CrawlerForWp {
             log model = new log();
             model.Id = (System.Int32)row["Id"];
             model.AddTime = (System.Int32)row["AddTime"];
-            model.Type = (System.String)Helper.MySqlHelper.FromDBValue(row["Type"]);
+            model.Type = (System.String)row["Type"];
             model.Contents = (System.String)row["Contents"];
             return model;
         }
@@ -28,7 +28,7 @@ namespace CrawlerForWp {
             {
                obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `log`(`AddTime`, `Type`, `Contents`) VALUES(@AddTime, @Type, @Contents); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@AddTime", model.AddTime)
-                        ,new MySqlParameter("@Type", Helper.MySqlHelper.ToDBValue(model.Type))
+                        ,new MySqlParameter("@Type", model.Type)
                         ,new MySqlParameter("@Contents", model.Contents)
                     );
             }
@@ -37,7 +37,7 @@ namespace CrawlerForWp {
                obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `log`(`Id`, `AddTime`, `Type`, `Contents`) VALUES(@Id, @AddTime, @Type, @Contents); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@AddTime", model.AddTime)
-                        ,new MySqlParameter("@Type", Helper.MySqlHelper.ToDBValue(model.Type))
+                        ,new MySqlParameter("@Type", model.Type)
                         ,new MySqlParameter("@Contents", model.Contents)
                     );
             }
@@ -63,7 +63,7 @@ namespace CrawlerForWp {
             int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `log` SET `AddTime`=@AddTime, `Type`=@Type, `Contents`=@Contents WHERE `Id`=@Id;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@AddTime", model.AddTime)
-                        ,new MySqlParameter("@Type", Helper.MySqlHelper.ToDBValue(model.Type))
+                        ,new MySqlParameter("@Type", model.Type)
                         ,new MySqlParameter("@Contents", model.Contents)
             );
         return count > 0;
@@ -141,7 +141,7 @@ namespace CrawlerForWp {
             List<log> list = new List<log>();
             if (whereArr != null && whereArr.Length > 0) { whereStr = " and " + string.Join(" and ", whereArr); }
             if (isDesc) { orderBy += " desc"; }
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable(string.Format(@"SELECT * FROM `log` WHERE (1=1) {0} ORDER BY {1} ASC LIMIT {2}, {3};" , whereStr,orderBy,  ((page -1)* num), num));
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable(string.Format(@"SELECT * FROM `log` WHERE (1=1) {0} ORDER BY {1}  LIMIT {2}, {3};" , whereStr,orderBy,  ((page -1)* num), num));
             foreach (DataRow row in dt.Rows) { list.Add(ToModel(row)); }
             return list;
         }

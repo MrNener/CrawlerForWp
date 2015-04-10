@@ -165,7 +165,7 @@ namespace CrawlerForWp {
             List<crawler_task> list = new List<crawler_task>();
             if (whereArr != null && whereArr.Length > 0) { whereStr = " and " + string.Join(" and ", whereArr); }
             if (isDesc) { orderBy += " desc"; }
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable(string.Format(@"SELECT * FROM `crawler_task` WHERE (1=1) {0} ORDER BY {1} ASC LIMIT {2}, {3};" , whereStr,orderBy,  ((page -1)* num), num));
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable(string.Format(@"SELECT * FROM `crawler_task` WHERE (1=1) {0} ORDER BY {1}  LIMIT {2}, {3};" , whereStr,orderBy,  ((page -1)* num), num));
             foreach (DataRow row in dt.Rows) { list.Add(ToModel(row)); }
             return list;
         }

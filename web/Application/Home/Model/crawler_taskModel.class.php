@@ -89,6 +89,7 @@ class crawler_taskModel extends Model
 		if ($modif=='add') {
 			$st=$this->data($arr)->add();
 		}else{
+			unset($arr['AddTime']);
 			$st=$this->where($wa)->save($arr);
 		}
 	    return array('status'=>(int)((bool)$st),'data'=>'');

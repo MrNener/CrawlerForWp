@@ -1,4 +1,76 @@
 <extend name="Public/common"/>
 <block name='content'>
-	<h1 class="text-center">Hello Word!</h1>
+	<div class="col-md-4">
+		<div class="panel panel-success">
+			<div class="panel-heading">状态</div>
+			<table class="table table-striped">
+				<thead>
+					<th>项目</th>
+					<th >结果</th>
+				</thead>
+				<tbody>
+					<volist name="sls" id="v">
+						<tr>
+							<td>{$v['Note']}</td>
+							<td>{$v['Value']}次</td>
+						</tr>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-info">
+			<div class="panel-heading">今日新增任务</div>
+			<table class="table table-striped">
+				<thead>
+					<th>关键字</th>
+					<th width="100">添加时间</th>
+				</thead>
+				<tbody>
+					<volist name="tls" id="v">
+						<tr>
+							<td>{$v['KeyWords']}</td>
+							<td>{:date('H:i:s',$v['AddTime'])}</td>
+						</tr>
+					</volist>
+				</tbody>
+			</table>
+			<div class="panel-footer">
+				<div class="text-right">
+					共计
+					<span>{$tc?$tc:0}</span>
+					个
+					<a href="{:U('Task/index')}" class="btn btn-success">更多</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-warning">
+			<div class="panel-heading">今日已完成任务</div>
+			<table class="table table-striped">
+				<thead>
+					<th>关键字</th>
+					<th width="100">完成时间</th>
+				</thead>
+				<tbody>
+					<volist name="tlsc" id="v">
+						<tr>
+							<td>{$v['KeyWords']}</td>
+							<td>{:date('H:i:s',$v['UpdateTime'])}</td>
+						</tr>
+					</volist>
+				</tbody>
+			</table>
+			<div class="panel-footer">
+				<div class="text-right">
+					共计
+					<span>{$tcc?$tcc:0}</span>
+					个
+					<a href="{:U('Task/index')}" class="btn btn-success">更多</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </block>

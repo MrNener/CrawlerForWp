@@ -116,6 +116,15 @@
         })
     }
     $(function(){
+
+        //自动显示下拉列表
+        $('.dropdown-toggle').mouseenter(function () {
+            $('.dropdown-menu').slideDown(200);
+        });
+
+        $('.dropdown').mouseleave(function () {
+            $('.dropdown-menu').stop().slideUp(200);
+        });
         //全选
         //联动增删改
         $('#select-all').on('click', function(event) {

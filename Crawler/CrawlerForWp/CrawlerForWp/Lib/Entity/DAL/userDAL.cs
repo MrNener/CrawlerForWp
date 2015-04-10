@@ -12,9 +12,11 @@ namespace CrawlerForWp {
             model.Id = (System.Int32)row["Id"];
             model.Name = (System.String)row["Name"];
             model.PWD = (System.String)row["PWD"];
-            model.AddTime = (System.Int32?)Helper.MySqlHelper.FromDBValue(row["AddTime"]);
-            model.LastTime = (System.Int32?)Helper.MySqlHelper.FromDBValue(row["LastTime"]);
-            model.Status = (System.Int32?)Helper.MySqlHelper.FromDBValue(row["Status"]);
+            model.KeySalt = (System.String)row["KeySalt"];
+            model.RoleId = (System.Int32)row["RoleId"];
+            model.AddTime = (System.Int32)row["AddTime"];
+            model.LastTime = (System.Int32)row["LastTime"];
+            model.Status = (System.Int32)row["Status"];
             return model;
         }
 
@@ -28,23 +30,27 @@ namespace CrawlerForWp {
             string isNullId = Convert.ToString(model.Id);
             if (isNullId.Equals("") || isNullId.Equals("0") || isNullId.Equals(new Guid().ToString()) || isNullId.Equals(null))
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `user`(`Name`, `PWD`, `AddTime`, `LastTime`, `Status`) VALUES(@Name, @PWD, @AddTime, @LastTime, @Status); SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `user`(`Name`, `PWD`, `KeySalt`, `RoleId`, `AddTime`, `LastTime`, `Status`) VALUES(@Name, @PWD, @KeySalt, @RoleId, @AddTime, @LastTime, @Status); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Name", model.Name)
                         ,new MySqlParameter("@PWD", model.PWD)
-                        ,new MySqlParameter("@AddTime", Helper.MySqlHelper.ToDBValue(model.AddTime))
-                        ,new MySqlParameter("@LastTime", Helper.MySqlHelper.ToDBValue(model.LastTime))
-                        ,new MySqlParameter("@Status", Helper.MySqlHelper.ToDBValue(model.Status))
+                        ,new MySqlParameter("@KeySalt", model.KeySalt)
+                        ,new MySqlParameter("@RoleId", model.RoleId)
+                        ,new MySqlParameter("@AddTime", model.AddTime)
+                        ,new MySqlParameter("@LastTime", model.LastTime)
+                        ,new MySqlParameter("@Status", model.Status)
                     );
             }
             else
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `user`(`Id`, `Name`, `PWD`, `AddTime`, `LastTime`, `Status`) VALUES(@Id, @Name, @PWD, @AddTime, @LastTime, @Status); SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `user`(`Id`, `Name`, `PWD`, `KeySalt`, `RoleId`, `AddTime`, `LastTime`, `Status`) VALUES(@Id, @Name, @PWD, @KeySalt, @RoleId, @AddTime, @LastTime, @Status); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@Name", model.Name)
                         ,new MySqlParameter("@PWD", model.PWD)
-                        ,new MySqlParameter("@AddTime", Helper.MySqlHelper.ToDBValue(model.AddTime))
-                        ,new MySqlParameter("@LastTime", Helper.MySqlHelper.ToDBValue(model.LastTime))
-                        ,new MySqlParameter("@Status", Helper.MySqlHelper.ToDBValue(model.Status))
+                        ,new MySqlParameter("@KeySalt", model.KeySalt)
+                        ,new MySqlParameter("@RoleId", model.RoleId)
+                        ,new MySqlParameter("@AddTime", model.AddTime)
+                        ,new MySqlParameter("@LastTime", model.LastTime)
+                        ,new MySqlParameter("@Status", model.Status)
                     );
             }
         return obj;
@@ -66,13 +72,15 @@ namespace CrawlerForWp {
         /// <param name="model">user类的对象</param>
         /// <returns>更新是否成功</returns>
         public static bool Update(user model) {
-            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `user` SET `Name`=@Name, `PWD`=@PWD, `AddTime`=@AddTime, `LastTime`=@LastTime, `Status`=@Status WHERE `Id`=@Id;"
+            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `user` SET `Name`=@Name, `PWD`=@PWD, `KeySalt`=@KeySalt, `RoleId`=@RoleId, `AddTime`=@AddTime, `LastTime`=@LastTime, `Status`=@Status WHERE `Id`=@Id;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@Name", model.Name)
                         ,new MySqlParameter("@PWD", model.PWD)
-                        ,new MySqlParameter("@AddTime", Helper.MySqlHelper.ToDBValue(model.AddTime))
-                        ,new MySqlParameter("@LastTime", Helper.MySqlHelper.ToDBValue(model.LastTime))
-                        ,new MySqlParameter("@Status", Helper.MySqlHelper.ToDBValue(model.Status))
+                        ,new MySqlParameter("@KeySalt", model.KeySalt)
+                        ,new MySqlParameter("@RoleId", model.RoleId)
+                        ,new MySqlParameter("@AddTime", model.AddTime)
+                        ,new MySqlParameter("@LastTime", model.LastTime)
+                        ,new MySqlParameter("@Status", model.Status)
             );
         return count > 0;
         }
@@ -83,7 +91,7 @@ namespace CrawlerForWp {
         /// <param name="Id">主键</param>
         /// <returns>user类的对象</returns>
         public static user GetById(System.Int32 Id) {
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Name`, `PWD`, `AddTime`, `LastTime`, `Status` FROM `user` WHERE `Id`=@Id", new MySqlParameter("@Id", Id));
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Name`, `PWD`, `KeySalt`, `RoleId`, `AddTime`, `LastTime`, `Status` FROM `user` WHERE `Id`=@Id", new MySqlParameter("@Id", Id));
             if (dt.Rows.Count > 1) {
                 throw new Exception("more than 1 row was found");
             }
@@ -101,7 +109,7 @@ namespace CrawlerForWp {
         /// <returns>user类的对象的枚举</returns>
         public static IEnumerable<user> ListAll() {
             List<user> list = new List<user>();
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Name`, `PWD`, `AddTime`, `LastTime`, `Status` FROM `user`;");
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Name`, `PWD`, `KeySalt`, `RoleId`, `AddTime`, `LastTime`, `Status` FROM `user`;");
             foreach (DataRow row in dt.Rows)  {
                 list.Add(ToModel(row));
             }
@@ -149,7 +157,7 @@ namespace CrawlerForWp {
             List<user> list = new List<user>();
             if (whereArr != null && whereArr.Length > 0) { whereStr = " and " + string.Join(" and ", whereArr); }
             if (isDesc) { orderBy += " desc"; }
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable(string.Format(@"SELECT * FROM `user` WHERE (1=1) {0} ORDER BY {1} ASC LIMIT {2}, {3};" , whereStr,orderBy,  ((page -1)* num), num));
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable(string.Format(@"SELECT * FROM `user` WHERE (1=1) {0} ORDER BY {1}  LIMIT {2}, {3};" , whereStr,orderBy,  ((page -1)* num), num));
             foreach (DataRow row in dt.Rows) { list.Add(ToModel(row)); }
             return list;
         }

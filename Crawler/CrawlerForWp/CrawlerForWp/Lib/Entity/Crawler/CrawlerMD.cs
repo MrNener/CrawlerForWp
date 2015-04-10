@@ -19,6 +19,7 @@ namespace CrawlerForWp
         /// <returns></returns>
         public static StringBuilder GetHtml(Dictionary<string, string> cof)
         {
+            Form1.isbegin = true;
             if (cof == null)
             {
                 return null;
@@ -36,6 +37,7 @@ namespace CrawlerForWp
             StringBuilder sb = new StringBuilder();
             try
             {
+                Form1.isbegin = true;
                 sb.Clear();
                 sb.Append(httpHelper.GetHtml(item).Html);
                 StrReplace(ref sb);
@@ -161,7 +163,17 @@ namespace CrawlerForWp
         /// </summary>
         /// <param name="AddSeaC"></param>
         /// <param name="AddCount"></param>
-        public static void UpdateSysCof(int AddSeaC = 0, int AddCount = 0) { }
+        public static void UpdateSysCof(int AddSeaC = 0, int AddCount = 0, int page = 0)
+        {
+            //TotalRec AddCount
+            Helper.MySqlHelper.ExecuteNonQuery(@"UPDATE `crawlerwp`.`sys_status` SET `sys_status`.`Value` = `sys_status`.`Value`+@AddSeaC WHERE (`sys_status`.`Key` = 'TotalFXC');
+            UPDATE `crawlerwp`.`sys_status` SET `sys_status`.`Value` = `sys_status`.`Value`+@AddCount WHERE (`sys_status`.`Key` = 'TotalSLC');
+            UPDATE `crawlerwp`.`sys_status` SET `sys_status`.`Value` = `sys_status`.`Value`+@page WHERE (`sys_status`.`Key` = 'TotalSSC');
+            UPDATE `crawlerwp`.`sys_status` SET `sys_status`.`Value` = `sys_status`.`Value`+1  WHERE (`sys_status`.`Key` = 'TotalEXC');",
+                new MySqlParameter("@AddSeaC", AddSeaC), 
+                new MySqlParameter("@AddCount", AddCount),
+                new MySqlParameter("@page", page));
+        }
 
         /// <summary>
         /// 执行事务
@@ -207,13 +219,21 @@ namespace CrawlerForWp
             //所有记录
             Regex allRowRegex = new Regex(cofModel.AllRowConfig, RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.Singleline);
             AddLog("搜索任务开始：" + taskModel.KeyWords + "   配置：" + cofModel.Name);
+            int tp = 0;
             for (int p = 1; p <= cofModel.MaxPage; p++)
             {
+                
                 if (stopCount >= cofModel.StopPageCount || completeCount >= taskModel.SingleCount)
                 {
                     break;
                 }
-                cofSera = CrawlerMD.PackageCof(cof, p.ToString(), taskModel.KeyWords);
+                int reqp = p;
+                if (cofModel.PageSize > 0)
+                {
+                    reqp = (reqp - 1) * cofModel.PageSize;
+                }
+                tp++;
+                cofSera = CrawlerMD.PackageCof(cof, reqp.ToString(), taskModel.KeyWords);
                 StringBuilder sb = CrawlerMD.GetHtml(cofSera);
                 string res = (sb == null) ? "" : sb.ToString();
                 try
@@ -301,15 +321,16 @@ namespace CrawlerForWp
             }
             UpdateTask(taskModel, "", 12);
             AddLog("搜索任务完毕：" + taskModel.KeyWords + "   配置：" + cofModel.Name);
-            UpdateSysCof(allCount, completeCount);
+            UpdateSysCof(allCount, completeCount,tp);
         }
 
         /// <summary>
         ///  开始执行事务
         /// </summary>
         /// <param name="MaxThread">最大线程数量</param>
-        public static void BeginExecute(/*int MaxThread = 50*/)
+        public static void BeginExecute(bool isdesc=false)
         {
+            Form1.isbegin = true;
             //MaxThread = MaxThread <= 0 ? 1 : (MaxThread > 20 ? 20 : MaxThread);
             //List<Thread> lsThread = new List<Thread>();
             //for (int i = 0; i < MaxThread; i++)
@@ -330,10 +351,11 @@ namespace CrawlerForWp
             {
                 return;
             }
-            AddLog("开始搜索任务，当前任务总数：" + count + "");
-            for (int p = 1, maxP = (Int32)Math.Ceiling(((float)count) / 20.00); p <= maxP; p++)
+            AddLog("开始搜索任务");
+            for (int p = 1; p <= count; p++)
             {
-                List<crawler_task> lsTask = crawler_taskDAL.ListByPage(1, 20, "`UpdateTime`", false, "crawler_task.`Status` in(1,10,11,12)", "(crawler_task.ExpireTime>=UNIX_TIMESTAMP(NOW()))", "(crawler_task.UpdateTime+crawler_task.Cycle)<=UNIX_TIMESTAMP(NOW())").ToList();
+                Form1.isbegin = true;
+                List<crawler_task> lsTask = crawler_taskDAL.ListByPage(1, 1, "`UpdateTime`", isdesc, "crawler_task.`Status` in(1,10,11,12)", "(crawler_task.ExpireTime>=UNIX_TIMESTAMP(NOW()))", "(crawler_task.UpdateTime+crawler_task.Cycle)<=UNIX_TIMESTAMP(NOW())").ToList();
                 if (lsTask == null || lsTask.Count <= 0)
                 {
                     continue;
@@ -370,6 +392,7 @@ namespace CrawlerForWp
                 }
             }
             AddLog("完成搜索任务");
+            Form1.isbegin = false;
         }
     }
 }

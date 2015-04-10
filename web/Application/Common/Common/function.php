@@ -24,6 +24,7 @@ function objectToArray($e){
 function addlog($txt,$type=2)
 {
 	$re=new logModel();
+	$txt='用户：'.cookie('uname'). '  '.$txt;
 	return $re->addlog($txt,$type);
 }
 ?>

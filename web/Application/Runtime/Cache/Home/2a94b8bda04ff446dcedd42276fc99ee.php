@@ -38,13 +38,27 @@
 							<a  href="/">首页</a>
 						</li>
 						<li>
-							<a  href="<?php echo U('Task/index');?>">事务列表</a>
+							<a  href="<?php echo U('Task/index');?>">任务列表</a>
 						</li>
 						<li>
 							<a  href="<?php echo U('Config/index');?>">配置列表</a>
 						</li>
 						<li>
-							<a  href="<?php echo U('Setting/index');?>">设置</a>
+							<a id="settingnav" geturl="<?php echo U('Setting/index');?>" href="javascript:void(0)">设置</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a class="dropdown-toggle" href="javascript:void(0);">
+								<span><?php echo ($username); ?></span>
+								&nbsp
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="<?php echo U('Login/logout');?>">退出</a>
+								</li>
+							</ul>
 						</li>
 					</ul>
 				</div>
@@ -52,9 +66,79 @@
 		</nav>
 <div id="main" class="container">
 	
-	<h1 class="text-center">Hello Word!</h1>
+	<div class="col-md-4">
+		<div class="panel panel-success">
+			<div class="panel-heading">状态</div>
+			<table class="table table-striped">
+				<thead>
+					<th>项目</th>
+					<th >结果</th>
+				</thead>
+				<tbody>
+					<?php if(is_array($sls)): $i = 0; $__LIST__ = $sls;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
+							<td><?php echo ($v['Note']); ?></td>
+							<td><?php echo ($v['Value']); ?>次</td>
+						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-info">
+			<div class="panel-heading">今日新增任务</div>
+			<table class="table table-striped">
+				<thead>
+					<th>关键字</th>
+					<th width="100">添加时间</th>
+				</thead>
+				<tbody>
+					<?php if(is_array($tls)): $i = 0; $__LIST__ = $tls;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
+							<td><?php echo ($v['KeyWords']); ?></td>
+							<td><?php echo date('H:i:s',$v['AddTime']);?></td>
+						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+				</tbody>
+			</table>
+			<div class="panel-footer">
+				<div class="text-right">
+					共计
+					<span><?php echo ($tc?$tc:0); ?></span>
+					个
+					<a href="<?php echo U('Task/index');?>" class="btn btn-success">更多</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-warning">
+			<div class="panel-heading">今日已完成任务</div>
+			<table class="table table-striped">
+				<thead>
+					<th>关键字</th>
+					<th width="100">完成时间</th>
+				</thead>
+				<tbody>
+					<?php if(is_array($tlsc)): $i = 0; $__LIST__ = $tlsc;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
+							<td><?php echo ($v['KeyWords']); ?></td>
+							<td><?php echo date('H:i:s',$v['UpdateTime']);?></td>
+						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+				</tbody>
+			</table>
+			<div class="panel-footer">
+				<div class="text-right">
+					共计
+					<span><?php echo ($tcc?$tcc:0); ?></span>
+					个
+					<a href="<?php echo U('Task/index');?>" class="btn btn-success">更多</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </div>
+</div>
+
+
+<div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="settingModalLabel" aria-hidden="false">
 </div>
 <footer>
 <div class="container">
@@ -84,6 +168,46 @@
 <script src="/Public/js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script src="/Public/js/crawler.js"></script>
+<script>
+	function submitsettingform(){
+		$('form[setting]').on('submit', function(event) {
+			ajaxbypost($(this).attr('action'),$(this).serialize(),function(res){
+				if (!res||res.status==0) {
+					showerrormsg('保存失败！',1,900);
+					return false;
+				}
+				showsuccessmsg('OK!',1,900);
+				$('#settingModal').modal('hide');
+				return false;
+			},'json');
+			return false;
+		});
+	}
+	$(function(){
+
+		$('#settingnav').on('click',function(event) {
+			ajaxbyget($(this).attr('geturl'),"",function(res){
+				if (!res||res.status==0||!res.data) {
+					showerrormsg('加载配置失败！',1,900);
+					return false;
+				}else{
+					loadingimg();
+					$('#settingModal').html(res.data);
+					$('#settingModal').modal('show');
+					submitsettingform();
+
+				}
+			},'json');
+		});
+		$('#settingModal').on('shown.bs.modal',  function(event) {
+			removeloadingimg();
+		});
+
+		$('#settingModal').on('hidden.bs.modal',  function(event) {
+			$(this).removeData("bs.modal");
+		});
+	});
+</script>
 <!--[if lt IE 9]>
 	<style>
 		.container{

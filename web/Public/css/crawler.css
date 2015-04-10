@@ -20,9 +20,9 @@ html,body{
     overflow:auto;
 }
 footer {
-    height: 4%;
+    height: 5%;
     padding-top: 4px;
-    background-color: #fff;
+  
     position: relative;
     clear:both;
 }

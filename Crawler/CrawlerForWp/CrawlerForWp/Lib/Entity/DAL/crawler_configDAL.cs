@@ -14,6 +14,7 @@ namespace CrawlerForWp {
             model.SubmitUrl = (System.String)row["SubmitUrl"];
             model.KeyWordField = (System.String)row["KeyWordField"];
             model.PageField = (System.String)row["PageField"];
+            model.PageSize = (System.Int32)row["PageSize"];
             model.Fields = (System.String)row["Fields"];
             model.FieldsNote = (System.String)row["FieldsNote"];
             model.AllRowConfig = (System.String)row["AllRowConfig"];
@@ -37,11 +38,12 @@ namespace CrawlerForWp {
             string isNullId = Convert.ToString(model.Id);
             if (isNullId.Equals("") || isNullId.Equals("0") || isNullId.Equals(new Guid().ToString()) || isNullId.Equals(null))
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `crawler_config`(`Name`, `SubmitUrl`, `KeyWordField`, `PageField`, `Fields`, `FieldsNote`, `AllRowConfig`, `MaxPage`, `StopPageCount`, `TableName`, `AddTime`, `AddUID`, `UpdateTime`, `Status`) VALUES(@Name, @SubmitUrl, @KeyWordField, @PageField, @Fields, @FieldsNote, @AllRowConfig, @MaxPage, @StopPageCount, @TableName, @AddTime, @AddUID, @UpdateTime, @Status); SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `crawler_config`(`Name`, `SubmitUrl`, `KeyWordField`, `PageField`, `PageSize`, `Fields`, `FieldsNote`, `AllRowConfig`, `MaxPage`, `StopPageCount`, `TableName`, `AddTime`, `AddUID`, `UpdateTime`, `Status`) VALUES(@Name, @SubmitUrl, @KeyWordField, @PageField, @PageSize, @Fields, @FieldsNote, @AllRowConfig, @MaxPage, @StopPageCount, @TableName, @AddTime, @AddUID, @UpdateTime, @Status); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Name", model.Name)
                         ,new MySqlParameter("@SubmitUrl", model.SubmitUrl)
                         ,new MySqlParameter("@KeyWordField", model.KeyWordField)
                         ,new MySqlParameter("@PageField", model.PageField)
+                        ,new MySqlParameter("@PageSize", model.PageSize)
                         ,new MySqlParameter("@Fields", model.Fields)
                         ,new MySqlParameter("@FieldsNote", model.FieldsNote)
                         ,new MySqlParameter("@AllRowConfig", model.AllRowConfig)
@@ -56,12 +58,13 @@ namespace CrawlerForWp {
             }
             else
             {
-               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `crawler_config`(`Id`, `Name`, `SubmitUrl`, `KeyWordField`, `PageField`, `Fields`, `FieldsNote`, `AllRowConfig`, `MaxPage`, `StopPageCount`, `TableName`, `AddTime`, `AddUID`, `UpdateTime`, `Status`) VALUES(@Id, @Name, @SubmitUrl, @KeyWordField, @PageField, @Fields, @FieldsNote, @AllRowConfig, @MaxPage, @StopPageCount, @TableName, @AddTime, @AddUID, @UpdateTime, @Status); SELECT @@IDENTITY AS Id ;"
+               obj = Helper.MySqlHelper.ExecuteScalar(@"INSERT INTO `crawler_config`(`Id`, `Name`, `SubmitUrl`, `KeyWordField`, `PageField`, `PageSize`, `Fields`, `FieldsNote`, `AllRowConfig`, `MaxPage`, `StopPageCount`, `TableName`, `AddTime`, `AddUID`, `UpdateTime`, `Status`) VALUES(@Id, @Name, @SubmitUrl, @KeyWordField, @PageField, @PageSize, @Fields, @FieldsNote, @AllRowConfig, @MaxPage, @StopPageCount, @TableName, @AddTime, @AddUID, @UpdateTime, @Status); SELECT @@IDENTITY AS Id ;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@Name", model.Name)
                         ,new MySqlParameter("@SubmitUrl", model.SubmitUrl)
                         ,new MySqlParameter("@KeyWordField", model.KeyWordField)
                         ,new MySqlParameter("@PageField", model.PageField)
+                        ,new MySqlParameter("@PageSize", model.PageSize)
                         ,new MySqlParameter("@Fields", model.Fields)
                         ,new MySqlParameter("@FieldsNote", model.FieldsNote)
                         ,new MySqlParameter("@AllRowConfig", model.AllRowConfig)
@@ -93,12 +96,13 @@ namespace CrawlerForWp {
         /// <param name="model">crawler_config类的对象</param>
         /// <returns>更新是否成功</returns>
         public static bool Update(crawler_config model) {
-            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `crawler_config` SET `Name`=@Name, `SubmitUrl`=@SubmitUrl, `KeyWordField`=@KeyWordField, `PageField`=@PageField, `Fields`=@Fields, `FieldsNote`=@FieldsNote, `AllRowConfig`=@AllRowConfig, `MaxPage`=@MaxPage, `StopPageCount`=@StopPageCount, `TableName`=@TableName, `AddTime`=@AddTime, `AddUID`=@AddUID, `UpdateTime`=@UpdateTime, `Status`=@Status WHERE `Id`=@Id;"
+            int count = Helper.MySqlHelper.ExecuteNonQuery("UPDATE `crawler_config` SET `Name`=@Name, `SubmitUrl`=@SubmitUrl, `KeyWordField`=@KeyWordField, `PageField`=@PageField, `PageSize`=@PageSize, `Fields`=@Fields, `FieldsNote`=@FieldsNote, `AllRowConfig`=@AllRowConfig, `MaxPage`=@MaxPage, `StopPageCount`=@StopPageCount, `TableName`=@TableName, `AddTime`=@AddTime, `AddUID`=@AddUID, `UpdateTime`=@UpdateTime, `Status`=@Status WHERE `Id`=@Id;"
                         ,new MySqlParameter("@Id", model.Id)
                         ,new MySqlParameter("@Name", model.Name)
                         ,new MySqlParameter("@SubmitUrl", model.SubmitUrl)
                         ,new MySqlParameter("@KeyWordField", model.KeyWordField)
                         ,new MySqlParameter("@PageField", model.PageField)
+                        ,new MySqlParameter("@PageSize", model.PageSize)
                         ,new MySqlParameter("@Fields", model.Fields)
                         ,new MySqlParameter("@FieldsNote", model.FieldsNote)
                         ,new MySqlParameter("@AllRowConfig", model.AllRowConfig)
@@ -119,7 +123,7 @@ namespace CrawlerForWp {
         /// <param name="Id">主键</param>
         /// <returns>crawler_config类的对象</returns>
         public static crawler_config GetById(System.Int32 Id) {
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Name`, `SubmitUrl`, `KeyWordField`, `PageField`, `Fields`, `FieldsNote`, `AllRowConfig`, `MaxPage`, `StopPageCount`, `TableName`, `AddTime`, `AddUID`, `UpdateTime`, `Status` FROM `crawler_config` WHERE `Id`=@Id", new MySqlParameter("@Id", Id));
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Name`, `SubmitUrl`, `KeyWordField`, `PageField`, `PageSize`, `Fields`, `FieldsNote`, `AllRowConfig`, `MaxPage`, `StopPageCount`, `TableName`, `AddTime`, `AddUID`, `UpdateTime`, `Status` FROM `crawler_config` WHERE `Id`=@Id", new MySqlParameter("@Id", Id));
             if (dt.Rows.Count > 1) {
                 throw new Exception("more than 1 row was found");
             }
@@ -137,7 +141,7 @@ namespace CrawlerForWp {
         /// <returns>crawler_config类的对象的枚举</returns>
         public static IEnumerable<crawler_config> ListAll() {
             List<crawler_config> list = new List<crawler_config>();
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Name`, `SubmitUrl`, `KeyWordField`, `PageField`, `Fields`, `FieldsNote`, `AllRowConfig`, `MaxPage`, `StopPageCount`, `TableName`, `AddTime`, `AddUID`, `UpdateTime`, `Status` FROM `crawler_config`;");
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable("SELECT `Id`, `Name`, `SubmitUrl`, `KeyWordField`, `PageField`, `PageSize`, `Fields`, `FieldsNote`, `AllRowConfig`, `MaxPage`, `StopPageCount`, `TableName`, `AddTime`, `AddUID`, `UpdateTime`, `Status` FROM `crawler_config`;");
             foreach (DataRow row in dt.Rows)  {
                 list.Add(ToModel(row));
             }
@@ -185,7 +189,7 @@ namespace CrawlerForWp {
             List<crawler_config> list = new List<crawler_config>();
             if (whereArr != null && whereArr.Length > 0) { whereStr = " and " + string.Join(" and ", whereArr); }
             if (isDesc) { orderBy += " desc"; }
-            DataTable dt = Helper.MySqlHelper.ExecuteDataTable(string.Format(@"SELECT * FROM `crawler_config` WHERE (1=1) {0} ORDER BY {1} ASC LIMIT {2}, {3};" , whereStr,orderBy,  ((page -1)* num), num));
+            DataTable dt = Helper.MySqlHelper.ExecuteDataTable(string.Format(@"SELECT * FROM `crawler_config` WHERE (1=1) {0} ORDER BY {1}  LIMIT {2}, {3};" , whereStr,orderBy,  ((page -1)* num), num));
             foreach (DataRow row in dt.Rows) { list.Add(ToModel(row)); }
             return list;
         }

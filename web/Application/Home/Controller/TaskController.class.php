@@ -8,7 +8,7 @@ use Home\Model\crawler_configModel;
  *
  *任务控制器
  */
-class TaskController extends Controller {
+class TaskController extends BaseController {
 	/**
 	 *事务列表
 	 *@param int $p 页码

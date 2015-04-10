@@ -7,6 +7,9 @@ return array(
 	'DB_USER' => 'root',
 	'DB_PWD' => '8520',
 	'LAYOUT_ON' => false,
-	'DB_PARAMS' => array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL)
+	'DB_PARAMS' => array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),
+	'PWD_Salt'=>'qwsdfgbnm!@#$%^&*(EGKJ1^%#@##@^*())(JKNN<"L{P{}IYD$@!$&%',
+	'COOKIE_PREFIX'=>'crawler_nzmai',
+	'SESSION_PREFIX'=>'crawler_nzmai',
 
 );
