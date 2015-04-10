@@ -105,6 +105,16 @@
             $(o).html(html).fadeIn();
         });
     }
+    function selectwd () {
+        var wd = decodeURI(window.location.search.substr(1).replace('wd=',''));
+        wd=wd||$('input[name="wd"]').val();
+        if (!wd) {
+            return false;
+        }
+        $('td[wd]').each(function () {
+            $(this).html($(this).text().replace(wd,'<span style="color:#fff;background:#5CB85C">'+wd+'</span>'));
+        })
+    }
     $(function(){
         //全选
         //联动增删改

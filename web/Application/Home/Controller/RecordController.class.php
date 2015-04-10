@@ -27,6 +27,7 @@ class RecordController extends Controller {
         }
         $this->assign('title','记录列表');
         $this->assign('res',$res);
+        $this->assign('task',$id);
         $this->display();
     }
     public function gettpl($id=null,$tb=null)
@@ -49,6 +50,34 @@ class RecordController extends Controller {
         $this->ajaxReturn(array('status'=>1,'data'=>$data),'json');
     }
 
+    /**
+     *导出excel
+     **/
+    public function export()
+    {
+        require_once './Lib/HltExcel.class.php';
+        $tb=I('tbname');
+        $tid=I('task');
+        $begin=(int)(I('begin'));
+        $needcount=(int)(I('needcount'));
+        $begin=$begin<=0?0:($begin-1);
+        $needcount=$needcount<=0?100:($needcount>10000?10000:$needcount);
+        $res=new recordModel();
+        $res=$res->getListByTask($tb,$tid,$begin,$needcount);
+        if(!$res){
+            $this->error('导出失败！');
+            return false;
+        }
+        $excel=new \HltExcel(count($res['cof'])+5,2007);
+        try {
+            $excelObj=$excel->SetDataToExcelObj($res['cof'],$res['list'],1);
+            $fn=$excel->ExcelObjToFile($excelObj,'temp');
+            $excel->downFile($fn);
+        } catch (Exception $e) {
+            $this->error('导出失败！');
+            return false;
+        }
+    }
     public function del($id,$tb)
     {
         if (!IS_POST) {

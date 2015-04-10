@@ -16,7 +16,6 @@
 						<?php if(strtolower($k)=='url'): ?><a href="<?php echo ($v); ?>" target="_blank"><?php echo htmlspecialchars($v);?></a>
 						<?php else: ?>
 							<?php echo htmlspecialchars($v); endif; endif; ?>
-
 					</div>
 				</div><?php endforeach; endif; ?>
 		</div>

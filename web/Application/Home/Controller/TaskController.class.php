@@ -14,16 +14,22 @@ class TaskController extends Controller {
 	 *@param int $p 页码
 	 *@param int $pagesize 分页大小
 	 */
-    public function index($pagesize=10){
+    public function index($pagesize=10,$wd=null){
     	$pagesize=(int)$pagesize;
 		$pagesize=$pagesize<=0?10:($pagesize>20?20:$pagesize);
     	$res=new crawler_taskModel();
-    	$res=$res->listByPage($pagesize,array('crawler_task.`Status`'=>array('not in',array(-1,0))),array('pagesize'=>$pagesize));
+        $wd=!$wd?I('wd'):$wd;
+        if (!!$wd) {
+            $wa['crawler_task.`KeyWords`']=array('like','%'.trim($wd).'%');
+        }
+         $wa['crawler_task.`Status`']=array('not in',array(-1,0));
+    	$res=$res->listByPage($pagesize,$wa,array('pagesize'=>$pagesize,'wd'=>trim($wd)));
     	$this->assign('res',$res);
     	$res=new crawler_configModel();
     	$res=$res->listByPage(2000,array('Status'=>1));
     	$this->assign('cls',$res['list']);
         $this->assign('title','事务列表');
+        $this->assign('wd',$wd);
         $this->display();
     }
     /**

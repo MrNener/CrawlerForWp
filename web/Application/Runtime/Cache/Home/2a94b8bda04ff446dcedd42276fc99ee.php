@@ -60,17 +60,16 @@
 <div class="container">
 	<div class="row hidden-xs">
 		<div class="col-md-12 text-center text-p">
-			<p>
+			<a href="http://weibo.com/nener1107" target="_blank">
 				Copyright &copy; <?php echo date('Y');?>, Nener
-			</p>
-
+			</a>
 		</div>
 	</div>
 	<div class="row visible-xs-inline">
 		<div class="col-md-12 text-center text-p">
-			<p>
+			<a href="http://weibo.com/nener1107" target="_blank">
 				Copyright &copy; <?php echo date('Y');?>, Nener
-			</p>
+			</a>
 		</div>
 	</div>
 </div>
@@ -90,7 +89,6 @@
 		.container{
 			width: 1170px;
 		}
-
 	</style>
 <![endif]-->
 <!-- 额外js -->

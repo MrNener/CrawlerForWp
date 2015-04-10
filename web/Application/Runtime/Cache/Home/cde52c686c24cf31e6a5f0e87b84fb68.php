@@ -65,15 +65,26 @@
 		<div class="panel-heading">
 			<button id="updateitem" type="button" class="btn btn-warning hide" disabled>修改</button>
 			<button id="delitem" type="button" acurl="<?php echo U('del');?>" class="btn btn-danger " data-tb="<?php echo ($res['config']['TableName']); ?>" disabled>删除</button>
+			<form class="form-inline pull-right" role="form" action="<?php echo U('export');?>">
+				<input type="hidden" name="tbname" value="<?php echo ($res['config']['TableName']); ?>">
+				<input type="hidden" name="task" value="<?php echo ($task); ?>">
+				<div class="form-group">
+					<input type="number" class="form-control" name="begin" placeholder="起始条" value="" min="1" required></div>
+				<div class="form-group">
+					<input type="number" class="form-control" name="needcount" placeholder="导出数量(最多1W)" value="" required min="1"></div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-default btn-expend">导出</button>
+				</div>
+			</form>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
 					<th >
 						<input type="checkbox" id="select-all"></th>
-						<?php if(is_array($res["config"]["Fields"])): foreach($res["config"]["Fields"] as $k=>$v): ?><th class="text-center" >
+					<?php if(is_array($res["config"]["Fields"])): foreach($res["config"]["Fields"] as $k=>$v): ?><th class="text-center" >
 							<?php if($res['config']['FieldsNote'][$k]): echo ($res['config']['FieldsNote'][$k]); ?>
-							<?php else: ?>
+								<?php else: ?>
 								<?php echo ($res['config']['Fields'][$k]); endif; ?>
 						</th><?php endforeach; endif; ?>
 					<th  class="text-center" >收录时间</th>
@@ -84,9 +95,9 @@
 							<td >
 								<input type="checkbox"  class="check-item" value="<?php echo ($v['Id']); ?>"></td>
 							<?php if(is_array($res["config"]["Fields"])): foreach($res["config"]["Fields"] as $k=>$vk): ?><td  class="text-center record">
-								<?php if(strtolower($vk)=='url'): ?><a href="<?php echo ($v[$vk]); ?>" target="_blank"><?php echo ($v[$vk]); ?></a>
-								<?php else: ?>
-									<?php echo ($v[$vk]); endif; ?>
+									<?php if(strtolower($vk)=='url'): ?><a href="<?php echo ($v[$vk]); ?>" target="_blank"><?php echo ($v[$vk]); ?></a>
+										<?php else: ?>
+										<?php echo ($v[$vk]); endif; ?>
 								</td><?php endforeach; endif; ?>
 							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['SYS_AddTime']);?></td>
 							<td  class="text-center">
@@ -110,17 +121,16 @@
 <div class="container">
 	<div class="row hidden-xs">
 		<div class="col-md-12 text-center text-p">
-			<p>
+			<a href="http://weibo.com/nener1107" target="_blank">
 				Copyright &copy; <?php echo date('Y');?>, Nener
-			</p>
-
+			</a>
 		</div>
 	</div>
 	<div class="row visible-xs-inline">
 		<div class="col-md-12 text-center text-p">
-			<p>
+			<a href="http://weibo.com/nener1107" target="_blank">
 				Copyright &copy; <?php echo date('Y');?>, Nener
-			</p>
+			</a>
 		</div>
 	</div>
 </div>
@@ -140,7 +150,6 @@
 		.container{
 			width: 1170px;
 		}
-
 	</style>
 <![endif]-->
 <!-- 额外js -->

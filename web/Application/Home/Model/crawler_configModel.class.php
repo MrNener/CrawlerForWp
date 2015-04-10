@@ -10,6 +10,13 @@ class crawler_configModel extends Model
 		}
 		return $this->where(array('Id'=>$id))->find();
 	}
+	public function getByTableName($tb)
+	{
+		if (!$tb) {
+			return false;
+		}
+		return $this->where(array('TableName'=>$tb))->limit(1)->find();
+	}
 	public function listByPage($pageSize=10,$whereArr=null,$params=null)
 	{
 		$pageSize=$pageSize<=0?10:($pageSize>10000?10000:$pageSize);

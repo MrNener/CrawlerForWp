@@ -4,21 +4,32 @@
 		<div class="panel-heading">
 			<button id="updateitem" type="button" class="btn btn-warning hide" disabled>修改</button>
 			<button id="delitem" type="button" acurl="{:U('del')}" class="btn btn-danger " data-tb="{$res['config']['TableName']}" disabled>删除</button>
+			<form class="form-inline pull-right" role="form" action="{:U('export')}">
+				<input type="hidden" name="tbname" value="{$res['config']['TableName']}">
+				<input type="hidden" name="task" value="{$task}">
+				<div class="form-group">
+					<input type="number" class="form-control" name="begin" placeholder="起始条" value="" min="1" required></div>
+				<div class="form-group">
+					<input type="number" class="form-control" name="needcount" placeholder="导出数量(最多1W)" value="" required min="1"></div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-default btn-expend">导出</button>
+				</div>
+			</form>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
 					<th >
 						<input type="checkbox" id="select-all"></th>
-						<foreach name="res.config.Fields" item="v" key="k">
+					<foreach name="res.config.Fields" item="v" key="k">
 						<th class="text-center" >
 							<if condition="$res['config']['FieldsNote'][$k]">
 								{$res['config']['FieldsNote'][$k]}
-							<else />
+								<else />
 								{$res['config']['Fields'][$k]}
 							</if>
 						</th>
-						</foreach>
+					</foreach>
 					<th  class="text-center" >收录时间</th>
 					<th class="text-center">操作</th>
 				</thead>
@@ -29,11 +40,11 @@
 								<input type="checkbox"  class="check-item" value="{$v['Id']}"></td>
 							<foreach name="res.config.Fields" item="vk" key="k">
 								<td  class="text-center record">
-								<if condition="strtolower($vk)=='url'">
-									<a href="{$v[$vk]}" target="_blank">{$v[$vk]}</a>
-								<else/>
-									{$v[$vk]}
-								</if>
+									<if condition="strtolower($vk)=='url'">
+										<a href="{$v[$vk]}" target="_blank">{$v[$vk]}</a>
+										<else/>
+										{$v[$vk]}
+									</if>
 								</td>
 							</foreach>
 							<td  class="text-center">{:date('Y/m/d H:i',$v['SYS_AddTime'])}</td>

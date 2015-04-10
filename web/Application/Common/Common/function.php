@@ -1,5 +1,5 @@
 <?php
-
+use Home\Model\logModel;
 function randstr($length = 8) {
 	if ($length <= 0) {
 		return null;
@@ -20,5 +20,10 @@ function objectToArray($e){
             $e[$k]=(array)objectToArray($v);
     }
     return $e;
+}
+function addlog($txt,$type=2)
+{
+	$re=new logModel();
+	return $re->addlog($txt,$type);
 }
 ?>

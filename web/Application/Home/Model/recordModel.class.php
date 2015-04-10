@@ -45,6 +45,42 @@ class recordModel
 		return array('page'=>$showPage,'list'=>$list,'config'=>$c);
 	}
 
+	public function getListByTask($tb,$idArr,$begin=0,$ncount=5000)
+	{
+		if (!$idArr||!$tb) {
+			return false;
+		}
+		if (!is_array($idArr)) {
+			$idArr=array($idArr);
+		}
+		if (count($idArr)<=0) {
+			return false;
+		}
+		$whereArr['TaskId']=array('in',$idArr);
+		$c=new crawler_configModel();
+		$c=$c->getByTableName($tb);
+		if (!$c) {
+			return false;
+		}
+		$f1=explode('|', $c['FieldsNote']);
+		$f2=explode('|', $c['Fields']);
+		if (!$f1||count($f1)!=count($f2)) {
+			$f1=$f2;
+		}
+		$f1['SYS_AddTime']='收录时间';
+		$lis=$this->getListByWhere($tb,$whereArr,$begin,$ncount);
+		foreach ($lis as $key => $value) {
+			$lis[$key ]['SYS_AddTime']=date('Y-m-d H:i:s',$value['SYS_AddTime']);
+		}
+		return array('cof'=>$f1,'list'=>$lis);
+	}
+	public function getListByWhere($tb,$whereArr,$begin=0,$ncount=5000)
+	{
+		if (!$tb) {
+			return array();
+		}
+		return D($tb)->field(array('Id','TaskId'),true)->where($whereArr)->limit(($begin.','.$ncount))->order('SYS_AddTime DESC,Id DESC')->select ();
+	}
 	public function getById($idArr,$tb)
 	{
 		if (!$idArr||!$tb) {

@@ -57,6 +57,13 @@
 			<button id="additem" geturl="<?php echo U('getconf');?>" data-p="add" acurl="<?php echo U('savetask');?>" type="button" class="btn btn-success ">添加</button>
 			<button id="updateitem"  geturl="<?php echo U('gettask');?>" data-p="update" acurl="<?php echo U('savetask');?>" type="button" class="btn btn-warning" disabled>修改</button>
 			<button id="delitem" type="button" acurl="<?php echo U('del');?>" class="btn btn-danger " data-tb="" disabled>删除</button>
+			<form class="form-inline pull-right" role="form" action="<?php echo U('index');?>">
+				<div class="form-group">
+					<input type="text" class="form-control" name="wd" placeholder="关键字" value="<?php echo htmlspecialchars($wd);?>"></div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-default btn-expend"><span class="glyphicon glyphicon-search"></span> </button>
+				</div>
+			</form>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-striped table-hover">
@@ -78,7 +85,7 @@
 					<?php if(is_array($res["list"])): $i = 0; $__LIST__ = $res["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr data-id="<?php echo ($v['Id']); ?>" data-tb="<?php echo ($v['TableName']); ?>">
 							<td>
 								<input type="checkbox"  class="check-item" value="<?php echo ($v['Id']); ?>"></td>
-							<td  class="text-center"><?php echo ($v['KeyWords']); ?></td>
+							<td wd class="text-center"><?php echo ($v['KeyWords']); ?></td>
 							<td  class="text-center"><?php echo ($v['ConfigName']); ?></td>
 							<td  class="text-center"><?php echo ($v['SingleCount']); ?></td>
 							<td  class="text-center"><?php echo floor($v['Cycle']/86400);?></td>
@@ -98,8 +105,7 @@
 		</div>
 		<div class="page pull-right"><?php echo ($res['page']); ?></div>
 	</div>
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
-	</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"></div>
 
 </div>
 </div>
@@ -107,17 +113,16 @@
 <div class="container">
 	<div class="row hidden-xs">
 		<div class="col-md-12 text-center text-p">
-			<a href="" target="_blank">
+			<a href="http://weibo.com/nener1107" target="_blank">
 				Copyright &copy; <?php echo date('Y');?>, Nener
 			</a>
-
 		</div>
 	</div>
 	<div class="row visible-xs-inline">
 		<div class="col-md-12 text-center text-p">
-			<p>
+			<a href="http://weibo.com/nener1107" target="_blank">
 				Copyright &copy; <?php echo date('Y');?>, Nener
-			</p>
+			</a>
 		</div>
 	</div>
 </div>
@@ -137,7 +142,6 @@
 		.container{
 			width: 1170px;
 		}
-
 	</style>
 <![endif]-->
 <!-- 额外js -->
@@ -221,8 +225,8 @@
 			removeloadingimg();
 			submitform();
 		});
+		selectwd();
 	});
 </script>
-
 </body>
 </html>

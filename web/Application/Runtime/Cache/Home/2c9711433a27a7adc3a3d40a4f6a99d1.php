@@ -70,6 +70,13 @@
 			<button id="additem" geturl="<?php echo U('getcof',array('modif'=>'add'));?>" data-p="add" acurl="" type="button" class="btn btn-success ">添加</button>
 			<button id="updateitem"  geturl="<?php echo U('getcof',array('modif'=>'update'));?>" data-p="update" acurl="" type="button" class="btn btn-warning" disabled>修改</button>
 			<button id="delitem" type="button" acurl="<?php echo U('del');?>" class="btn btn-danger " data-tb="" disabled>删除</button>
+			<form class="form-inline pull-right" role="form" action="<?php echo U('index');?>">
+				<div class="form-group">
+					<input type="text" class="form-control" name="wd" placeholder="配置名" value="<?php echo htmlspecialchars($wd);?>"></div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-default btn-expend"><span class="glyphicon glyphicon-search"></span></button>
+				</div>
+			</form>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-striped table-hover">
@@ -90,11 +97,11 @@
 					<?php if(is_array($res["list"])): $i = 0; $__LIST__ = $res["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr data-id="<?php echo ($v['Id']); ?>">
 							<td>
 								<input type="checkbox"  class="check-item" value="<?php echo ($v['Id']); ?>"></td>
-							<td  class="text-center"><?php echo ($v['Name']); ?></td>
+							<td wd  class="text-center"><?php echo ($v['Name']); ?></td>
 							<td  class="text-center"><?php echo ($v['SubmitUrl']); ?></td>
 							<td  class="text-center"><?php echo ($v['KeyWordField']); ?></td>
 							<td  class="text-center"><?php echo ($v['PageField']); ?></td>
-							<td  class="text-center"><?php echo ($v['PageSize']); ?></td>
+							<td  class="text-center"><?php echo ($v['PageSize']&&$v['PageSize']!=0?$v['PageSize']:'自动'); ?></td>
 							<td  class="text-center"><?php echo ($v['MaxPage']); ?></td>
 							<td  class="text-center"><?php echo ($v['TableName']); ?></td>
 							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['AddTime']);?></td>
@@ -231,6 +238,7 @@
 				}
 			},'json');
 		});
+		selectwd();
 	});
 	</script>
 

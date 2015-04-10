@@ -15,12 +15,18 @@ class ConfigController extends Controller {
      *@param int $p 页码
      *@param int $pagesize 分页大小
      */
-    public function index($pagesize=10)
+    public function index($pagesize=10,$wd=null)
     {
         $res=new crawler_configModel();
-        $res=$res->listByPage($pagesize,array('Status'=>1));
+        $wd=!$wd?I('wd'):$wd;
+        if (!!$wd) {
+            $wa['Name']=array('like','%'.trim($wd).'%');
+        }
+        $wa['Status']=1;
+        $res=$res->listByPage($pagesize, $wa,array('wd'=>trim($wd)));
         $this->assign('res',$res);
         $this->assign('title','配置列表');
+        $this->assign('wd',$wd);
         $this->display();
     }
     public function saveconfig()
