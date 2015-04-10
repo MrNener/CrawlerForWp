@@ -69,6 +69,7 @@
 					<th  class="text-center">周期</th>
 					<th  class="text-center">添加/更新时间</th>
 					<th  class="text-center">到期时间</th>
+					<th  class="text-center">上一次执行时间</th>
 					<th class="text-center">状态</th>
 					<th class="text-center">已收录</th>
 					<th class="text-center">操作</th>
@@ -83,6 +84,7 @@
 							<td  class="text-center"><?php echo floor($v['Cycle']/86400);?></td>
 							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['AddTime']);?></td>
 							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['ExpireTime']);?></td>
+							<td  class="text-center"><?php echo ($v['UpdateTime']?date('Y/m/d H:i',$v['UpdateTime']):'尚未执行'); ?></td>
 							<td  class="text-center"><?php echo ($v['StatusNote']); ?></td>
 							<td  class="text-center " data-count>
 								<img src="/Public/img/min-load.gif" />
@@ -105,9 +107,9 @@
 <div class="container">
 	<div class="row hidden-xs">
 		<div class="col-md-12 text-center text-p">
-			<p>
+			<a href="" target="_blank">
 				Copyright &copy; <?php echo date('Y');?>, Nener
-			</p>
+			</a>
 
 		</div>
 	</div>

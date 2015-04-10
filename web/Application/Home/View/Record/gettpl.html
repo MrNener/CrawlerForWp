@@ -7,21 +7,32 @@
 			<h4 class="modal-title" id="myModalLabel">查看</h4>
 		</div>
 		<div class="modal-body">
+		<div class="main-rec">
 			<foreach name="list" item="v" key="k">
 				<div class="form-group">
 					<label for="{$k}">{$k}：</label>
-					<div>
-					<if condition="strtolower($k)=='url'">
-						<a href="{$v}" target="_blank">{:htmlspecialchars($v)}</a>
-					<else/>
-						{:htmlspecialchars($v)}
+					<div>&nbsp;&nbsp;&nbsp;&nbsp;
+					<if condition="$k=='SYS_AddTime'">
+						{:date('Y-m-d H:i:s',$v)}
+						<else/>
+						<if condition="strtolower($k)=='url'">
+							<a href="{$v}" target="_blank">{:htmlspecialchars($v)}</a>
+						<else/>
+							{:htmlspecialchars($v)}
+						</if>
 					</if>
 					</div>
 				</div>
 			</foreach>
+		</div>
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 		</div>
 	</div>
 </div>
+<style>
+	.main-rec{
+		padding-left: 10px;
+	}
+</style>

@@ -1,5 +1,5 @@
 body {
-    background-color: #f2f2f2;
+    background-color: #EFEFEF;
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
@@ -13,13 +13,15 @@ html,body{
 *::-webkit-selection{color:#fff;background:#000;}
 
 #wrap{
-    min-height: 95%; 
+    min-height: 96%; 
 }
 
 #main{
     overflow:auto;
 }
 footer {
+    height: 4%;
+    padding-top: 4px;
     background-color: #fff;
     position: relative;
     clear:both;
@@ -66,6 +68,14 @@ footer {
 }
 .chide{
     display: none !important;
+}
+footer a{
+    color: #242424;
+}
+footer a:hover,
+footer a:focus{
+    color: #000;
+    text-decoration: none;
 }
 @media (min-width: 1440px){
     .container {

@@ -1,7 +1,11 @@
-<?php if (!defined('THINK_PATH')) exit();?><div class="panel panel-warning">
-	<div class="panel-heading text-right">
-			<span aria-hidden="true" id="close">&times;</span>
-	</div>
+<?php if (!defined('THINK_PATH')) exit();?><div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	<h4 class="modal-title" id="myModalLabel">正则配置</h4>
+</div>
+<div class="modal-body">
+	<div class="panel panel-info">
 	<div class="table-responsive">
 		<table class="table table-striped table-bordered table-hover">
 			<thead>
@@ -33,6 +37,10 @@
 		</table>
 	</div>
 </div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+</div>
 <style>
 td {
 	max-width: 250px !important;
@@ -58,9 +66,6 @@ td {
 </style>
 <script>
 	$(function(){
-		$('#close').on('click',  function(event) {
-			$("#myModal").modal('hide');
-		});
 		$('.save').on('click', function(event) {
 			var _id=$(this).attr('data-id');
 			var se='tr[data-id="'+_id+'"]';
