@@ -77,7 +77,7 @@ class ConfigController extends BaseController {
      *加载配置
      *@param
      **/
-    public function getcof($id=null,$modif)
+    public function getcof($id=null,$modif=null)
     {
         $id=!$id?I('id'):$id;
         $modif=!$modif?I('modif'):$modif;
