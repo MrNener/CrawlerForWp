@@ -29,4 +29,8 @@
 	.main-rec{
 		padding-left: 10px;
 	}
+	.form-group{
+		-ms-word-break: break-all;
+		word-break:break-all;
+	}
 </style>

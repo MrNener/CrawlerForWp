@@ -12,7 +12,6 @@
 // 应用入口文件
 
 // 检测PHP环境va
-
-var_dump(explode('|', 'a|'));
+echo(strtotime(date('Y-m-d')));
 
 // 亲^_^ 后面不需要任何代码了 就是如此简单

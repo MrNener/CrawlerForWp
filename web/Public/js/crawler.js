@@ -106,7 +106,8 @@
         });
     }
     function selectwd () {
-        var wd = decodeURI(window.location.search.substr(1).replace('wd=',''));
+        var wd =null; /*decodeURI(window.location.search.substr(1).replace('wd=',''));
+        wd=wd.search.substr(1).replace('wd=','');*/
         wd=wd||$('input[name="wd"]').val();
         if (!wd) {
             return false;

@@ -324,6 +324,18 @@ namespace CrawlerForWp
             UpdateSysCof(allCount, completeCount,tp);
         }
 
+
+        public static int GetTaskCount()
+        {
+            object cObj = Helper.MySqlHelper.ExecuteScalar("UPDATE crawler_task SET crawler_task.`Status`=13 WHERE crawler_task.`Status` IN (1, 10,11, 12) AND crawler_task.ExpireTime < UNIX_TIMESTAMP(NOW());SELECT COUNT(1) AS count FROM crawler_task WHERE crawler_task.`Status` IN (1,10,11, 12) AND ( crawler_task.ExpireTime >= UNIX_TIMESTAMP(NOW()) ) AND ( crawler_task.UpdateTime + crawler_task.Cycle ) <= UNIX_TIMESTAMP(NOW());");
+            int count = 0;
+            if (cObj == null)
+            {
+                return 0;
+            }
+            count = int.Parse(cObj.ToString());
+            return count;
+        }
         /// <summary>
         ///  开始执行事务
         /// </summary>
@@ -344,11 +356,13 @@ namespace CrawlerForWp
             int count = 0;
             if (cObj == null)
             {
+                Form1.isbegin = false;
                 return;
             }
             count = int.Parse(cObj.ToString());
             if (count <= 0)
             {
+                Form1.isbegin = false;
                 return;
             }
             AddLog("开始搜索任务");

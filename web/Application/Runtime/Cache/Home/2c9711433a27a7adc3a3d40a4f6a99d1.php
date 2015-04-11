@@ -56,8 +56,9 @@
 						<li>
 							<a  href="<?php echo U('Config/index');?>">配置列表</a>
 						</li>
+						<li><a href="<?php echo U('Log/index');?>">日志</a></li>
 						<li>
-							<a  href="javascript:void(0)">设置</a>
+							<a id="settingnav" geturl="<?php echo U('Setting/index');?>" href="javascript:void(0)">设置</a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
@@ -137,6 +138,10 @@
 
 </div>
 </div>
+
+
+<div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="settingModalLabel" aria-hidden="false">
+</div>
 <footer>
 <div class="container">
 	<div class="row hidden-xs">
@@ -165,6 +170,46 @@
 <script src="/Public/js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script src="/Public/js/crawler.js"></script>
+<script>
+	function submitsettingform(){
+		$('form[setting]').on('submit', function(event) {
+			ajaxbypost($(this).attr('action'),$(this).serialize(),function(res){
+				if (!res||res.status==0) {
+					showerrormsg('保存失败！',1,900);
+					return false;
+				}
+				showsuccessmsg('OK!',1,900);
+				$('#settingModal').modal('hide');
+				return false;
+			},'json');
+			return false;
+		});
+	}
+	$(function(){
+
+		$('#settingnav').on('click',function(event) {
+			ajaxbyget($(this).attr('geturl'),"",function(res){
+				if (!res||res.status==0||!res.data) {
+					showerrormsg('加载配置失败！',1,900);
+					return false;
+				}else{
+					loadingimg();
+					$('#settingModal').html(res.data);
+					$('#settingModal').modal('show');
+					submitsettingform();
+
+				}
+			},'json');
+		});
+		$('#settingModal').on('shown.bs.modal',  function(event) {
+			removeloadingimg();
+		});
+
+		$('#settingModal').on('hidden.bs.modal',  function(event) {
+			$(this).removeData("bs.modal");
+		});
+	});
+</script>
 <!--[if lt IE 9]>
 	<style>
 		.container{

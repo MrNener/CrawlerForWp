@@ -67,72 +67,43 @@
 		</nav>
 <div id="main" class="container">
 	
-	<div class="col-md-4">
-		<div class="panel panel-success">
-			<div class="panel-heading">状态</div>
-			<table class="table table-striped">
-				<thead>
-					<th>项目</th>
-					<th >结果</th>
-				</thead>
-				<tbody>
-					<?php if(is_array($sls)): $i = 0; $__LIST__ = $sls;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
-							<td><?php echo ($v['Note']); ?></td>
-							<td><?php echo ($v['Value']); ?>次</td>
-						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="col-md-4">
-		<div class="panel panel-info">
-			<div class="panel-heading">今日新增任务</div>
-			<table class="table table-striped">
-				<thead>
-					<th>关键字</th>
-					<th width="100">添加时间</th>
-				</thead>
-				<tbody>
-					<?php if(is_array($tls)): $i = 0; $__LIST__ = $tls;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
-							<td><?php echo ($v['KeyWords']); ?></td>
-							<td><?php echo date('H:i:s',$v['AddTime']);?></td>
-						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
-				</tbody>
-			</table>
-			<div class="panel-footer">
-				<div class="text-right">
-					共计
-					<span><?php echo ($tc?$tc:0); ?></span>
-					个
-					<a href="<?php echo U('Task/index');?>" class="btn btn-success">更多</a>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<form class="form-inline " role="form" action="<?php echo U('index');?>">
+			<div class="form-group">
+					<select name="type" class="form-control">
+						<option value="">全部日志</option>
+						<option value="2" <?php echo ($type==2?'selected':''); ?>>用户日志</option>
+						<option value="1" <?php echo ($type==1?'selected':''); ?>>爬虫日志</option>
+					</select>
 				</div>
-			</div>
+				<div class="form-group">
+					<input type="text" class="form-control" name="wd" placeholder="内容" value="<?php echo htmlspecialchars($wd);?>"></div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-default btn-expend"><span class="glyphicon glyphicon-search"></span></button>
+				</div>
+			</form>
 		</div>
-	</div>
-	<div class="col-md-4">
-		<div class="panel panel-warning">
-			<div class="panel-heading">今日已完成任务</div>
-			<table class="table table-striped">
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
 				<thead>
-					<th>关键字</th>
-					<th width="100">完成时间</th>
+					<th >
+						#</th>
+					<th  class="text-center" >时间</th>
+					<th  class="">内容</th>
+					<th  class="text-center">类型</th>
 				</thead>
 				<tbody>
-					<?php if(is_array($tlsc)): $i = 0; $__LIST__ = $tlsc;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
-							<td><?php echo ($v['KeyWords']); ?></td>
-							<td><?php echo date('H:i:s',$v['UpdateTime']);?></td>
+					<?php if(is_array($res["list"])): $i = 0; $__LIST__ = $res["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr data-id="<?php echo ($v['Id']); ?>">
+							<td><?php echo ($v['Id']); ?></td>
+							<td   class="text-center"><?php echo date('Y/m/d H:i:s',$v['AddTime']);?></td>
+							<td wd class=""><?php echo ($v['Contents']); ?></td>
+							<td  class="text-center"><?php echo ($v['TypeName']); ?></td>
 						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 				</tbody>
 			</table>
-			<div class="panel-footer">
-				<div class="text-right">
-					共计
-					<span><?php echo ($tcc?$tcc:0); ?></span>
-					个
-					<a href="<?php echo U('Task/index');?>" class="btn btn-success">更多</a>
-				</div>
-			</div>
 		</div>
+		<div class="page pull-right"><?php echo ($res['page']); ?></div>
 	</div>
 
 </div>
@@ -217,6 +188,13 @@
 	</style>
 <![endif]-->
 <!-- 额外js -->
+
+	<script>
+	$(function(){
+		selectwd();
+		initPagination();
+	});
+	</script>
 
 </body>
 </html>

@@ -43,6 +43,7 @@
 						<li>
 							<a  href="<?php echo U('Config/index');?>">配置列表</a>
 						</li>
+						<li><a href="<?php echo U('Log/index');?>">日志</a></li>
 						<li>
 							<a id="settingnav" geturl="<?php echo U('Setting/index');?>" href="javascript:void(0)">设置</a>
 						</li>
@@ -111,7 +112,8 @@
 								<img src="/Public/img/min-load.gif" />
 							</td>
 							<td  class="text-center">
-								<a target="_blank" href="<?php echo U('Record/index',array('id'=>$v['Id']));?>" style="display:none;">查看记录</a>
+							<a target="_blank" href="<?php echo U('Record/index',array('id'=>$v['Id']));?>" >查看记录</a>
+								<!-- <a target="_blank" href="<?php echo U('Record/index',array('id'=>$v['Id']));?>" style="display:none;">查看记录</a> -->
 							</td>
 						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 				</tbody>

@@ -1,12 +1,6 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-use Home\Model\crawler_taskModel;
-use Home\Model\recordModel;
-/**
- *
- *任务控制器
- */
 class IndexController extends BaseController {
     /**
      *查看记录
@@ -17,14 +11,14 @@ class IndexController extends BaseController {
     public function index($id=null,$pagesize=10)
     {
         $ls=M('sys_status')->select();
-        $tls=M('crawler_task')->where(array('AddTime'=>array('EGT',strtotime(date('Y-m-d')))))->limit('3')->order('AddTime DESC')->select();
+        $tls=M('crawler_task')->where(array('AddTime'=>array('EGT',strtotime(date('Y-m-d')))))->limit(3)->order('AddTime DESC')->select();
         if (!$tls||count($tls)<3) {
             $tc=!$tls?0:count($tls);
         }else{
             $tc=M('crawler_task')->where(array('AddTime'=>array('EGT',strtotime(date('Y-m-d')))))->count();
         }
 
-        $tlsc=M('crawler_task')->where(array('UpdateTime'=>array('EGT',strtotime(date('Y-m-d')))))->limit('3')->order('UpdateTime DESC')->select();
+        $tlsc=M('crawler_task')->where(array('UpdateTime'=>array('EGT',strtotime(date('Y-m-d')))))->limit(3)->order('UpdateTime DESC')->select();
         if (!$tlsc||count($tlsc)<3) {
             $tc=!$tlsc?0:count($tlsc);
         }else{
@@ -34,8 +28,8 @@ class IndexController extends BaseController {
         $this->assign('sls',$ls);
         $this->assign('tls',$tls);
         $this->assign('tc',$tc);
-        $this->assign('tlsc',$tls);
-        $this->assign('tcc',$tc);
+        $this->assign('tlsc',$tlsc);
+        $this->assign('tcc',$tcc);
         $this->display();
     }
 }

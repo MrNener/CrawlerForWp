@@ -73,6 +73,7 @@ class RecordController extends BaseController {
             $excelObj=$excel->SetDataToExcelObj($res['cof'],$res['list'],1);
             $fn=$excel->ExcelObjToFile($excelObj,'temp');
             $excel->downFile($fn);
+            addlog('导出记录：'.$begin.'-'.($begin+count($res['list'])));
         } catch (Exception $e) {
             $this->error('导出失败！');
             return false;

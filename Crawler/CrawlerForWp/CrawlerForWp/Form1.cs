@@ -42,34 +42,42 @@ namespace CrawlerForWp
             {
                 label1.Text = "监测中...";
             }));
-            if (!isbegin)
+            if (isbegin == false)
             {
                 label1.Invoke(new Action(() =>
                 {
                     label1.Text = "执行中...";
                 }));
                 isbegin = true;
-                try
+                if (CrawlerMD.GetTaskCount() > 0)
                 {
-                    for (int i = 0; i < maxthreda; i++)
+                    try
                     {
-                        bool isdes = (i % 2 == 0) ? false : true;
-                        Thread th = new Thread(new ThreadStart(delegate
+                        for (int i = 0; i < maxthreda; i++)
                         {
-                            CrawlerMD.BeginExecute(isdes);
+                            bool isdes = (i % 2 == 0) ? false : true;
+                            Thread th = new Thread(new ThreadStart(delegate
+                            {
+                                CrawlerMD.BeginExecute(isdes);
 
-                        }));
-                        th.IsBackground = true;
-                        th.Start();
-                        Thread.Sleep(5000);
+                            }));
+                            th.IsBackground = true;
+                            th.Start();
+                            Thread.Sleep(5000);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        isbegin = false;
+                        t1.Start();
+                        return;
                     }
                 }
-                catch (Exception)
-                {
-                    isbegin = false;
-                    t1.Start();
-                    return;
-                }
+                isbegin = false;
+                label1.Invoke(new Action(() =>
+               {
+                   label1.Text = "监测中...";
+               }));
                 GC.Collect();
                 // isbegin = false;
             }

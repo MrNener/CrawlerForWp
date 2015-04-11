@@ -67,6 +67,7 @@ class crawler_taskModel extends Model
 	    }
 	    if ($this->where($wa)->delete()) {
 	    	$d->commit();
+			addlog('删除任务：'.implode(',', $idArr));
 	        return array('status'=>1,'data'=>'OK！');
 	    }
 	    $d->rollback();
@@ -88,8 +89,10 @@ class crawler_taskModel extends Model
 		unset($arr['Id']);
 		if ($modif=='add') {
 			$st=$this->data($arr)->add();
+			addlog('添加任务：'.$st);
 		}else{
 			unset($arr['AddTime']);
+			addlog('更新任务：'.$wa['Id']);
 			$st=$this->where($wa)->save($arr);
 		}
 	    return array('status'=>(int)((bool)$st),'data'=>'');

@@ -52,6 +52,7 @@
 						<li>
 							<a  href="<?php echo U('Config/index');?>">配置列表</a>
 						</li>
+						<li><a href="<?php echo U('Log/index');?>">日志</a></li>
 						<li>
 							<a id="settingnav" geturl="<?php echo U('Setting/index');?>" href="javascript:void(0)">设置</a>
 						</li>

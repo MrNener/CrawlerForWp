@@ -26,6 +26,7 @@ class LoginController extends Controller {
     }
     public function logout()
     {
+      addlog('退出');
       $uid=cookie('uzid');
       if (!!$uid) {
         session($uid,null);
@@ -59,7 +60,7 @@ class LoginController extends Controller {
             cookie('umid',$key);
             session($uid,$key);
             M('user')->where(array('Id'=>$m['Id']))->data(array('LastTime'=>time()))->save();
-            addlog('用户：'.$arr['Name'].'登录');
+            addlog('登录');
             $this->ajaxReturn(array('status'=>1,'data'=>'OK!'),'json');
             return false;
        }

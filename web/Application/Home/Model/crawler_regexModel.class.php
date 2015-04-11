@@ -16,6 +16,7 @@ class crawler_regexModel extends Model
 		if (!$this->where($ar)->save($reg)) {
 			return array('status'=>0,'data'=>'');
 		}
+		addlog('保存正则：'.$ar['Id']);
 		return array('status'=>1,'data'=>'OK!');
 	}
 	public function ListAllByConfId($id)

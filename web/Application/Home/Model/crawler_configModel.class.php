@@ -77,6 +77,7 @@ class crawler_configModel extends Model
 			$sql=implode(',', $sql);
 			$sql="SET FOREIGN_KEY_CHECKS=0; DROP TABLE IF EXISTS `".$data['TableName']."` ; CREATE TABLE `".$data['TableName']."`(".$sql.") ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
 			D()->execute($sql);
+			addlog('新建表：'.$data['TableName']);
 			$tc=M()->table('information_schema.tables ')->where(array('table_schema'=>C('DB_NAME'),'table_name'=>$data['TableName']))->count();
 			if (!$tc) {
 				$this->where(array('Id'=>$r1))->delete();
@@ -92,14 +93,17 @@ class crawler_configModel extends Model
 					$d->rollback();
 					$this->where(array('Id'=>$r1))->delete();
 					D()->execute("SET FOREIGN_KEY_CHECKS=0; DROP TABLE IF EXISTS `".$data['TableName']."` ;");
+					addlog('添加配置失败！删除表：'.$data['TableName']);
 					return array('status'=>0,'data'=>'保存失败！1');
 				}
 			}
 			$d->commit();
+			addlog('添加配置：'.$r1);
 			return array('status'=>1,'data'=>'OK！');
 		}else{
 			unset($data['Fields']);
 			if ($this->where(array('Id'=>$id))->save($data)) {
+				addlog('更新配置：'.$id);
 				return array('status'=>1,'data'=>'OK！');
 			}
 		}
@@ -130,7 +134,9 @@ class crawler_configModel extends Model
 		M('crawler_regex')->where(array('ConfigId'=>array('in',$idArr)))->delete();
 		foreach ($carr as $key => $value) {
 			D()->execute("SET FOREIGN_KEY_CHECKS=0; DROP TABLE IF EXISTS `".$value['TableName']."` ;");
+			addlog('删除表：'.$value['TableName']);
 		}
+		addlog('删除配置：'.implode(',', $idArr));
 		return array('status'=>1,'data'=>'OK！');
 	}
 }
