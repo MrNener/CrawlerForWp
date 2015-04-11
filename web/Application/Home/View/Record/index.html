@@ -41,9 +41,9 @@
 							<foreach name="res.config.Fields" item="vk" key="k">
 								<td  class="text-center record">
 									<if condition="strtolower($vk)=='url'">
-										<a href="{$v[$vk]}" target="_blank">{$v[$vk]}</a>
+										<a href="{$v[$vk]}" target="_blank">{:htmlspecialchars($v[$vk])}</a>
 										<else/>
-										{$v[$vk]}
+										{:htmlspecialchars($v[$vk])}
 									</if>
 								</td>
 							</foreach>

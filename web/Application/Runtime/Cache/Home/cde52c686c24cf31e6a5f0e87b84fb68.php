@@ -13,8 +13,7 @@
 	<link href="/Public/css/normalize.min.css" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="/Public/css/crawler.css" rel="stylesheet">
-	<!-- <link rel="shortcut icon" href="/Public/Img/favicon.png" type="image/x-icon" >
-	-->
+	<link rel="shortcut icon" href="/Public/img/favicon.png" type="image/x-icon" >
 	
 	<style>
 	td {
@@ -110,9 +109,9 @@
 							<td >
 								<input type="checkbox"  class="check-item" value="<?php echo ($v['Id']); ?>"></td>
 							<?php if(is_array($res["config"]["Fields"])): foreach($res["config"]["Fields"] as $k=>$vk): ?><td  class="text-center record">
-									<?php if(strtolower($vk)=='url'): ?><a href="<?php echo ($v[$vk]); ?>" target="_blank"><?php echo ($v[$vk]); ?></a>
+									<?php if(strtolower($vk)=='url'): ?><a href="<?php echo ($v[$vk]); ?>" target="_blank"><?php echo htmlspecialchars($v[$vk]);?></a>
 										<?php else: ?>
-										<?php echo ($v[$vk]); endif; ?>
+										<?php echo htmlspecialchars($v[$vk]); endif; ?>
 								</td><?php endforeach; endif; ?>
 							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['SYS_AddTime']);?></td>
 							<td  class="text-center">
