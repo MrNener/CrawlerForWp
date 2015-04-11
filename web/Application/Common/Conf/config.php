@@ -11,5 +11,7 @@ return array(
 	'PWD_Salt'=>'qwsdfgbnm!@#$%^&*(EGKJ1^%#@##@^*())(JKNN<"L{P{}IYD$@!$&%',
 	'COOKIE_PREFIX'=>'crawler_nzmai',
 	'SESSION_PREFIX'=>'crawler_nzmai',
+	'URL_MODEL' => 2,
+	'URL_PATHINFO_DEPR' => '/',
 
 );

@@ -13,8 +13,7 @@
 	<link href="/Public/css/normalize.min.css" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="/Public/css/crawler.css" rel="stylesheet">
-	<!-- <link rel="shortcut icon" href="/Public/Img/favicon.png" type="image/x-icon" >
-	-->
+	<link rel="shortcut icon" href="/Public/img/favicon.png" type="image/x-icon" >
 	
 </head>
 <body>
