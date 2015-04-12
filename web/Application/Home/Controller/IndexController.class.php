@@ -30,6 +30,8 @@ class IndexController extends BaseController {
         $this->assign('tc',$tc);
         $this->assign('tlsc',$tlsc);
         $this->assign('tcc',$tcc);
+
+        $this->assign('title','系统状态');
         $this->display();
     }
 }

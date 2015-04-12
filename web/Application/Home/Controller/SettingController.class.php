@@ -28,6 +28,14 @@ class SettingController extends BaseController {
            return false;
         }
         $this->assign('MaxThread',$MaxThread['Value']);
+
+
+        $MonitorInterval=M('sys_config')->where(array('Key'=>'MonitorInterval'))->find();
+        if (!$MonitorInterval) {
+           $this->ajaxReturn(array('status'=>0,'data'=>'加载失败!'));
+           return false;
+        }
+        $this->assign('MonitorInterval',$MonitorInterval['Value']);
         $data=$this->fetch('index');
         $this->ajaxReturn(array('status'=>1,'data'=>$data));
     }
@@ -50,8 +58,16 @@ class SettingController extends BaseController {
            $this->ajaxReturn(array('status'=>0,'data'=>'保存失败!'));
            return false;
         }
+        $MonitorInterval=!$MonitorInterval?I('MonitorInterval'):$MonitorInterval;
+        $MonitorInterval=(int)$MonitorInterval;
+        if ($MonitorInterval<=0||$MonitorInterval>43200) {
+           $this->ajaxReturn(array('status'=>0,'data'=>'保存失败!'));
+           return false;
+        }
+        
         M('sys_config')->where(array('Key'=>'StopCount'))->save(array('Value'=>$StopCount,'UpdateTime'=>time()));
         M('sys_config')->where(array('Key'=>'MaxThread'))->save(array('Value'=>$MaxThread,'UpdateTime'=>time()));
+        M('sys_config')->where(array('Key'=>'MonitorInterval'))->save(array('Value'=>$MonitorInterval,'UpdateTime'=>time()));
         addlog('修改设置');
         M('crawler_config')->where(array('StopPageCount'=>array('neq',$StopCount)))->save(array('StopPageCount'=>$StopCount));
         $this->ajaxReturn(array('status'=>1,'data'=>'OK!'));

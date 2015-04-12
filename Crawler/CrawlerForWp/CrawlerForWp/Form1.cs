@@ -17,6 +17,7 @@ namespace CrawlerForWp
         Thread main = null;
         public static bool isbegin = false;
         private static int maxthreda = 0;
+        private static int interUpdate = 0;
         public Form1()
         {
             InitializeComponent();
@@ -37,6 +38,15 @@ namespace CrawlerForWp
                     maxthreda = ls[0].Value;
                     maxthreda = maxthreda <= 0 ? 1 : (maxthreda > 10 ? 10 : maxthreda);
                 }
+            }
+            var lsInt = sys_configDAL.ListByWhere(new sys_config() { Key = "MonitorInterval" }, null, "Key").ToList();
+            if ((lsInt == null || lsInt.Count <= 0 || lsInt[0] == null)==false)
+            {
+                if (interUpdate< lsInt[0].UpdateTime)
+                {
+                    t1.Interval = lsInt[0].Value <= 0 ? t1.Interval : (lsInt[0].Value > 43200 ? t1.Interval : lsInt[0].Value * 1000);
+                }
+                interUpdate = lsInt[0].UpdateTime;
             }
             label1.Invoke(new Action(() =>
             {

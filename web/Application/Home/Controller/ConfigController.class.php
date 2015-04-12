@@ -25,7 +25,7 @@ class ConfigController extends BaseController {
         $wa['Status']=1;
         $res=$res->listByPage($pagesize, $wa,array('wd'=>trim($wd)));
         $this->assign('res',$res);
-        $this->assign('title','配置列表');
+        $this->assign('title','配置管理');
         $this->assign('wd',$wd);
         $this->display();
     }

@@ -34,17 +34,17 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li>
-							<a  href="/">首页</a>
+							<a  href="/">系统状态</a>
 						</li>
 						<li>
-							<a  href="<?php echo U('Task/index');?>">任务列表</a>
+							<a  href="<?php echo U('Task/index');?>">任务管理</a>
 						</li>
 						<li>
-							<a  href="<?php echo U('Config/index');?>">配置列表</a>
+							<a  href="<?php echo U('Config/index');?>">配置管理</a>
 						</li>
 						<li><a href="<?php echo U('Log/index');?>">日志</a></li>
 						<li>
-							<a id="settingnav" geturl="<?php echo U('Setting/index');?>" href="javascript:void(0)">设置</a>
+							<a id="settingnav" geturl="<?php echo U('Setting/index');?>" href="javascript:void(0)">爬虫设置</a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
@@ -237,7 +237,7 @@
 			}
 			ajaxbypost($(this).attr('action'),$(this).serialize(),function(res){
 				if (!res||res.status==0) {
-					showerrormsg('保存失败！',1,900);
+					showerrormsg(res&&res.data?res.data:'保存失败！',1,900);
 					return false;
 				}
 				showsuccessmsg('OK!',1,900);
@@ -254,7 +254,7 @@
 		$('#additem').on('click', function(event) {
 			ajaxbypost($(this).attr('geturl'),"",function(res){
 				if (!res||res.status==0||!res.data) {
-					showerrormsg('加载配置失败！',1,900);
+					showerrormsg(res&&res.data?res.data:'加载配置失败！',1,900);
 					return false;
 				}else{
 					loadingimg();
@@ -271,7 +271,7 @@
 			}
 			ajaxbypost($(this).attr('geturl'),{id:$(len).val()},function(res){
 				if (!res||res.status==0||!res.data) {
-					showerrormsg('加载配置失败！',1,900);
+					showerrormsg(res&&res.data?res.data:'加载配置失败！',1,900);
 					return false;
 				}else{
 					loadingimg();

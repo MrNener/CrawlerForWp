@@ -91,7 +91,7 @@
 			}
 			ajaxbypost($(this).attr('action'),$(this).serialize(),function(res){
 				if (!res||res.status==0) {
-					showerrormsg('保存失败！',1,900);
+					showerrormsg(res&&res.data?res.data:'保存失败！',1,900);
 					return false;
 				}
 				showsuccessmsg('OK!',1,900);
@@ -108,7 +108,7 @@
 		$('#additem').on('click', function(event) {
 			ajaxbypost($(this).attr('geturl'),"",function(res){
 				if (!res||res.status==0||!res.data) {
-					showerrormsg('加载配置失败！',1,900);
+					showerrormsg(res&&res.data?res.data:'加载配置失败！',1,900);
 					return false;
 				}else{
 					loadingimg();
@@ -125,7 +125,7 @@
 			}
 			ajaxbypost($(this).attr('geturl'),{id:$(len).val()},function(res){
 				if (!res||res.status==0||!res.data) {
-					showerrormsg('加载配置失败！',1,900);
+					showerrormsg(res&&res.data?res.data:'加载配置失败！',1,900);
 					return false;
 				}else{
 					loadingimg();

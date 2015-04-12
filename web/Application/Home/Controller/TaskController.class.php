@@ -28,7 +28,7 @@ class TaskController extends BaseController {
     	$res=new crawler_configModel();
     	$res=$res->listByPage(2000,array('Status'=>1));
     	$this->assign('cls',$res['list']);
-        $this->assign('title','事务列表');
+        $this->assign('title','任务管理');
         $this->assign('wd',$wd);
         $this->display();
     }
@@ -90,6 +90,10 @@ class TaskController extends BaseController {
         }
         $res=new crawler_configModel();
         $res=$res->listByPage(1000,array('Status'=>1));
+        if (!$res['list']||count($res['list'])<=0) {
+           $this->ajaxReturn(array('status'=>0,'data'=>'没有配置，请先添加配置'),'json');
+           return false;
+        }
         $this->assign('list',$res['list']);
         $this->assign('title','添加');
         $this->assign('modif','add');
