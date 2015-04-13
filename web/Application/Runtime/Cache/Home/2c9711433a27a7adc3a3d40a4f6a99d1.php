@@ -36,13 +36,14 @@
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container">
 				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
+<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
+					<a class="navbar-brand navbar-brand-expend" href="/">Web Crawler</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
@@ -120,7 +121,7 @@
 							<td  class="text-center"><?php echo ($v['TableName']); ?></td>
 							<td  class="text-center"><?php echo date('Y/m/d H:i',$v['AddTime']);?></td>
 							<td  class="text-center">
-								<a class="getdetil" href="javascript:void(0);" geturl="<?php echo U('getcof',array('id'=>$v['Id'],'modif'=>'get'));?>">查看详情</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+								<a class="getdetil" href="javascript:void(0);" geturl="<?php echo U('getcof',array('id'=>$v['Id'],'modif'=>'get'));?>">查看详细</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 								<a class="getregex" href="javascript:void(0);" geturl="<?php echo U('listregex',array('id'=>$v['Id']));?>" >正则配置</a>
 							</td>
 						</tr><?php endforeach; endif; else: echo "" ;endif; ?>

@@ -77,6 +77,23 @@ footer a:focus{
     color: #000;
     text-decoration: none;
 }
+.btn-danger{
+    background-color: #E43631;
+}
+.btn-warning {
+    background-color: #FCA730;
+}
+.btn-success {
+    background-color: #2DB32D;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #5F5F5F;
+    font-weight: 600;
+}
+.navbar-default .navbar-nav>li>a :hover{
+    color: #252525;
+    font-weight: 600;
+}
 @media (min-width: 1440px){
     .container {
         width: 1300px;
