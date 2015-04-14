@@ -84,16 +84,16 @@ class ConfigController extends BaseController {
         $this->assign('modif',$modif);
         //查看
         if ($modif=='get') {
-             $this->assign('title','查看');
+             $this->assign('title','查看配置');
              $this->assign('readonly','readonly');
         }else if ($modif=='update') {
             //更新
-             $this->assign('title','更新');
+             $this->assign('title','更新配置');
             $this->assign('chide','chide');
             $this->assign('allowsave',true);
         }else if($modif=='add'){
             //添加
-             $this->assign('title','添加');
+             $this->assign('title','添加配置');
             $this->assign('chide','chide');
             $this->assign('allowsave',true);
             $data=$this->fetch('configtpl');

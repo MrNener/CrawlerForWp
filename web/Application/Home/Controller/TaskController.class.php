@@ -76,7 +76,7 @@ class TaskController extends BaseController {
         $res=new crawler_configModel();
         $res=$res->listByPage(1000,array('Status'=>1));
         $this->assign('list',$res['list']);
-        $this->assign('title','修改');
+        $this->assign('title','修改任务');
         $this->assign('modif','update');
         $this->assign('model',$model);
         $data=$this->fetch('configtpl');
@@ -95,7 +95,7 @@ class TaskController extends BaseController {
            return false;
         }
         $this->assign('list',$res['list']);
-        $this->assign('title','添加');
+        $this->assign('title','添加任务');
         $this->assign('modif','add');
         $data=$this->fetch('configtpl');
         $this->ajaxReturn(array('status'=>1,'data'=>$data),'json');
