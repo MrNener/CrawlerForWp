@@ -73,8 +73,15 @@
                 }
             });
         }
-        /*ajax get 获取数据*/
-        /*_url:url,_dada:请求数据，_callback:成功回调函数,_datatype:请求数据类型*/
+/**
+ * [ajaxbyget description]
+ * @param  {[type]} _url           [description]
+ * @param  {[type]} _data          [description]
+ * @param  {[type]} _callback      [description]
+ * @param  {[type]} _datatype      [description]
+ * @param  {[type]} _callbackparam [description]
+ * @return {[type]}                [description]
+ */
     function ajaxbyget(_url, _data, _callback, _datatype,_callbackparam) {
             return ajaxgetdata(_url, _data, _callback, 'get', _datatype,_callbackparam);
         }
