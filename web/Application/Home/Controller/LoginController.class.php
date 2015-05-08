@@ -21,7 +21,7 @@ class LoginController extends Controller {
             $this->redirect(('Index/index'));
             return false;
         }
-        $this->assign('title','登录');
+        $this->assign('title','Web Crawler');
         $this->display();
     }
     public function logout()
@@ -33,6 +33,23 @@ class LoginController extends Controller {
       }
       cookie(null);
       $this->redirect(('index'));
+    }
+    public function encriptpwd(){
+        $this->assign('title','获取加密密码');
+        $this->display();
+    }
+    public function getpwd(){
+        $arr=I('post.');
+        if(!IS_POST||!$arr){
+            $this->error('不要瞎搞');
+            return false;
+        }
+        $m=M('user')->where(array('Name'=>$arr['Name'],'Status'=>1))->find();
+        if(!$m){
+            $this->error('用户不存在');
+            return false;
+        }
+        echo (!$m['PWD']?'生成默认密码：'.$arr['PWD'].' ->'.strtoupper(sha1(C('PWD_Salt').trim($arr['PWD'].$m['Name']).$m['KeySalt'])):$m['PWD']);
     }
     public function login()
     {
@@ -50,7 +67,7 @@ class LoginController extends Controller {
            $this->ajaxReturn(array('status'=>0,'data'=>'用户不存在'),'json');
            return false;
        }
-       $pwd=strtoupper(sha1(C('PWD_Salt').trim($arr['PWD'].$arr['Name']).$m['KeySalt']));
+       $pwd=strtoupper(sha1(C('PWD_Salt').trim($arr['PWD'].$m['Name']).$m['KeySalt']));
        if ($pwd==strtoupper($m['PWD'])) {
             $key=strtoupper(sha1(uniqid(randstr(4),true).$pwd));
             $uid=strtoupper(sha1(uniqid(randstr(4),true).$arr['Name']));
@@ -59,7 +76,9 @@ class LoginController extends Controller {
             cookie('uname',$m['Name']);
             cookie('umid',$key);
             session($uid,$key);
-            M('user')->where(array('Id'=>$m['Id']))->data(array('LastTime'=>time()))->save();
+            $newsalt=uniqid(randstr(4),true);
+            $npwd=strtoupper(sha1(C('PWD_Salt').trim($arr['PWD'].$m['Name']).$newsalt));
+            M('user')->where(array('Id'=>$m['Id']))->data(array('LastTime'=>time(),'KeySalt'=>$newsalt,'PWD'=>$npwd))->save();
             addlog('登录');
             $this->ajaxReturn(array('status'=>1,'data'=>'OK!'),'json');
             return false;
