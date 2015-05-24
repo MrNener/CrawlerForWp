@@ -5,22 +5,19 @@
 			<div class="modal-header text-center">
 				<h3 class="modal-title" id="myModalLabel">{$title}</h3>
 			</div>
-			<form action="{:U('login')}" class="form-horizontal" method="post" onsubmit="return false;">
+			<form action="{:U('savepwd')}" class="form-horizontal" method="post" onsubmit="return false;">
 				<div class="modal-body">
-					<div class="form-group ">
+					<div class="form-group">
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="text" class="form-control" id="Name"  name="Name" placeholder="用户名" required></div>
+							<input type="password" class="form-control"   name="OPWD" placeholder="原密码" required></div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="password" class="form-control" id="PWD"  name="PWD" placeholder="密码" required></div>
+							<input type="password" class="form-control"  name="PWD" placeholder="新密码" required></div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-1 col-sm-5 text-left">
-							<button type="submit" class="btn btn-success">登录</button>
-						</div>
-						<div class="col-sm-5 text-right">
-							<a href="{:U('encriptpwd')}" target="_blank">获取密码</a>
+							<button type="submit" class="btn btn-success">保存</button>
 						</div>
 					</div>
 				</div>
@@ -40,8 +37,10 @@
 					showerrormsg(res.data,1,900);
 					return false;
 				}
-				showsuccessmsg('登录成功！',1,900);
-				window.location.href="{:U('Index/index')}";
+				showsuccessmsg('修改成功！请重新登陆！',1,900);
+				setTimeout(function() {
+					window.location.href="{:U('Login/logout')}";
+				}, 1300);
 				return false;
 			},'json');
 			return false;

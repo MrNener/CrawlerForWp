@@ -72,4 +72,45 @@ class SettingController extends BaseController {
         M('crawler_config')->where(array('StopPageCount'=>array('neq',$StopCount)))->save(array('StopPageCount'=>$StopCount));
         $this->ajaxReturn(array('status'=>1,'data'=>'OK!'));
     }
+    public function setpwd()
+    {
+      $this->assign('title','修改密码');
+      $this->display();
+    }
+    /**
+     * 保存密码
+     * @return [type] [description]
+     */
+    public function savepwd()
+    {
+      $arr=I('post.');
+      if (!IS_POST||!$arr) {
+         $this->error('不要瞎搞！',U('/'));
+         return false;
+      }
+      $m=M('user')->where(array('Id'=>cookie('uid'),'Status'=>1))->find();
+      if (!$m) {
+        echo json_encode(array('status'=>0,'data'=>'用户不存在！')) ;
+        return false;
+      }
+      $pwd=strtoupper(sha1(C('PWD_Salt').trim($arr['OPWD'].$m['Name']).$m['KeySalt']));
+      if ($pwd!=strtoupper($m['PWD'])) {
+        echo json_encode(array('status'=>0,'data'=>'原密码错误！'));
+        return false;
+      }
+      $newsalt=uniqid(randstr(4),true);
+      $npwd=strtoupper(sha1(C('PWD_Salt').trim($arr['PWD'].$m['Name']).$newsalt));
+      if(M('user')->where(array('Id'=>$m['Id']))->data(array('LastTime'=>time(),'KeySalt'=>$newsalt,'PWD'=>$npwd))->save()){
+        $uid=cookie('uzid');
+        if (!!$uid) {
+          session($uid,null);
+        }
+        cookie(null);
+        addlog('修改密码');
+        echo json_encode(array('status'=>1,'data'=>'修改成功'));
+        return false;
+      }
+      echo json_encode(array('status'=>0,'data'=>'修改失败'));
+      return false;
+    }
 }
